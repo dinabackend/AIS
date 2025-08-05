@@ -1,0 +1,9 @@
+type Query {
+    products: [Product!]! @paginate(defaultCount: 10)
+}
+
+type Product {
+    id: ID!
+    name: String!
+    description: String
+}
