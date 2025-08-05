@@ -22,12 +22,12 @@ class ReviewsResource extends Resource
     use ResourceTranslatable;
     public static function getLabel(): ?string
     {
-        return "Review";
+        return __('panel.Reviews');
     }
 
     public static function getPluralLabel(): ?string
     {
-        return "Reviews";
+        return __('panel.Reviews');
     }
 
     public static function getNavigationBadge(): ?string

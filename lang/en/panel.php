@@ -16,5 +16,6 @@ return [
     'Pages' => 'Pages',
     'Settings' => 'Settings',
     'Creations Page Settings Page' => 'Creations Page Settings Page',
-    'B2B Page Settings Page' => 'B2B Page Settings Page'
+    'B2B Page Settings Page' => 'B2B Page Settings Page',
+    'Reviews' => 'Reviews',
 ];

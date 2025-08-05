@@ -16,5 +16,6 @@ return [
     'Pages' => 'Страницы',
     'Settings' => 'Настройки',
     'Creations Page Settings Page' => 'Страница настроек Creations',
-    'B2B Page Settings Page' => 'Страница настроек B2B'
+    'B2B Page Settings Page' => 'Страница настроек B2B',
+    'Reviews' => 'Отзывы',
 ];
