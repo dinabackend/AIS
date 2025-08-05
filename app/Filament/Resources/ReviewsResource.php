@@ -4,7 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ReviewsResource\Pages;
 use App\Filament\Resources\ReviewsResource\RelationManagers;
-use App\Models\Reviews;
+use App\Models\Review;
 use CactusGalaxy\FilamentAstrotomic\Forms\Components\TranslatableTabs;
 use CactusGalaxy\FilamentAstrotomic\Resources\Concerns\ResourceTranslatable;
 use CactusGalaxy\FilamentAstrotomic\TranslatableTab;
@@ -32,9 +32,9 @@ class ReviewsResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return Reviews::count();
+        return Review::count();
     }
-    protected static ?string $model = Reviews::class;
+    protected static ?string $model = Review::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 

@@ -5,6 +5,7 @@ namespace App\Models;
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Str;
 use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
 use Spatie\MediaLibrary\HasMedia;
@@ -91,7 +92,7 @@ class Product extends TranslatableModel implements HasMedia, Sortable
         parent::boot();
         static::creating(function ($product) {
             $product->sku = 'PRD-' . strtoupper(substr($product->name, 0, 3) . '-' . rand(1000, 9999));
-            $product->slug = \Str::slug($product->translate('uz')->name . '-' . \Str::random(5));
+            $product->slug = Str::slug($product->translate('uz')->name . '-' . Str::random(5));
         });
     }
 }

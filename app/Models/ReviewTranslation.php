@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class ReviewTranslation extends Model
 {
-    protected $table = 'product_translations';
+    protected $table = 'review_translations';
+
+    public $timestamps = false;
 
     protected $fillable = [
         'name',

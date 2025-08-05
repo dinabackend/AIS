@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('translations_review', function (Blueprint $table) {
+        Schema::create('review_translations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('review_id')->constrained('reviews')->cascadeOnDelete();
             $table->string('locale')->index();
@@ -32,7 +32,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('translations_review');
+        Schema::dropIfExists('review_translations');
         Schema::dropIfExists('reviews');
     }
 };
