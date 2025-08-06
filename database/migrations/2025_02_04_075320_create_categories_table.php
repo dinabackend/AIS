@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->foreignId('parent_id')->nullable();
+            $table->integer('order')->default(0);
             $table->timestamps();
         });
 
@@ -22,19 +23,13 @@ return new class extends Migration
             $table->foreignId('category_id')->constrained()->cascadeOnDelete();
             $table->string('locale');
             $table->string('name');
-            $table->foreign('category_id')
-                ->references('id')
-                ->on('categories')
-                ->onDelete('cascade');
             $table->primary(['category_id', 'locale']);
         });
 
         Schema::create('categories_products', function (Blueprint $table) {
-            $table->unsignedBigInteger('category_id');
-            $table->unsignedBigInteger('product_id');
-            $table->primary(['category_id', 'product_id']);
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->id();
+            $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
+            $table->foreignId('product_id')->constrained('products')->cascadeOnDelete();
             $table->string('value', 256)->nullable();
         });
     }
@@ -44,11 +39,15 @@ return new class extends Migration
      */
     public function down(): void
     {
-
-        Schema::table('categories', function (Blueprint $table) {
-            $table->dropForeign(['parent_id']);
+        Schema::table('categories_products', function (Blueprint $table) {
+            $table->dropForeign(['category_id']);
+            $table->dropForeign(['product_id']);
         });
-
+        Schema::dropIfExists('categories_products');
+        Schema::table('category_translations', function (Blueprint $table) {
+            $table->dropForeign(['category_id']);
+        });
+        Schema::dropIfExists('category_translations');
         Schema::dropIfExists('categories');
     }
 };

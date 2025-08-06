@@ -12,7 +12,7 @@ return new class extends SettingsMigration
         $this->migrator->add('home.title_en', "");
 
         // Upcoming Banner
-        $this->migrator->add('home.upcoming_banner', "");
+        $this->migrator->add('home.upcoming_banner', []);
 
         // About Numbers
         $this->migrator->add('home.about_numbers_uz', []);

@@ -27,10 +27,8 @@ return new class extends Migration
 
             $table->string('title')->nullable();
             $table->text('description')->nullable();
-
             $table->string('locale');
 
-            $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
             $table->unique(['event_id', 'locale']);
         });
     }
@@ -43,6 +41,7 @@ return new class extends Migration
         Schema::table('event_translations', function (Blueprint $table) {
             $table->dropForeign(['event_id']);
         });
+        Schema::dropIfExists('event_translations');
 
         Schema::dropIfExists('events');
     }

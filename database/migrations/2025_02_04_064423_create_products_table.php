@@ -24,6 +24,7 @@ return new class extends Migration
             $table->tinyInteger('status')->default(0);
             $table->tinyInteger('home_visibility')->default(0)->nullable();
             $table->tinyInteger('collection_visibility')->default(0)->nullable();
+            $table->integer('order')->default(0);
 
             $table->timestamps();
         });
@@ -36,6 +37,8 @@ return new class extends Migration
             $table->text('ingredients')->nullable();
             $table->text('description')->nullable();
             $table->text('history')->nullable();
+            $table->text('seo_title')->nullable();
+            $table->text('seo_description')->nullable();
 
             $table->string('locale');
             $table->primary(['product_id', 'locale']);
@@ -51,6 +54,8 @@ return new class extends Migration
         Schema::table('product_translations', function (Blueprint $table) {
             $table->dropForeign(['product_id']);
         });
+
+        Schema::dropIfExists('product_translations');
 
         Schema::dropIfExists('products');
     }

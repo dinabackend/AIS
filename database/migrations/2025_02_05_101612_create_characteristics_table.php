@@ -43,6 +43,17 @@ return new class extends Migration
      */
     public function down(): void
     {
+
+        Schema::table('characteristic_translations', function (Blueprint $table) {
+            $table->dropForeign(['characteristic_id']);
+        });
+        Schema::dropIfExists('characteristic_translations');
+
+        Schema::table('characteristics', function (Blueprint $table) {
+            $table->dropForeign(['product_id']);
+            $table->dropForeign(['characteristic_key_id']);
+        });
+
         Schema::dropIfExists('characteristics');
     }
 };

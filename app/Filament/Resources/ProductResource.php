@@ -26,6 +26,7 @@ use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\TextInputColumn;
 use Filament\Tables\Table;
+use Guava\FilamentModalRelationManagers\Actions\Table\RelationManagerAction;
 
 
 class ProductResource extends Resource
@@ -193,8 +194,12 @@ class ProductResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
 
+                RelationManagerAction::make('lesson-relation-manager')
+                    ->label('')
+                    ->icon('heroicon-s-rectangle-stack')
+                    ->relationManager(CategoriesRelationManager::make()),
+                Tables\Actions\EditAction::make()->label('')
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
