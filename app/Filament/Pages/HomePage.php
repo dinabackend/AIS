@@ -14,7 +14,7 @@ use Illuminate\Contracts\Support\Htmlable;
 
 class HomePage extends SettingsPage
 {
-    public function getTitle(): string | Htmlable
+    public function getTitle(): string|Htmlable
     {
         return __('panel.home_page_settings');
     }
@@ -23,6 +23,7 @@ class HomePage extends SettingsPage
     {
         return __('panel.home_page_settings');
     }
+
     protected static ?string $navigationGroup = 'Settings';
     protected static ?string $navigationIcon = 'heroicon-o-home-modern';
 
@@ -30,36 +31,25 @@ class HomePage extends SettingsPage
 
     public function form(Form $form): Form
     {
-        return $form->schema([
-            Repeater::make('upcoming_banner')->schema([
-                Tabs::make()->schema([
-                    Tabs\Tab::make("O'zbekcha")->schema([
-                        TextInput::make('title_uz')->required()
-                    ]),
-                    Tabs\Tab::make("Русский")->schema([
-                        TextInput::make('title_ru')->required()
-                    ]),
-                    Tabs\Tab::make("English")->schema([
-                        TextInput::make('title_en')->required()
-                    ]),
-                ])->columnSpanFull(),
-                FileUpload::make('banner')
-                    ->disk('public')
-                    ->directory('banner')
-                    ->required()
-            ])->columnSpanFull(),
 
-            Tabs::make('preorder')->schema([
-                Tabs\Tab::make("O'zbekcha")->schema([
-                    TextInput::make('preorder_uz')->required()
-                ]),
-                Tabs\Tab::make("Русский")->schema([
-                    TextInput::make('preorder_ru')->required()
-                ]),
-                Tabs\Tab::make("English")->schema([
-                    TextInput::make('preorder_en')->required()
-                ]),
-            ])->columnSpanFull(),
+
+        $settings = [];
+        foreach (['ru', 'uz', 'en'] as $lang) {
+            $settings[] = Tabs\Tab::make($lang)->schema([
+                TextInput::make("title_$lang")->label(__('form.Title', locale: $lang))->required()->maxLength(255),
+                TextInput::make("subtitle_$lang")->label(__('form.Subtitle', locale: $lang))->required()->maxLength(255),
+                Repeater::make("info_$lang")->schema([
+                    TextInput::make("number")->label('number')->required(),
+                    TextInput::make("text")->label(__('form.Text'))->required(),
+                ])->label(__('form.Info List', locale: $lang))->columns(),
+            ]);
+        }
+
+        return $form->schema([
+            Repeater::make('banner')->schema([
+                Tabs::make()->schema($settings)->columnSpanFull(),
+                FileUpload::make('banner')->disk('public')->directory('banner')->required()
+            ])->defaultItems(1)->columnSpanFull(),
         ]);
     }
 }
