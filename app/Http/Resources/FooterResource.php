@@ -20,11 +20,33 @@ class FooterResource extends JsonResource
         return [
             'telegram' => $settings->telegram,
             'instagram' => $settings->instagram,
-            'whatsapp' => $settings->whatsapp,
-            'mail' => $settings->mail,
-            'phone_top_1' => $settings->phone_top_1,
-            'phone_top_2' => $settings->phone_top_2,
-            'phone_footer' => $settings->phone_footer,
+            'linkedin' => $settings->linkedin,
+            'facebook' => $settings->facebook,
+            'mail1' => $settings->mail1,
+            'mail2' => $settings->mail2,
+            'phone' => $settings->phone,
+            'address' => [
+                'uz' => $settings->address_uz,
+                'ru' => $settings->address_ru,
+                'en' => $settings->address_en,
+            ],
+            'footer_title' => [
+                'uz' => $settings->footer_title_uz,
+                'ru' => $settings->footer_title_ru,
+                'en' => $settings->footer_title_en,
+            ],
+            'title' => [
+                'uz' => $settings->title_uz,
+                'ru' => $settings->title_ru,
+                'en' => $settings->title_en,
+            ],
+            'text' => [
+                'uz' => $settings->text_uz,
+                'ru' => $settings->text_ru,
+                'en' => $settings->text_en,
+            ],
+            'img' => $settings->img,
+
         ];
     }
 }
