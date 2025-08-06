@@ -5,6 +5,7 @@ namespace App\Filament\Pages;
 use App\Settings\HomePageSettings;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -46,10 +47,12 @@ class HomePage extends SettingsPage
         }
 
         return $form->schema([
-            Repeater::make('banner')->schema([
-                Tabs::make()->schema($settings)->columnSpanFull(),
-                FileUpload::make('banner')->disk('public')->directory('banner')->required()
-            ])->defaultItems(1)->columnSpanFull(),
+            Section::make(__('form.Banner'))->schema([
+                Repeater::make('banner')->schema([
+                    Tabs::make()->schema($settings)->columnSpanFull(),
+                    FileUpload::make('banner')->disk('public')->directory('banner')->required()
+                ])->defaultItems(1)->columnSpanFull(),
+            ])->collapsed(),
         ]);
     }
 }
