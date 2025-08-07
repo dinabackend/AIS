@@ -33,7 +33,6 @@ class HomePage extends SettingsPage
 
     public function form(Form $form): Form
     {
-
         $settings = [];
         foreach (['ru', 'uz', 'en'] as $lang) {
             $settings[] = Tabs\Tab::make($lang)->schema([
@@ -83,10 +82,10 @@ class HomePage extends SettingsPage
             ])->collapsed(),
 
             Section::make(__('form.Info'))->schema([
-                Repeater::make(__('form.Info'))->schema([
+                Repeater::make('Info')->schema([
                     Tabs::make()->schema($settings2)->columnSpanFull(),
-                    FileUpload::make("img_$lang")->label(__('form.Image1', locale: $lang))->disk('public')->directory('home')->required(),
-                    FileUpload::make("img2_$lang")->label(__('form.Image2', locale: $lang))->disk('public')->directory('home')->required(),
+                    FileUpload::make("img_$lang")->label(__('form.Image1', locale: $lang))->required(),
+                    FileUpload::make("img2_$lang")->label(__('form.Image2', locale: $lang))->required(),
                 ])->defaultItems(1)->columnSpanFull(),
             ])->collapsed(),
 
@@ -128,7 +127,5 @@ class HomePage extends SettingsPage
                 ])->defaultItems(1)->columnSpanFull(),
             ])->collapsed(),
         ]);
-
-
     }
 }

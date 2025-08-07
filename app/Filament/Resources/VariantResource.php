@@ -29,6 +29,10 @@ class VariantResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    public static function getNavigationBadge(): ?string
+    {
+        return Variant::count();
+    }
     public static function form(Form $form): Form
     {
         return $form
