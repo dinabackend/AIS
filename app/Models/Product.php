@@ -23,20 +23,14 @@ class Product extends TranslatableModel implements HasMedia, Sortable
 
     protected $fillable = [
         'name',
-        'ingredients',
         'description',
-        'price',
         'category_id',
         'image',
         'img',
         'article',
         'status',
-        'min_days',
-        'max_days',
-        'amount',
         'type',
         'home_visibility',
-        'collection_visibility',
         'time',
         'seo_title',
         'seo_description'
@@ -50,9 +44,9 @@ class Product extends TranslatableModel implements HasMedia, Sortable
         return $this->belongsToMany(Category::class, 'categories_products'); //
     }
 
-    public function characteristics(): HasMany
+    public function characteristics()
     {
-        return $this->hasMany(Characteristic::class, 'product_id'); //
+        return $this->morphMany(Characteristic::class, 'characteristicable');
     }
 
     public function types(): BelongsToMany
@@ -63,6 +57,11 @@ class Product extends TranslatableModel implements HasMedia, Sortable
     public function groups(): BelongsToMany
     {
         return $this->belongsToMany(Group::class, 'group_products');
+    }
+
+    public function sections()
+    {
+        return $this->morphMany(Section::class, 'sectionable');
     }
 
     /** @noinspection PhpUnused */

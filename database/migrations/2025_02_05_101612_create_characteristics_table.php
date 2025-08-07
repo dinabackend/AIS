@@ -13,10 +13,8 @@ return new class extends Migration
     {
         Schema::create('characteristics', function (Blueprint $table) {
             $table->id();
-
-            $table->foreignId('product_id')
-                ->constrained('products')
-                ->cascadeOnDelete();
+            $table->unsignedBigInteger('characteristicable_id');
+            $table->string('characteristicable_type');
 
             $table->foreignId('characteristic_key_id')->nullable()
                 ->constrained('characteristic_keys')
@@ -50,7 +48,6 @@ return new class extends Migration
         Schema::dropIfExists('characteristic_translations');
 
         Schema::table('characteristics', function (Blueprint $table) {
-            $table->dropForeign(['product_id']);
             $table->dropForeign(['characteristic_key_id']);
         });
 

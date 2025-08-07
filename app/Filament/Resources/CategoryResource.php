@@ -3,15 +3,19 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\CategoryResource\Pages;
+use App\Filament\Resources\CategoryResource\RelationManagers\ChildrenRelationManager;
 use App\Models\Category;
 use CactusGalaxy\FilamentAstrotomic\Forms\Components\TranslatableTabs;
 use CactusGalaxy\FilamentAstrotomic\TranslatableTab;
 use Filament\Forms;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Guava\FilamentModalRelationManagers\Actions\Table\RelationManagerAction;
 
 class CategoryResource extends Resource
 {
@@ -39,14 +43,22 @@ class CategoryResource extends Resource
     {
         return $form
             ->schema([
+
                 TranslatableTabs::make()
                     ->localeTabSchema(fn(TranslatableTab $tab) => [
                         Forms\Components\TextInput::make($tab->makeName('name'))
                             ->required()
                             ->maxLength(255)
-                    ]),
+                    ])->columnSpanFull(),
 
-                Select::make('parent_id')
+                SpatieMediaLibraryFileUpload::make('category_img')
+                    ->image()
+                    ->imageEditor()
+                    ->multiple()
+                    ->collection('category_img')
+                    ->label(__('form.image')),
+
+                /*Select::make('parent_id')
                     ->label('Parent Category')
                     ->options(fn ($get) => Category::query()->whereNull('parent_id')
                         ->where('id', '!=', $get('id'))
@@ -56,7 +68,7 @@ class CategoryResource extends Resource
                     )
                     ->searchable()
                     ->preload()
-                    ->nullable(),
+                    ->nullable(),*/
             ]);
     }
 
@@ -64,7 +76,8 @@ class CategoryResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
+                Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('parent.name')->label('Parent Category'),
             ])
             ->reorderable('order')
             ->defaultSort('order')
@@ -72,7 +85,8 @@ class CategoryResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                RelationManagerAction::make('category-relation-manager')->label('')->icon('heroicon-s-rectangle-stack')->relationManager(ChildrenRelationManager::make()),
+                Tables\Actions\EditAction::make()->label(''),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

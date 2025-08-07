@@ -15,15 +15,10 @@ return new class extends Migration
             $table->id();
 
             $table->string('slug')->nullable();
-            $table->integer('min_days')->default(3)->nullable();
-            $table->integer('max_days')->default(14)->nullable();
-            $table->decimal('amount', 10, 1)->nullable();
-            $table->integer('price')->nullable();
             $table->string('sku')->unique()->nullable();
             $table->string('type')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->tinyInteger('home_visibility')->default(0)->nullable();
-            $table->tinyInteger('collection_visibility')->default(0)->nullable();
             $table->integer('order')->default(0);
 
             $table->timestamps();
@@ -34,9 +29,8 @@ return new class extends Migration
             $table->foreignId('product_id')->constrained('products')->cascadeOnDelete();
 
             $table->string('name')->nullable();
-            $table->text('ingredients')->nullable();
             $table->text('description')->nullable();
-            $table->text('history')->nullable();
+            $table->text('advantages')->nullable();
             $table->text('seo_title')->nullable();
             $table->text('seo_description')->nullable();
 

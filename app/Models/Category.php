@@ -2,21 +2,23 @@
 
 namespace App\Models;
 
-use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Str;
 use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
 /**
  * @method CategoryTranslation getTranslation(string $locale)
  * @method static count()
  */
-class Category extends TranslatableModel implements Sortable
+class Category extends TranslatableModel implements HasMedia, Sortable
 {
-    use SortableTrait;
+    use SortableTrait,InteractsWithMedia;
 
     protected $fillable = [
         'name',
@@ -49,5 +51,20 @@ class Category extends TranslatableModel implements Sortable
 
     public function parent(): BelongsTo {
         return $this->belongsTo(Category::class, 'parent_id');
+    }
+
+    public function getTranslatedNameAttribute()
+    {
+        return $this->getTranslation('name', app()->getLocale());
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::saving(function ($category) {
+            if (empty($category->slug) && !empty($category->name)) {
+                $category->slug = Str::slug($category->name);
+            }
+        });
     }
 }

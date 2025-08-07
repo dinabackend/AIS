@@ -4,15 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ProductTranslation extends Model
+class VariantTranslation extends Model
 {
-    protected $table = 'product_translations';
+    protected $table = 'variant_translations';
 
     public $timestamps = false;
 
     protected $fillable = [
         'name',
         'description',
+
         'seo_title',
         'seo_description'
     ];
