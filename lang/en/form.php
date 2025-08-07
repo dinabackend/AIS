@@ -46,4 +46,21 @@ return [
     'type' => 'Type',
     'creation' => 'Creation',
     'privacy' => 'Privacy',
+
+    'Image1' => 'Image 1',
+    'Image2' => 'Image 2',
+    'Text 1' => 'Text 1',
+    'Text 2' => 'Text 2',
+    'Text 3' => 'Text 3',
+    'Info' => 'Info',
+    'number' => 'Number',
+
+    'Icon' => 'Icon',
+    'Advantages' => 'Advantages',
+    'name 1' => 'Name 1',
+    'name 2' => 'Name 2',
+    'Company' => 'Company',
+
+
+
 ];
