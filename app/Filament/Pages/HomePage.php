@@ -53,6 +53,7 @@ class HomePage extends SettingsPage
                     FileUpload::make('banner')->disk('public')->directory('banner')->required()
                 ])->defaultItems(1)->columnSpanFull(),
             ])->collapsed(),
+
         ]);
     }
 }

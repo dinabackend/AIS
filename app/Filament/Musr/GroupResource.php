@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\Musr;
 
 use App\Filament\Resources\GroupResource\Pages;
 use App\Models\Group;
@@ -65,9 +65,9 @@ class GroupResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListGroups::route('/'),
-            'create' => Pages\CreateGroup::route('/create'),
-            'edit' => Pages\EditGroup::route('/{record}/edit'),
+            'index' => GroupResource\Pages\ListGroups::route('/'),
+            'create' => GroupResource\Pages\CreateGroup::route('/create'),
+            'edit' => GroupResource\Pages\EditGroup::route('/{record}/edit'),
         ];
     }
 }

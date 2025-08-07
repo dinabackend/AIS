@@ -55,11 +55,6 @@ class Product extends TranslatableModel implements HasMedia, Sortable
         return $this->hasMany(Characteristic::class, 'product_id'); //
     }
 
-    public function boxes(): BelongsToMany
-    {
-        return $this->belongsToMany(Box::class, 'boxes_products', 'product_id', 'box_id');
-    }
-
     public function types(): BelongsToMany
     {
         return $this->belongsToMany(Type::class, 'types_products');

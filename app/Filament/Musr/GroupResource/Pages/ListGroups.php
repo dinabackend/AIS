@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Resources\GroupResource\Pages;
+namespace App\Filament\Musr\GroupResource\Pages;
 
-use App\Filament\Resources\GroupResource;
+use App\Filament\Musr\GroupResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 

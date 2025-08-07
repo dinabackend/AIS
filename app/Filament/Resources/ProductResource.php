@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductResource\Pages;
-use App\Filament\Resources\ProductResource\RelationManagers\BoxesRelationManager;
 use App\Filament\Resources\ProductResource\RelationManagers\CategoriesRelationManager;
 use App\Filament\Resources\ProductResource\RelationManagers\CharacteristicsRelationManager;
 use App\Filament\Resources\ProductResource\RelationManagers\TypesRelationManager;
@@ -172,10 +171,6 @@ class ProductResource extends Resource
                     })->tooltip(fn($record) => $record->categories->pluck('name')->implode(', '))
                     ->toggleable(isToggledHiddenByDefault: true),
 
-                TextColumn::make('boxes_count')->counts('boxes')->label('boxes')->sortable()
-                    ->label(__('panel.boxes'))
-                    ->toggleable(isToggledHiddenByDefault: true),
-
                 TextInputColumn::make('price')->sortable()->width(100)->label(__('form.price')),
 
                 TextInputColumn::make('amount')
@@ -195,10 +190,7 @@ class ProductResource extends Resource
             ])
             ->actions([
 
-                RelationManagerAction::make('lesson-relation-manager')
-                    ->label('')
-                    ->icon('heroicon-s-rectangle-stack')
-                    ->relationManager(CategoriesRelationManager::make()),
+                RelationManagerAction::make('lesson-relation-manager')->label('')->icon('heroicon-s-rectangle-stack')->relationManager(CategoriesRelationManager::make()),
                 Tables\Actions\EditAction::make()->label('')
             ])
             ->bulkActions([
@@ -213,7 +205,6 @@ class ProductResource extends Resource
         return [
             CategoriesRelationManager::class,
             CharacteristicsRelationManager::class,
-            BoxesRelationManager::class,
             TypesRelationManager::class,
         ];
     }
