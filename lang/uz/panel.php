@@ -17,4 +17,5 @@ return [
     'Creations Page Settings Page' => 'Creations sahifa sozlamalari',
     'B2B Page Settings Page' => 'B2B sahifa sozlamalari',
     'Reviews' => 'Sharhlar',
+    'home_page_settings' => 'Bosh sahifa sozlamalari',
 ];
