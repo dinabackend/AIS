@@ -15,6 +15,15 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class VariantResource extends Resource
 {
+    public static function getLabel(): ?string
+    {
+        return __('panel.variant');
+    }
+
+    public static function getPluralLabel(): ?string
+    {
+        return __('panel.variant');
+    }
     protected static ?string $model = Variant::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';

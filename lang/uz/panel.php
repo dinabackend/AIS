@@ -10,7 +10,6 @@ return [
     'seo_settings' => 'SEOni sozlash',
     'footer_settings' => 'Footerni sozlash',
     'types' => 'Turlar',
-    'boxes' => 'Qutilar',
     'policy' => 'Maxfiylik siyosati',
     'Pages' => 'Sahifalar',
     'Settings' => 'Sozlamalar',
@@ -18,4 +17,7 @@ return [
     'B2B Page Settings Page' => 'B2B sahifa sozlamalari',
     'Reviews' => 'Sharhlar',
     'home_page_settings' => 'Bosh sahifa sozlamalari',
+    'about' => 'Biz haqimizda',
+    'variant' => 'Variantlar',
+    'buttons' => 'Tugmalar',
 ];

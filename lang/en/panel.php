@@ -18,4 +18,10 @@ return [
     'Creations Page Settings Page' => 'Creations Page Settings Page',
     'B2B Page Settings Page' => 'B2B Page Settings Page',
     'Reviews' => 'Reviews',
+    'Abouts' => 'Abouts',
+    'buttons' => 'Buttons',
+    'home' => 'Home',
+    'about' => 'About',
+    'variant' => 'Variants',
+
 ];

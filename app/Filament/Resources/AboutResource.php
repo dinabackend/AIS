@@ -21,6 +21,16 @@ use Filament\Tables\Table;
 
 class AboutResource extends Resource
 {
+    public static function getLabel(): ?string
+    {
+        return __('panel.about');
+    }
+
+    public static function getPluralLabel(): ?string
+    {
+        return __('panel.about');
+    }
+
     protected static ?string $model = About::class;
 
     protected static ?string $slug = 'abouts';
