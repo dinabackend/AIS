@@ -4,6 +4,7 @@ namespace App\Filament\Pages;
 
 use App\Settings\FooterSettings;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -34,101 +35,44 @@ class ManageFooter extends SettingsPage
         return $form
             ->schema([
                 //footer img
-                Tabs\Tab::make('Footer Image')
-                    ->schema([
-                        FileUpload::make("img")->label(__('form.image'))->default("/img/default.img")
-                    ])->columnSpanFull(),
+                FileUpload::make('img')->label('Logo'),
                 // Footer
-                Tabs::make()
-                    ->tabs([
-                        Tabs\Tab::make("O'zbekcha")
-                            ->schema([
-                                TextInput::make('title_uz')->label('Title uz')->required()->columnSpanFull(),
-                                Textarea::make('text_uz')->label('Text uz')->required()->columnSpanFull(),
-                            ]),
-                        Tabs\Tab::make("Русский")
-                            ->schema([
-                                TextInput::make('title_ru')->label('Title ru')->required()->columnSpanFull(),
-                                Textarea::make('text_ru')->label('Text ru')->required()->columnSpanFull(),
-                            ]),
-                        Tabs\Tab::make("English")
-                            ->schema([
-                                TextInput::make('title_en')->label('Title en')->required()->columnSpanFull(),
-                                Textarea::make('text_en')->label('Text en')->required()->columnSpanFull(),
-                            ]),
-                    ])->columnSpanFull(),
+                Tabs::make()->tabs([
+                    Tabs\Tab::make("O'zbekcha")
+                        ->schema([
+                            TextInput::make('title_uz')->label('Title uz')->required()->columnSpanFull(),
+                            Textarea::make('text_uz')->label('Text uz')->required()->columnSpanFull(),
+                            TextInput::make('footer_title_uz')->label('Footer Title uz')->required()->columnSpanFull(),
+                            TextInput::make('address_uz')->label('Manzil')->required(),
+                        ]),
+                    Tabs\Tab::make("Русский")
+                        ->schema([
+                            TextInput::make('title_ru')->label('Title ru')->required()->columnSpanFull(),
+                            Textarea::make('text_ru')->label('Text ru')->required()->columnSpanFull(),
+                            TextInput::make('footer_title_ru')->label('Footer Title ru')->required()->columnSpanFull(),
+                            TextInput::make('address_ru')->label('Адрес')->required(),
+                        ]),
+                    Tabs\Tab::make("English")
+                        ->schema([
+                            TextInput::make('title_en')->label('Title en')->required()->columnSpanFull(),
+                            Textarea::make('text_en')->label('Text en')->required()->columnSpanFull(),
+                            TextInput::make('footer_title_en')->label('Footer Title en')->required()->columnSpanFull(),
+                            TextInput::make('address_en')->label('Address')->required(),
+                        ]),
+                ])->columnSpanFull(),
 
-                        // Footer title
-                        Tabs::make()
-                            ->tabs([
-                                Tabs\Tab::make("O'zbekcha")
-                                    ->schema([
-                                        TextInput::make('footer_title_uz')->label('Footer Title uz')->required()->columnSpanFull(),
-                                    ]),
-                                Tabs\Tab::make("Русский")
-                                    ->schema([
-                                        TextInput::make('footer_title_ru')->label('Footer Title ru')->required()->columnSpanFull(),
-                                    ]),
-                                Tabs\Tab::make("English")
-                                    ->schema([
-                                        TextInput::make('footer_title_en')->label('Footer Title en')->required()->columnSpanFull(),
-                                    ]),
-                            ])->columnSpanFull(),
+                Section::make('Socials')->schema([
+                    TextInput::make('telegram')->label('Telegram Link')->required(),
+                    TextInput::make('instagram')->label('Instagram Link')->required(),
+                    TextInput::make('linkedin')->label('LinkedIn Link')->required(),
+                    TextInput::make('facebook')->label('Facebook Link')->required(),
+                ])->collapsed()->columns(2),
 
-                        // Address
-                        Tabs::make()
-                            ->tabs([
-                                Tabs\Tab::make("O'zbekcha")
-                                    ->schema([
-                                        TextInput::make('address_uz',)
-                                            ->label('Manzil')
-                                            ->required(),
-                                    ]),
-                                Tabs\Tab::make("Русский")
-                                    ->schema([
-                                        TextInput::make('address_ru',)
-                                            ->label('Адрес')
-                                            ->required(),
-                                    ]),
-                                Tabs\Tab::make("English")
-                                    ->schema([
-                                        TextInput::make('address_en',)
-                                            ->label('Address')
-                                            ->required(),
-                                    ]),
-                            ])->columnSpanFull(),
-                        Tabs::make()
-                            ->tabs([
-                                Tabs\Tab::make("Telegram")
-                                    ->schema([
-                                        TextInput::make('telegram',)
-                                            ->label('Telegram Link')
-                                            ->required(),
-                                    ]),
-                                Tabs\Tab::make("Instagram")
-                                    ->schema([
-                                        TextInput::make('instagram',)
-                                            ->label('Instagram Link')
-                                            ->required(),
-                                    ]),
-                                Tabs\Tab::make("LinkedIn")
-                                    ->schema([
-                                        TextInput::make('linkedin',)
-                                            ->label('LinkedIn Link')
-                                            ->required(),
-                                    ]),
-                                Tabs\Tab::make("Facebook")
-                                    ->schema([
-                                        TextInput::make('facebook',)
-                                            ->label('Facebook Link')
-                                            ->required(),
-                                    ]),
-                            ])->columnSpanFull(),
-
-                        // Social Media
-                        TextInput::make('mail1',)->label('Mail Address')->required(),
-                        TextInput::make('mail2',)->label('Mail Address')->required(),
-                        TextInput::make('phone')->label('Phone')->required(),
+                Section::make('Contacts')->schema([
+                    TextInput::make('mail1')->label('Mail Address')->required(),
+                    TextInput::make('mail2')->label('Mail Address')->required(),
+                    TextInput::make('phone')->label('Phone')->required(),
+                ])->collapsed(),
             ]);
     }
 }
