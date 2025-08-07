@@ -49,9 +49,9 @@ return [
 
     'Image1' => 'Rasm 1',
     'Image2' => 'Rasm 2',
-    'Text 1' => 'Matn 1',
-    'Text 2' => 'Matn 2',
-    'Text 3' => 'Matn 3',
+    'Text1' => 'Matn 1',
+    'Text2' => 'Matn 2',
+    'Text3' => 'Matn 3',
     'Info' => 'Ma\'lumot',
     'number' => 'Raqam',
 
@@ -62,4 +62,7 @@ return [
     'name 2' => 'Nomi 2',
     'Advantages List' => 'Afzalliklar ro\'yxati',
     'Company' => 'Kompaniya',
+    'They trust us.' => 'Ular bizga ishonishadi.',
+    'Official partners' => 'Rasmiy hamkorlar',
+    'News' => 'Yangiliklar',
 ];

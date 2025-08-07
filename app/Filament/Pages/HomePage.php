@@ -64,12 +64,13 @@ class HomePage extends SettingsPage
         $companies = [];
         foreach (['ru', 'uz', 'en'] as $lang) {
             $companies[] = Tabs\Tab::make($lang)->schema([
-                TextInput::make("title_$lang")->label(__('form.Title', locale: $lang))->required()->maxLength(255),
-                TextInput::make("name1_$lang")->label(__('form.name 1', locale: $lang))->required()->maxLength(255),
-                TextInput::make("name2_$lang")->label(__('form.name 2', locale: $lang))->required()->maxLength(255),
-                TextInput::make("text1_$lang")->label(__('form.Text 1', locale: $lang))->required()->maxLength(255),
-                TextInput::make("text2_$lang")->label(__('form.Text 2', locale: $lang))->required()->maxLength(255),
-
+                TextInput::make("title_$lang")->label(__('form.They trust us.', locale: $lang))->required()->maxLength(255),
+                TextInput::make("name1_$lang")->label(__('form.name1', locale: $lang))->required()->maxLength(255),
+                TextInput::make("name2_$lang")->label(__('form.name2', locale: $lang))->required()->maxLength(255),
+                Textarea::make("text1_$lang")->label(__('form.Text1', locale: $lang))->required()->maxLength(255),
+                Textarea::make("text2_$lang")->label(__('form.Text2', locale: $lang))->required()->maxLength(255),
+                TextInput::make("title2_$lang")->label(__('form.Official partners', locale: $lang))->required()->maxLength(255),
+                TextInput::make("title3_$lang")->label(__('form.News', locale: $lang))->required()->maxLength(255),
             ]);
         }
 
@@ -89,37 +90,37 @@ class HomePage extends SettingsPage
                 ])->defaultItems(1)->columnSpanFull(),
             ])->collapsed(),
 
-            Section::make(__('form.Advantages'))->schema([
-                Tabs::make(__('form.Advantages'))->tabs([
-                    Tabs\Tab::make('uz')->schema([
-                        TextInput::make('title1_uz')->label('Title 1')->required(),
-                        TextInput::make('title2_uz')->label('Title 2')->required(),
-                        Repeater::make('items_uz')->schema([
-                            TextInput::make('title')->label('Title')->required(),
-                            TextInput::make('text')->label('Text')->required(),
-                            TextInput::make('icon')->label('Icon')->required(),
-                        ])->label('Items')->columns(),
-                    ]),
-                    Tabs\Tab::make('ru')->schema([
-                        TextInput::make('title1_ru')->label('Title 1')->required(),
-                        TextInput::make('title2_ru')->label('Title 2')->required(),
-                        Repeater::make('items_ru')->schema([
-                            TextInput::make('title')->label('Title')->required(),
-                            TextInput::make('text')->label('Text')->required(),
-                            TextInput::make('icon')->label('Icon')->required(),
-                        ])->label('Items')->columns(),
-                    ]),
-                    Tabs\Tab::make('en')->schema([
-                        TextInput::make('title1_en')->label('Title 1')->required(),
-                        TextInput::make('title2_en')->label('Title 2')->required(),
-                        Repeater::make('items_en')->schema([
-                            TextInput::make('title')->label('Title')->required(),
-                            TextInput::make('text')->label('Text')->required(),
-                            TextInput::make('icon')->label('Icon')->required(),
-                        ])->label('Items')->columns(),
-                    ]),
-                ]),
-            ])->collapsed(),
+//            Section::make(__('form.Advantages'))->schema([
+//                Tabs::make(__('form.Advantages'))->tabs([
+//                    Tabs\Tab::make('uz')->schema([
+//                        TextInput::make('title1_uz')->label('Title 1')->required(),
+//                        TextInput::make('title2_uz')->label('Title 2')->required(),
+//                        Repeater::make('items_uz')->schema([
+//                            TextInput::make('title')->label('Title')->required(),
+//                            TextInput::make('text')->label('Text')->required(),
+//                            TextInput::make('icon')->label('Icon')->required(),
+//                        ])->label('Items')->columns(),
+//                    ]),
+//                    Tabs\Tab::make('ru')->schema([
+//                        TextInput::make('title1_ru')->label('Title 1')->required(),
+//                        TextInput::make('title2_ru')->label('Title 2')->required(),
+//                        Repeater::make('items_ru')->schema([
+//                            TextInput::make('title')->label('Title')->required(),
+//                            TextInput::make('text')->label('Text')->required(),
+//                            TextInput::make('icon')->label('Icon')->required(),
+//                        ])->label('Items')->columns(),
+//                    ]),
+//                    Tabs\Tab::make('en')->schema([
+//                        TextInput::make('title1_en')->label('Title 1')->required(),
+//                        TextInput::make('title2_en')->label('Title 2')->required(),
+//                        Repeater::make('items_en')->schema([
+//                            TextInput::make('title')->label('Title')->required(),
+//                            TextInput::make('text')->label('Text')->required(),
+//                            TextInput::make('icon')->label('Icon')->required(),
+//                        ])->label('Items')->columns(),
+//                    ]),
+//                ]),
+//            ])->collapsed(),
 
             Section::make(__('form.Company'))->schema([
                 Repeater::make(__('form.Company'))->schema([
