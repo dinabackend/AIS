@@ -13,7 +13,7 @@ class VariantTranslation extends Model
     protected $fillable = [
         'name',
         'description',
-
+        'advantages',
         'seo_title',
         'seo_description'
     ];

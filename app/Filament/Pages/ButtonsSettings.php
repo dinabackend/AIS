@@ -25,7 +25,7 @@ class ButtonsSettings extends SettingsPage
     }
 
     protected static ?string $navigationGroup = 'Settings';
-    protected static ?string $navigationIcon = 'heroicon-o-play-circle';
+    protected static ?string $navigationIcon = 'heroicon-o-cursor-arrow-rays';
 
     protected static string $settings = \App\Settings\ButtonsSettings::class;
 

@@ -19,6 +19,8 @@ return [
     'image' => 'Rasmlar',
     'img' => 'Rasm',
     'wrapper' => "O'ram",
+    'media' => 'Media',
+    'video' => 'Video',
 
     'home' => 'Bosh sahifa',
     'about' => 'Biz haqimizda',

@@ -28,7 +28,7 @@ class CharacteristicKeyResource extends Resource
 
     protected static ?string $model = CharacteristicKey::class;
 
-    protected static ?string $navigationIcon = 'heroicon-s-squares-2x2';
+    protected static ?string $navigationIcon = 'heroicon-s-adjustments-horizontal';
 
     public static function getNavigationBadge(): ?string
     {

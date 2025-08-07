@@ -19,6 +19,8 @@ return [
     'image' => 'Images',
     'img' => 'Image',
     'wrapper' => 'Wrapper',
+    'media' => 'Media',
+    'video' => 'Video',
 
     'home' => 'Home',
     'about' => 'About',
