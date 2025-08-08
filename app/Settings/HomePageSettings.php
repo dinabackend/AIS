@@ -11,9 +11,6 @@ class HomePageSettings extends Settings
     public array $advantages;
     public array $companies;
 
-
-
-
     public static function group(): string
     {
         return 'home';

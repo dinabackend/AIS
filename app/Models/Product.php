@@ -37,7 +37,7 @@ class Product extends TranslatableModel implements HasMedia, Sortable
     ];
 
     /** @noinspection PhpUnused */
-    public array $translatedAttributes = ['name', 'ingredients', 'description', 'history', 'seo_title', 'seo_description'];
+    public array $translatedAttributes = ['name', 'ingredients', 'description', 'advantages', 'seo_title', 'seo_description'];
 
     public function categories(): BelongsToMany
     {
@@ -64,6 +64,11 @@ class Product extends TranslatableModel implements HasMedia, Sortable
         return $this->morphMany(Section::class, 'sectionable');
     }
 
+    public function variants(): HasMany
+    {
+        return $this->hasMany(Variant::class);
+    }
+
     /** @noinspection PhpUnused */
     public function scopeWithFilters($query, $categories = [], $types = [], $search = false)
     {
@@ -85,7 +90,7 @@ class Product extends TranslatableModel implements HasMedia, Sortable
     {
         parent::boot();
         static::creating(function ($product) {
-            $product->sku = 'PRD-' . strtoupper(substr($product->name, 0, 3) . '-' . rand(1000, 9999));
+            $product->sku = 'PRD-' . strtoupper(substr($product->name, 0, 3) . '-' . random_int(1000, 9999));
             $product->slug = Str::slug($product->translate('uz')->name . '-' . Str::random(5));
         });
     }

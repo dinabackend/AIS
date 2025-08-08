@@ -6,6 +6,7 @@ use App\Filament\Resources\ProductResource\Pages;
 use App\Filament\Resources\ProductResource\RelationManagers\CategoriesRelationManager;
 use App\Filament\Resources\ProductResource\RelationManagers\CharacteristicsRelationManager;
 use App\Filament\Resources\ProductResource\RelationManagers\TypesRelationManager;
+use App\Filament\Resources\ProductResource\RelationManagers\VariantsRelationManager;
 use App\Models\CategoryTranslation;
 use App\Models\Product;
 use CactusGalaxy\FilamentAstrotomic\Forms\Components\TranslatableTabs;
@@ -63,10 +64,22 @@ class ProductResource extends Resource
                                 ->rows(10)
                                 ->required($tab->makeName('description') === 'uz.description')
                                 ->label(__('form.description')),
+                            Textarea::make($tab->makeName('advantages'))
+                                ->rows(10)
+                                ->required($tab->makeName('advantages') === 'uz.advantages')
+                                ->label(__('form.Advantages')),
                         ])->columnSpanFull(),
                 ])->collapsed(),
 
-                Section::make(__('form.image'))->schema([
+                Section::make(__('form.media'))->schema([
+
+                    SpatieMediaLibraryFileUpload::make('img')
+                        ->visibility(true)
+                        ->image()
+                        ->imageEditor()
+                        ->collection('product_img')
+                        ->label(__('form.img')),
+
                     SpatieMediaLibraryFileUpload::make('image')
                         ->visibility(true)
                         ->image()
@@ -76,18 +89,17 @@ class ProductResource extends Resource
                         ->reorderable()
                         ->label(__('form.image')),
 
-                    SpatieMediaLibraryFileUpload::make('img')
+                    SpatieMediaLibraryFileUpload::make('video')
                         ->visibility(true)
-                        ->image()
                         ->imageEditor()
-                        ->collection('product_img')
-                        ->label(__('form.img')),
+                        ->collection('product_video')
+                        ->label(__('form.video')),
 
-                    SpatieMediaLibraryFileUpload::make('wrapper')
+                    /*SpatieMediaLibraryFileUpload::make('wrapper')
                         ->image()
                         ->imageEditor()
                         ->collection('wrapper')
-                        ->label(__('form.wrapper')),
+                        ->label(__('form.wrapper')),*/
                 ])->collapsed()->columns(3),
 
                 /*Section::make(__('form.history'))->schema([
@@ -117,8 +129,9 @@ class ProductResource extends Resource
 
                 Select::make('categories')
                     ->multiple()
+                    ->required()
                     ->relationship('categories', 'name')
-                    ->options(fn () => CategoryTranslation::whereLocale(app()->getLocale())->pluck('name', 'category_id')),
+                    ->options(fn () => CategoryTranslation::whereLocale(app()->getLocale())->pluck('name', 'category_id')->toArray()),
 
                 //Toggle::make('status'),
             ]);
@@ -158,8 +171,9 @@ class ProductResource extends Resource
                 //
             ])
             ->actions([
-
+                RelationManagerAction::make('variants-relation-manager')->label('')->icon('heroicon-s-squares-2x2')->relationManager(VariantsRelationManager::make()),
                 RelationManagerAction::make('category-relation-manager')->label('')->icon('heroicon-s-rectangle-stack')->relationManager(CategoriesRelationManager::make()),
+                RelationManagerAction::make('characteristics-relation-manager')->label('')->icon('heroicon-s-adjustments-horizontal')->relationManager(CharacteristicsRelationManager::make()),
                 Tables\Actions\EditAction::make()->label('')
             ])
             ->bulkActions([

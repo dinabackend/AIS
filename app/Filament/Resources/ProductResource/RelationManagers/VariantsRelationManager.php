@@ -1,14 +1,11 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\Resources\ProductResource\RelationManagers;
 
-use App\Filament\Resources\ProductResource\RelationManagers\CharacteristicsRelationManager;
-use App\Filament\Resources\VariantResource\Pages;
-use App\Filament\Resources\VariantResource\RelationManagers\SectionsRelationManager;
 use App\Models\ProductTranslation;
-use App\Models\Variant;
 use CactusGalaxy\FilamentAstrotomic\Forms\Components\TranslatableTabs;
 use CactusGalaxy\FilamentAstrotomic\TranslatableTab;
+use Filament\Forms;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
@@ -16,33 +13,17 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
-use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Guava\FilamentModalRelationManagers\Actions\Table\RelationManagerAction;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class VariantResource extends Resource
+class VariantsRelationManager extends RelationManager
 {
-    public static function getLabel(): ?string
-    {
-        return __('panel.variant');
-    }
+    protected static string $relationship = 'variants';
 
-    public static function getPluralLabel(): ?string
-    {
-        return __('panel.variant');
-    }
-    protected static ?string $model = Variant::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
-    public static function getNavigationBadge(): ?string
-    {
-        return Variant::count();
-    }
-    public static function form(Form $form): Form
+    public function form(Form $form): Form
     {
         return $form
             ->schema([
@@ -118,73 +99,30 @@ class VariantResource extends Resource
 
                 Toggle::make('home_visibility')
                     ->label(__('form.home_visibility')),
-
-                Select::make('product_id')
-                    ->required()
-                    ->relationship('product', 'name')
-                    ->options(fn () => ProductTranslation::whereLocale(app()->getLocale())->pluck('name', 'product_id')->toArray()),
             ]);
     }
 
-    public static function table(Table $table): Table
+    public function table(Table $table): Table
     {
         return $table
+            ->recordTitleAttribute('name')
             ->columns([
-                TextColumn::make('id')
-                    ->toggleable(isToggledHiddenByDefault: true),
-
-                SpatieMediaLibraryImageColumn::make('image')
-                    ->collection('product_image')->stacked()->label(__('form.img'))
-                    ->toggleable(isToggledHiddenByDefault: true),
-
-                SpatieMediaLibraryImageColumn::make('img')->collection('product_img')
-                    ->label(__('form.image'))
-                    ->toggleable(isToggledHiddenByDefault: true),
-
-                TextColumn::make('name')->sortable()->searchable(query: function ($query, $search) {
-                    return $query->with('translations')->whereHas('translations', function ($q) use ($search) {
-                        return $q->where('name', 'ILIKE', "$search%");
-                    });
-                })->label(__('form.name')),
+                Tables\Columns\TextColumn::make('name'),
             ])
             ->filters([
                 //
             ])
+            ->headerActions([
+                Tables\Actions\CreateAction::make(),
+            ])
             ->actions([
-
-                RelationManagerAction::make('characteristics-relation-manager')
-                    ->label('')->icon('heroicon-s-adjustments-horizontal')
-                    ->tooltip('characteristics')
-                    ->relationManager(CharacteristicsRelationManager::make()),
-
-                RelationManagerAction::make('sections-relation-manager')
-                    ->label('')->icon('heroicon-s-rectangle-group')
-                    ->tooltip('sections')
-                    ->relationManager(SectionsRelationManager::make()),
-
-                Tables\Actions\EditAction::make()->label('')->tooltip('edit'),
+                Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            CharacteristicsRelationManager::class,
-            SectionsRelationManager::class,
-        ];
-    }
-
-    public static function getPages(): array
-    {
-        return [
-            'index' => Pages\ListVariants::route('/'),
-            'create' => Pages\CreateVariant::route('/create'),
-            'edit' => Pages\EditVariant::route('/{record}/edit'),
-        ];
     }
 }
