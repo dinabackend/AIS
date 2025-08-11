@@ -23,6 +23,7 @@ class Category extends TranslatableModel implements HasMedia, Sortable
     protected $fillable = [
         'name',
         'parent_id',
+        'slug',
     ];
 
     public array $translatedAttributes = ['name'];
@@ -45,7 +46,7 @@ class Category extends TranslatableModel implements HasMedia, Sortable
         return $this->belongsToMany(Product::class, 'categories_products')->count();
     }
 
-    public function children() {
+    public function children(): HasMany {
         return $this->hasMany(Category::class, 'parent_id');
     }
 
@@ -58,12 +59,53 @@ class Category extends TranslatableModel implements HasMedia, Sortable
         return $this->getTranslation('name', app()->getLocale());
     }
 
+    // Daraxt shaklida kategoriyalarni olish uchun scope
+    public function scopeTree($query)
+    {
+        return $query->with(['children' => function($q) {
+            $q->with('translation');
+        }])->whereNull('parent_id');
+    }
+
+    // Rekursiv tarzda barcha child kategoriyalarni olish
+    public function getAllChildren()
+    {
+        $children = collect();
+
+        foreach ($this->children as $child) {
+            $children->push($child);
+            $children = $children->merge($child->getAllChildren());
+        }
+
+        return $children;
+    }
+
+    // Kategoriya darajasini aniqlash
+    public function getDepthAttribute()
+    {
+        $depth = 0;
+        $parent = $this->parent;
+
+        while ($parent) {
+            $depth++;
+            $parent = $parent->parent;
+        }
+
+        return $depth;
+    }
+
     protected static function boot()
     {
         parent::boot();
         static::saving(function ($category) {
-            if (empty($category->slug) && !empty($category->name)) {
-                $category->slug = Str::slug($category->name);
+            if (empty($category->slug)) {
+                // Slug ni translation dan olish
+                $translation = $category->translations()
+                    ->where('locale', 'uz')
+                    ->first();
+                if ($translation && $translation->name) {
+                    $category->slug = Str::slug($translation->name);
+                }
             }
         });
     }
