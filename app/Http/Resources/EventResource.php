@@ -21,12 +21,6 @@ class EventResource extends JsonResource
             'infoText' => $this->translations->mapWithKeys(function ($item) {
                 return [$item->locale => $item->description];
             }),
-            'category' => $this->category,
-            'category_title' => [
-                'en' => __("categories.$this->category", locale: 'en'),
-                'ru' => __("categories.$this->category", locale: 'ru'),
-                'uz' => __("categories.$this->category", locale: 'uz'),
-            ]
         ];
     }
 }

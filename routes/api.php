@@ -19,7 +19,7 @@ Route::get('/{locale}/teams', [UserController::class, 'index']);
 Route::get('/{locale}/teams/{id}', [UserController::class, 'show']);*/
 
 // QAND API
-Route::get('/home', [HomePageController::class, 'index']);
+Route::get('/home', [HomePageController::class, 'index']); //
 Route::get('/policy', [HomePageController::class, 'policy']);
 Route::get('/seo', [SEOController::class, 'index']);
 Route::get('/products', [ProductController::class, 'index']);
@@ -27,10 +27,8 @@ Route::get('/collections', [ProductController::class, 'collection']);
 Route::get('/products/filters', [ProductController::class, 'filter']);
 Route::get('/products/{slug}', [ProductController::class, 'show']);
 Route::get('/collections/{slug}', [ProductController::class, 'show']);
-Route::get('/events', [EventController::class, 'index']);
-Route::get('/events/{id}', [EventController::class, 'show']);
+Route::get('/events', [EventController::class, 'index']); // ✅
+Route::get('/events/{id}', [EventController::class, 'show']); // ✅
 Route::get('/footer', [FooterController::class, 'index']);
 Route::get('/about', [AboutController::class, 'index']);
-Route::get('/b2b', [BACController::class, 'b2b']);
-Route::get('/creations', [BACController::class, 'creations']);
 

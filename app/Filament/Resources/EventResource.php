@@ -42,20 +42,10 @@ class EventResource extends Resource
     {
         return $form
             ->schema([
-
-                Select::make('category')
-                    ->options(function () {
-                        return [
-                            'events' => __('categories.events'),
-                            'occasions' => __('categories.occasions'),
-                            'news' => __('categories.news'),
-                            'announcements' => __('categories.announcements'),
-                        ];
-                    })->nullable(false)
-                    ->label(__('form.category')),
-
                 TextInput::make('time')
                 ->label(__('form.date')),
+
+                Forms\Components\Toggle::make('status')->inline(false),
 
                 TranslatableTabs::make()
                     ->localeTabSchema(fn(TranslatableTab $tab) => [
@@ -83,7 +73,6 @@ class EventResource extends Resource
                     ->collection('events_image')
                     ->multiple()
                     ->reorderable(),
-                Forms\Components\Toggle::make('status')
             ]);
     }
 

@@ -15,12 +15,6 @@ class EventCollection extends ResourceCollection
                 'title' => $event->translations->mapWithKeys(function ($item) {
                     return [$item->locale => $item->title];
                 }),
-                'category' => $event->category,
-                'category_title' => [
-                    'en' => __("categories.$event->category", locale: 'en'),
-                    'ru' => __("categories.$event->category", locale: 'ru'),
-                    'uz' => __("categories.$event->category", locale: 'uz'),
-                ],
                 'image' => $event->getFirstMediaUrl('events_img'),
                 'time' => $event->time
             ];

@@ -35,12 +35,8 @@ class EventController extends Controller
     public function show($id) {
 
         $event = Event::query()->findOrFail($id);
-        $read_also = Event::query()
-            ->where('id', '!=', $id)
-            ->where('status', true)
-            ->where('category', $event->category)
-            ->take(4)
-            ->get();
+        $read_also = Event::query()->where('id', '!=', $id)->where('status', true)
+            ->take(4)->get();
 
         return [
             'data' => new EventResource($event),
