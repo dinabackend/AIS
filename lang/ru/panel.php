@@ -8,6 +8,7 @@ return [
     'specialists' => 'Эксперты',
     'about_page_settings' => 'Настройки о нас',
     'home_page_settings' => 'Настройки домашней страницы',
+    'guarantee_page_settings' => 'Настройки страницы гарантии',
     'seo_settings' => 'Настройки SEO',
     'footer_settings' => 'Настройки Footer',
     'types' => 'Типы',
@@ -16,6 +17,8 @@ return [
     'Pages' => 'Страницы',
     'Settings' => 'Настройки',
     'Creations Page Settings Page' => 'Страница настроек Creations',
-    'B2B Page Settings Page' => 'Страница настроек B2B',
     'Reviews' => 'Отзывы',
+    'about' => 'О нас',
+    'variant' => 'Варианты',
+    'buttons' => 'Кнопки',
 ];

@@ -64,22 +64,10 @@ class ProductResource extends Resource
                                 ->rows(10)
                                 ->required($tab->makeName('description') === 'uz.description')
                                 ->label(__('form.description')),
-                            Textarea::make($tab->makeName('advantages'))
-                                ->rows(10)
-                                ->required($tab->makeName('advantages') === 'uz.advantages')
-                                ->label(__('form.Advantages')),
                         ])->columnSpanFull(),
                 ])->collapsed(),
 
-                Section::make(__('form.media'))->schema([
-
-                    SpatieMediaLibraryFileUpload::make('img')
-                        ->visibility(true)
-                        ->image()
-                        ->imageEditor()
-                        ->collection('product_img')
-                        ->label(__('form.img')),
-
+                Section::make(__('form.image'))->schema([
                     SpatieMediaLibraryFileUpload::make('image')
                         ->visibility(true)
                         ->image()
@@ -119,8 +107,10 @@ class ProductResource extends Resource
                 Section::make('SEO')->schema([
                     TranslatableTabs::make()
                         ->localeTabSchema(fn(TranslatableTab $tab) => [
-                            TextInput::make($tab->makeName('seo_title')),
-                            Textarea::make($tab->makeName('seo_description')),
+                            TextInput::make($tab->makeName('seo_title'))
+                                ->label(__('form.title')),
+                            Textarea::make($tab->makeName('seo_description'))
+                            ->label(__('form.description')),
                         ])->columnSpanFull(),
                 ])->collapsed(),
 
@@ -130,6 +120,7 @@ class ProductResource extends Resource
                 Select::make('categories')
                     ->multiple()
                     ->required()
+                    ->label(__('form.category'))
                     ->relationship('categories', 'name')
                     ->options(fn () => CategoryTranslation::whereLocale(app()->getLocale())->pluck('name', 'category_id')->toArray()),
 

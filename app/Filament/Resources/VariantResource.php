@@ -25,6 +25,15 @@ use Guava\FilamentModalRelationManagers\Actions\Table\RelationManagerAction;
 
 class VariantResource extends Resource
 {
+    public static function getLabel(): ?string
+    {
+        return __('panel.variant');
+    }
+
+    public static function getPluralLabel(): ?string
+    {
+        return __('panel.variant');
+    }
     protected static ?string $model = Variant::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
@@ -50,7 +59,7 @@ class VariantResource extends Resource
                             Textarea::make($tab->makeName('advantages'))
                                 ->rows(10)
                                 ->required($tab->makeName('advantages') === 'uz.advantages')
-                                ->label(__('form.Advantages')),
+                                ->label(__('form.advantages')),
                         ])->columnSpanFull(),
                 ])->collapsed(),
 
@@ -111,6 +120,7 @@ class VariantResource extends Resource
                     ->label(__('form.home_visibility')),
 
                 Select::make('product_id')
+                    ->label(__('form.product'))
                     ->required()
                     ->relationship('product', 'name')
                     ->options(fn () => ProductTranslation::whereLocale(app()->getLocale())->pluck('name', 'product_id')->toArray()),

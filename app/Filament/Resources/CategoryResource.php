@@ -49,6 +49,7 @@ class CategoryResource extends Resource
                         Forms\Components\TextInput::make($tab->makeName('name'))
                             ->required()
                             ->maxLength(255)
+                            ->label(__('form.name')),
                     ])->columnSpanFull(),
 
                 SpatieMediaLibraryFileUpload::make('category_img')

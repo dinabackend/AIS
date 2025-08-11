@@ -46,6 +46,7 @@ class TypeResource extends Resource
                 TranslatableTabs::make()
                     ->localeTabSchema(fn(TranslatableTab $tab) => [
                         TextInput::make($tab->makeName('name'))
+                            ->label(__('form.name'))
                             ->required($tab->makeName('name') === 'uz.name')
                     ])->columnSpanFull(),
             ]);

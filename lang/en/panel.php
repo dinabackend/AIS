@@ -8,6 +8,7 @@ return [
     'specialists' => 'Specialists',
     'about_page_settings' => 'Aboute Page Settings',
     'home_page_settings' => 'Home Page Settings',
+    'guarantee_page_settings' => 'Guarantee Page Settings',
     'seo_settings' => 'SEO Settings',
     'footer_settings' => 'Footer Settings',
     'types' => 'Types',
@@ -16,6 +17,11 @@ return [
     'Pages' => 'Pages',
     'Settings' => 'Settings',
     'Creations Page Settings Page' => 'Creations Page Settings Page',
-    'B2B Page Settings Page' => 'B2B Page Settings Page',
     'Reviews' => 'Reviews',
+    'Abouts' => 'Abouts',
+    'buttons' => 'Buttons',
+    'home' => 'Home',
+    'about' => 'About',
+    'variant' => 'Variants',
+
 ];

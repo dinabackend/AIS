@@ -51,28 +51,34 @@ class EventResource extends Resource
                             'news' => __('categories.news'),
                             'announcements' => __('categories.announcements'),
                         ];
-                    })->nullable(false),
+                    })->nullable(false)
+                    ->label(__('form.category')),
 
-                TextInput::make('time'),
+                TextInput::make('time')
+                ->label(__('form.date')),
 
                 TranslatableTabs::make()
                     ->localeTabSchema(fn(TranslatableTab $tab) => [
                         Forms\Components\TextInput::make($tab->makeName('title'))
                             ->required()
+                            ->label(__('form.title'))
                             ->maxLength(255),
                         Forms\Components\RichEditor::make($tab->makeName('description'))
                             ->required()
+                            ->label(__('form.description'))
                     ])->columnSpanFull(),
 
                 SpatieMediaLibraryFileUpload::make('img')
                     ->required()
                     ->visibility(true)
                     ->image()
+                    ->label(__('form.img'))
                     ->collection('events_img'),
 
                 SpatieMediaLibraryFileUpload::make('image')
                     ->required()
                     ->visibility(true)
+                    ->label(__('form.image'))
                     ->image()
                     ->collection('events_image')
                     ->multiple()
