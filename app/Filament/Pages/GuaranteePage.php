@@ -45,7 +45,7 @@ class GuaranteePage extends SettingsPage
             $settings[] = Tabs\Tab::make($lang)->schema([
                 TextInput::make("title_$lang")->label(__('form.title', locale: $lang))->required()->maxLength(255),
                 TextInput::make("subtitle_$lang")->label(__('form.subtitle', locale: $lang))->required()->maxLength(255),
-                Repeater::make("info_$lang")->schema([
+                Repeater::make("repeater_$lang")->schema([
                     TextInput::make("name")->label(__('form.name'))->required(),
                     TextInput::make("text")->label(__('form.text'))->required(),
                 ])->label(__('form.info list', locale: $lang))->columns(),
@@ -57,7 +57,7 @@ class GuaranteePage extends SettingsPage
             $questions[] = Tabs\Tab::make($lang)->schema([
                 TextInput::make("question_$lang")
                     ->label(__('form.question', locale: $lang))->required()->maxLength(255),
-                Repeater::make("questions_$lang")->schema([
+                Repeater::make("question_list_$lang")->schema([
                     TextInput::make("answer")->label(__('form.step', locale: $lang))->required(),
                 ])->label(__('form.answers list', locale: $lang))->columns(),
             ]);
@@ -66,11 +66,11 @@ class GuaranteePage extends SettingsPage
         $defect = [];
         foreach (['ru', 'uz', 'en'] as $lang) {
             $defect[] = Tabs\Tab::make($lang)->schema([
-                TextInput::make("title_$lang")->label(__('form.title', locale: $lang))->required()->maxLength(255),
-                Repeater::make("text_$lang")->schema([
+                TextInput::make("defect_title_$lang")->label(__('form.title', locale: $lang))->required()->maxLength(255),
+                Repeater::make("defect_list_$lang")->schema([
                     TextInput::make("text")->label(__('form.text', locale: $lang))->required(),
                 ])->label(__('form.defect list', locale: $lang))->columns(),
-                TextInput::make("question2_$lang")->label(__('form.question', locale: $lang))->required()->maxLength(255),
+                TextInput::make("defect_question_$lang")->label(__('form.question', locale: $lang))->required()->maxLength(255),
             ]);
         }
 

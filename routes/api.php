@@ -4,6 +4,7 @@ use App\Http\Controllers\API\AboutController;
 use App\Http\Controllers\API\BACController;
 use App\Http\Controllers\API\EventController;
 use App\Http\Controllers\API\FooterController;
+use App\Http\Controllers\API\GuaranteeController;
 use App\Http\Controllers\API\HomePageController;
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\SEOController;
@@ -31,4 +32,4 @@ Route::get('/events', [EventController::class, 'index']); // ✅
 Route::get('/events/{id}', [EventController::class, 'show']); // ✅
 Route::get('/footer', [FooterController::class, 'index']);
 Route::get('/about', [AboutController::class, 'index']);
-
+Route::get('/guarantee', [GuaranteeController::class, 'index']);

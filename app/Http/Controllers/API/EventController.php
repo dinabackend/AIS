@@ -20,6 +20,18 @@ class EventController extends Controller
             ->paginate($per_page)
             ->withQueryString();
 
+        $response = [];
+        foreach ($events as $event) {
+            $response[] = [
+                'id' => $event->id,
+                'title' => $event->translations->mapWithKeys(function ($item) {
+                    return [$item->locale => $item->title];
+                }),
+                'image' => $event->getFirstMediaUrl('events_img'),
+                'time' => $event->time
+            ];
+        }
+
         return [
             'pages_count' => ceil($events->total() / $events->perPage()),
             'count' => $events->total(),
@@ -28,7 +40,7 @@ class EventController extends Controller
             'from' => $events->firstItem(),
             'to' => $events->lastItem(),
             'page' => $request->has('page') ? $request->get('page') : 1,
-            'data' => new EventCollection($events)
+            'data' => $response
         ];
     }
 
