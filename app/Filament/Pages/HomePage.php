@@ -36,56 +36,56 @@ class HomePage extends SettingsPage
         $settings = [];
         foreach (['ru', 'uz', 'en'] as $lang) {
             $settings[] = Tabs\Tab::make($lang)->schema([
-                TextInput::make("title_$lang")->label(__('form.Title', locale: $lang))->required()->maxLength(255),
-                TextInput::make("subtitle_$lang")->label(__('form.Subtitle', locale: $lang))->required()->maxLength(255),
+                TextInput::make("title_$lang")->label(__('form.title', locale: $lang))->required()->maxLength(255),
+                TextInput::make("subtitle_$lang")->label(__('form.subtitle', locale: $lang))->required()->maxLength(255),
                 Repeater::make("info_$lang")->schema([
                     TextInput::make("number")->label(__('form.number'))->required(),
-                    TextInput::make("text")->label(__('form.Text'))->required(),
-                ])->label(__('form.Info List', locale: $lang))->columns(),
+                    TextInput::make("text")->label(__('form.text'))->required(),
+                ])->label(__('form.info list', locale: $lang))->columns(),
             ]);
         }
 
         $settings2 = [];
         foreach (['ru', 'uz', 'en'] as $lang) {
             $settings2[] = Tabs\Tab::make($lang)->schema([
-                TextInput::make("title_$lang")->label(__('form.Title', locale: $lang))->required()->maxLength(255),
-                TextInput::make("subtitle_$lang")->label(__('form.Subtitle', locale: $lang))->required()->maxLength(255),
-                Textarea::make("text1_$lang")->label(__('form.Text 1', locale: $lang))->required(),
-                Textarea::make("text2_$lang")->label(__('form.Text 2', locale: $lang))->required(),
-                Textarea::make("text3_$lang")->label(__('form.Text 3', locale: $lang))->required(),
+                TextInput::make("title_$lang")->label(__('form.title', locale: $lang))->required()->maxLength(255),
+                TextInput::make("subtitle_$lang")->label(__('form.subtitle', locale: $lang))->required()->maxLength(255),
+                Textarea::make("text1_$lang")->label(__('form.text1', locale: $lang))->required(),
+                Textarea::make("text2_$lang")->label(__('form.text2', locale: $lang))->required(),
+                Textarea::make("text3_$lang")->label(__('form.text3', locale: $lang))->required(),
                 Repeater::make("info_$lang")->schema([
                     TextInput::make("number")->label(__('form.number'))->required(),
-                    TextInput::make("text")->label(__('form.Text'))->required(),
-                ])->label(__('form.Info List', locale: $lang))->columns(),
+                    TextInput::make("text")->label(__('form.text'))->required(),
+                ])->label(__('form.info list', locale: $lang))->columns(),
             ]);
         }
 
         $companies = [];
         foreach (['ru', 'uz', 'en'] as $lang) {
             $companies[] = Tabs\Tab::make($lang)->schema([
-                TextInput::make("title_$lang")->label(__('form.They trust us.', locale: $lang))->required()->maxLength(255),
+                TextInput::make("title_$lang")->label(__('form.they trust us.', locale: $lang))->required()->maxLength(255),
                 TextInput::make("name1_$lang")->label(__('form.name1', locale: $lang))->required()->maxLength(255),
                 TextInput::make("name2_$lang")->label(__('form.name2', locale: $lang))->required()->maxLength(255),
-                Textarea::make("text1_$lang")->label(__('form.Text1', locale: $lang))->required()->maxLength(255),
-                Textarea::make("text2_$lang")->label(__('form.Text2', locale: $lang))->required()->maxLength(255),
-                TextInput::make("title2_$lang")->label(__('form.Official partners', locale: $lang))->required()->maxLength(255),
-                TextInput::make("title3_$lang")->label(__('form.News', locale: $lang))->required()->maxLength(255),
+                Textarea::make("text1_$lang")->label(__('form.text1', locale: $lang))->required()->maxLength(255),
+                Textarea::make("text2_$lang")->label(__('form.text2', locale: $lang))->required()->maxLength(255),
+                TextInput::make("title2_$lang")->label(__('form.official partners', locale: $lang))->required()->maxLength(255),
+                TextInput::make("title3_$lang")->label(__('form.news', locale: $lang))->required()->maxLength(255),
             ]);
         }
 
         return $form->schema([
-            Section::make(__('form.Banner'))->schema([
-                Repeater::make(__('form.Banner'))->schema([
+            Section::make(__('form.banner'))->schema([
+                Repeater::make(__('form.banner'))->schema([
                     Tabs::make()->schema($settings)->columnSpanFull(),
                     FileUpload::make('banner')->disk('public')->directory('banner')->required()
                 ])->defaultItems(1)->columnSpanFull(),
             ])->collapsed(),
 
-            Section::make(__('form.Info'))->schema([
+            Section::make(__('form.info'))->schema([
                 Repeater::make('Info')->schema([
                     Tabs::make()->schema($settings2)->columnSpanFull(),
-                    FileUpload::make("img_$lang")->label(__('form.Image1', locale: $lang))->required(),
-                    FileUpload::make("img2_$lang")->label(__('form.Image2', locale: $lang))->required(),
+                    FileUpload::make("img_$lang")->label(__('form.image1', locale: $lang))->required(),
+                    FileUpload::make("img2_$lang")->label(__('form.image2', locale: $lang))->required(),
                 ])->defaultItems(1)->columnSpanFull(),
             ])->collapsed(),
 
@@ -121,8 +121,8 @@ class HomePage extends SettingsPage
 //                ]),
 //            ])->collapsed(),
 
-            Section::make(__('form.Company'))->schema([
-                Repeater::make(__('form.Company'))->schema([
+            Section::make(__('form.company'))->schema([
+                Repeater::make(__('form.company'))->schema([
                     Tabs::make()->schema($companies)->columnSpanFull(),
                 ])->defaultItems(1)->columnSpanFull(),
             ])->collapsed(),

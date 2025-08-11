@@ -7,6 +7,7 @@ return [
     'products' => 'Mahsulotlar',
     'specialists' => 'Mutaxassislar',
     'about_page_settings' => 'Biz Haqimizdani sozlash',
+    'guarantee_page_settings' => 'Kafolat sahifa sozlamalari',
     'seo_settings' => 'SEOni sozlash',
     'footer_settings' => 'Footerni sozlash',
     'types' => 'Turlar',

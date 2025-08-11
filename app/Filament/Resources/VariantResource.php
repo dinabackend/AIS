@@ -59,7 +59,7 @@ class VariantResource extends Resource
                             Textarea::make($tab->makeName('advantages'))
                                 ->rows(10)
                                 ->required($tab->makeName('advantages') === 'uz.advantages')
-                                ->label(__('form.Advantages')),
+                                ->label(__('form.advantages')),
                         ])->columnSpanFull(),
                 ])->collapsed(),
 
@@ -120,6 +120,7 @@ class VariantResource extends Resource
                     ->label(__('form.home_visibility')),
 
                 Select::make('product_id')
+                    ->label(__('form.product'))
                     ->required()
                     ->relationship('product', 'name')
                     ->options(fn () => ProductTranslation::whereLocale(app()->getLocale())->pluck('name', 'product_id')->toArray()),

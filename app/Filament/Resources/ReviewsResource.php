@@ -46,18 +46,20 @@ class ReviewsResource extends Resource
                     ->localeTabSchema(fn(TranslatableTab $tab) => [
                         TextInput::make($tab->makeName('name'))
                             ->required()
+                            ->label(__('form.name'))
                             ->maxLength(255),
                         Textarea::make($tab->makeName('text'))
-                            ->label('Text')
+                            ->label(__('form.text'))
                             ->required(),
                     ]),
                 TextInput::make('rating')
                     ->numeric()
+                    ->label(__('form.rating'))
                     ->required()
                     ->minValue(1)
                     ->maxValue(5),
                 DateTimePicker::make('date') // <-- 'data' o'rniga 'date'
-                    ->label('date')
+                    ->label(__('form.date'))
                     ->required()
                     ->seconds(false),
             ]);
@@ -69,7 +71,7 @@ class ReviewsResource extends Resource
             ->columns([
                 TextColumn::make('name')->searchable()->sortable(),
                 TextColumn::make('rating')->sortable(),
-                TextColumn::make('date')->date()->sortable(), // <-- 'data' o'rniga 'date'
+                TextColumn::make('date')->date()->sortable(),
                 TextColumn::make('text')->limit(50)->wrap(),
             ])
             ->filters([
