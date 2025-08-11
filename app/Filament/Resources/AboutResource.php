@@ -52,10 +52,6 @@ class AboutResource extends Resource
                             ->required($tab->makeName('title') === 'uz.title')
                             ->maxLength(255)
                             ->label(__('form.title')),
-                        TextInput::make($tab->makeName('subtitle'))
-                            ->required($tab->makeName('subtitle') === 'uz.subtitle')
-                            ->maxLength(255)
-                            ->label(__('form.subtitle')),
                         RichEditor::make($tab->makeName('description'))
                             ->required($tab->makeName('description') === 'uz.description')
                             ->label(__('form.description')),
@@ -63,7 +59,7 @@ class AboutResource extends Resource
                 SpatieMediaLibraryFileUpload::make('image')
                     ->visibility(true)
                     ->collection('about_image')
-                    ->label(__('form.image'))
+                    ->label(__('form.img'))
                     ->columnSpanFull()
                     ->image(),
 

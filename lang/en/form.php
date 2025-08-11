@@ -70,7 +70,7 @@ return [
     'product' => 'Products',
 
     'guarantee' => 'Guarantee',
-    'main_title' => 'Main Title',
+    'main' => 'Main Title',
     'question' => 'Question',
     'step' => 'Step',
     'answer' => 'Answer',

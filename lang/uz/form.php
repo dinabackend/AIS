@@ -72,7 +72,7 @@ return [
     'product' => 'Mahsulot',
 
     'guarantee' => 'Kafolat',
-    'main_title' => 'Asosiy Sarlavha',
+    'main' => 'Asosiy Sarlavha',
     'question' => 'Savol',
     'step' => 'Qadam',
     'answer' => 'Javob',

@@ -9,7 +9,7 @@ class HomePageSettings extends Settings
     public array $banner;
     public array $info;
     public array $advantages;
-    public array $companies;
+    public array $company;
 
     public static function group(): string
     {

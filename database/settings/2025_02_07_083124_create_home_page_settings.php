@@ -16,7 +16,7 @@ return new class extends SettingsMigration
         $this->migrator->add('home.advantages', []);
 
         //Companies
-        $this->migrator->add('home.companies', []);
+        $this->migrator->add('home.company', []);
 
     }
 };
