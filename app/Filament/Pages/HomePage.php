@@ -33,9 +33,9 @@ class HomePage extends SettingsPage
 
     public function form(Form $form): Form
     {
-        $settings = [];
+        $settings_array = [];
         foreach (['ru', 'uz', 'en'] as $lang) {
-            $settings[] = Tabs\Tab::make($lang)->schema([
+            $settings_array[] = Tabs\Tab::make($lang)->schema([
                 TextInput::make("title_$lang")->label(__('form.Title', locale: $lang))->required()->maxLength(255),
                 TextInput::make("subtitle_$lang")->label(__('form.Subtitle', locale: $lang))->required()->maxLength(255),
                 Repeater::make("info_$lang")->schema([
@@ -75,18 +75,16 @@ class HomePage extends SettingsPage
 
         return $form->schema([
             Section::make(__('form.Banner'))->schema([
-                Repeater::make(__('form.Banner'))->schema([
-                    Tabs::make()->schema($settings)->columnSpanFull(),
+                Repeater::make('banner')->schema([
+                    Tabs::make()->schema($settings_array)->columnSpanFull(),
                     FileUpload::make('banner')->disk('public')->directory('banner')->required()
                 ])->defaultItems(1)->columnSpanFull(),
             ])->collapsed(),
 
             Section::make(__('form.Info'))->schema([
-                Repeater::make('Info')->schema([
-                    Tabs::make()->schema($settings2)->columnSpanFull(),
-                    FileUpload::make("img_$lang")->label(__('form.Image1', locale: $lang))->required(),
-                    FileUpload::make("img2_$lang")->label(__('form.Image2', locale: $lang))->required(),
-                ])->defaultItems(1)->columnSpanFull(),
+                Tabs::make()->schema($settings2)->columnSpanFull(),
+                FileUpload::make("img_$lang")->label(__('form.Image1', locale: $lang))->required(),
+                FileUpload::make("img2_$lang")->label(__('form.Image2', locale: $lang))->required(),
             ])->collapsed(),
 
 //            Section::make(__('form.Advantages'))->schema([
