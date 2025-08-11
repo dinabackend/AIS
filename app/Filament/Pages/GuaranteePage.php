@@ -36,10 +36,7 @@ class GuaranteePage extends SettingsPage
         $many_titles = [];
         foreach (['ru', 'uz', 'en'] as $lang) {
             $many_titles[] = Tabs\Tab::make($lang)->schema([
-                TextInput::make("main_title_$lang")
-                    ->label(__('form.main_title', locale: $lang))
-                    ->required()
-                    ->maxLength(255),
+                TextInput::make("main_$lang")->label(__('form.main', locale: $lang))->required()->maxLength(255),
             ]);
         }
 
@@ -78,29 +75,21 @@ class GuaranteePage extends SettingsPage
         }
 
         return $form->schema([
-            Section::make(__('form.main_title'))->schema([
-                Repeater::make('main')->schema([
-                    Tabs::make()->schema($many_titles)->columnSpanFull(),
-                ])->defaultItems(1)->columnSpanFull(),
+            Section::make(__('form.main'))->schema([
+                Tabs::make('main')->schema($many_titles)->columnSpanFull(),
             ])->collapsed(),
 
             Section::make(__('form.guarantee'))->schema([
-                Repeater::make('guarantee')->schema([
-                    Tabs::make()->schema($settings)->columnSpanFull(),
-                    FileUpload::make('banner')->disk('public')->directory('banner')->required()
-                ])->defaultItems(1)->columnSpanFull(),
+                Tabs::make('guarantee')->schema($settings)->columnSpanFull(),
+                FileUpload::make('banner')->disk('public')->directory('banner')->required()
             ])->collapsed(),
 
             Section::make(__('form.question'))->schema([
-                Repeater::make('question')->schema([
-                    Tabs::make()->schema($questions)->columnSpanFull(),
-                ])->defaultItems(1)->columnSpanFull(),
+                Tabs::make('question')->schema($questions)->columnSpanFull(),
             ])->collapsed(),
 
             Section::make(__('form.defect'))->schema([
-                Repeater::make('defect')->schema([
-                    Tabs::make()->schema($defect)->columnSpanFull(),
-                ])->defaultItems(1)->columnSpanFull(),
+                Tabs::make('defect')->schema($defect)->columnSpanFull(),
             ])->collapsed(),
         ]);
     }
