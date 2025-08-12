@@ -9,7 +9,7 @@ return [
     'settings' => [
         \App\Settings\FooterSettings::class,
         \App\Settings\HomePageSettings::class,
-        \App\Settings\AboutSettings::class,
+        \App\Settings\AboutPageSettings::class,
         // ...
         // \App\Settings\GeneralSettings::class,
     ],

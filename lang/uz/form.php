@@ -79,4 +79,6 @@ return [
     'answers list' => 'Qadamlar ro\'yxati',
     'defect' => 'Kamchiliklar',
     'defect list' => 'Kamchiliklar ro\'yxati',
+
+    'OurPartners' => 'Bizning Hamkorlar',
 ];

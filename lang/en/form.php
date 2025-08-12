@@ -77,4 +77,6 @@ return [
     'answers list' => 'List of steps',
     'defect' => 'Defects',
     'defect list' => 'Defect List',
+
+    'OurPartners' => 'Our Partners',
 ];

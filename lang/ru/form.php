@@ -78,4 +78,6 @@ return [
     'answers list' => 'Список шагов',
     'defect' => 'Дефекты',
     'defect list' => 'Список дефектов',
+
+    'OurPartners' => 'Наши партнеры',
 ];
