@@ -46,7 +46,7 @@ class EventResource extends Resource
                     TextInput::make('time')->label(__('form.date')),
 
                     Forms\Components\Toggle::make('status')->inline(false),
-                    Forms\Components\Toggle::make('top')->inline(false),
+                    Forms\Components\Toggle::make('top')->inline(false)->label('Top Content'),
                 ])->columns(3),
 
                 TranslatableTabs::make()
@@ -55,7 +55,7 @@ class EventResource extends Resource
                             ->required()
                             ->label(__('form.title'))
                             ->maxLength(255),
-                        Forms\Components\RichEditor::make($tab->makeName('description'))
+                        Forms\Components\Textarea::make($tab->makeName('description'))
                             ->required()
                             ->label(__('form.description'))
                     ])->columnSpanFull(),
@@ -96,7 +96,7 @@ class EventResource extends Resource
                     ];
                 })->sortable(),
                 Tables\Columns\ToggleColumn::make('status')->sortable(),
-                Tables\Columns\ToggleColumn::make('top')->sortable(),
+                Tables\Columns\ToggleColumn::make('top')->sortable()->label('Top Content'),
             ])
             ->filters([
                 //
