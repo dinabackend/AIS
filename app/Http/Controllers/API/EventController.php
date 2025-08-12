@@ -37,7 +37,7 @@ class EventController extends Controller
         }
 
         $top = [];
-        foreach ($events->where('top' , true) as $event) {
+        foreach ($events->where('top' , false) as $event) {
             $top[] = [
                 'id' => $event->id,
                 'title' => $event->translations->mapWithKeys(function ($item) {
