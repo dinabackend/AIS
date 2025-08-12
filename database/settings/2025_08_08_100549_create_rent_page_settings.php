@@ -12,23 +12,21 @@ return new class extends SettingsMigration
         $this->migrator->add('rent.main_title_en', 'Equipment rental');
 
         $this->migrator->add('rent.rents', [
+            'image' => '',
             'ru' => [
                     'title' => '',
                     'text' => '',
                     'category_text' => '',
-                    'image' => '',
             ],
             'uz' => [
                     'title' => '',
                     'text' => '',
                     'category_text' => '',
-                    'image' => '',
             ],
             'en' => [
                     'title' => '',
                     'text' => '',
                     'category_text' => '',
-                    'image' => '',
             ],
         ]);
 
