@@ -87,14 +87,6 @@ class EventResource extends Resource
                 TextColumn::make('title')->sortable(),
                 SpatieMediaLibraryImageColumn::make('banner')->collection('events_image'),
                 TextColumn::make('time')->sortable(),
-                Tables\Columns\SelectColumn::make('category')->options(function () {
-                    return [
-                        'events' => __('categories.events'),
-                        'occasions' => __('categories.occasions'),
-                        'news' => __('categories.news'),
-                        'announcements' => __('categories.announcements'),
-                    ];
-                })->sortable(),
                 Tables\Columns\ToggleColumn::make('status')->sortable(),
                 Tables\Columns\ToggleColumn::make('top')->sortable()->label('Top Content'),
             ])
