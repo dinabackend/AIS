@@ -81,4 +81,8 @@ return [
     'defect list' => 'Kamchiliklar ro\'yxati',
 
     'OurPartners' => 'Bizning Hamkorlar',
+    'reviews_title' => 'Sharhlar Sarlavhasi',
+    'rents' => 'Ijaralar',
+    'category_text' => 'Kategoriya Matni',
+
 ];

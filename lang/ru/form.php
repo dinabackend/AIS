@@ -80,4 +80,8 @@ return [
     'defect list' => 'Список дефектов',
 
     'OurPartners' => 'Наши партнеры',
+    'rents' => 'Аренды',
+    'reviews_title' => 'Заголовок отзывов',
+    'category_text' => 'Текст категории',
+
 ];

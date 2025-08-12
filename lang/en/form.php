@@ -79,4 +79,8 @@ return [
     'defect list' => 'Defect List',
 
     'OurPartners' => 'Our Partners',
+    'rents' => 'Rents',
+    'reviews_title' => 'Reviews Title',
+    'category_text' => 'Category Text',
+
 ];

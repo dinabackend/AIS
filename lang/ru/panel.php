@@ -9,6 +9,7 @@ return [
     'about_page_settings' => 'Настройки о нас',
     'home_page_settings' => 'Настройки домашней страницы',
     'guarantee_page_settings' => 'Настройки страницы гарантии',
+    'rent_page_settings' => 'Настройки страницы аренды',
     'seo_settings' => 'Настройки SEO',
     'footer_settings' => 'Настройки Footer',
     'types' => 'Типы',
