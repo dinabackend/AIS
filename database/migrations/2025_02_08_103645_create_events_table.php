@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
 
             $table->string('time')->nullable();
+            $table->tinyInteger('top')->default(0);
             $table->tinyInteger('status')->nullable();
 
             $table->timestamps();

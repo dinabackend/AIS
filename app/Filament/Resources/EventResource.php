@@ -42,10 +42,12 @@ class EventResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('time')
-                ->label(__('form.date')),
+                Forms\Components\Grid::make()->schema([
+                    TextInput::make('time')->label(__('form.date')),
 
-                Forms\Components\Toggle::make('status')->inline(false),
+                    Forms\Components\Toggle::make('status')->inline(false),
+                    Forms\Components\Toggle::make('top')->inline(false),
+                ])->columns(3),
 
                 TranslatableTabs::make()
                     ->localeTabSchema(fn(TranslatableTab $tab) => [
@@ -94,6 +96,7 @@ class EventResource extends Resource
                     ];
                 })->sortable(),
                 Tables\Columns\ToggleColumn::make('status')->sortable(),
+                Tables\Columns\ToggleColumn::make('top')->sortable(),
             ])
             ->filters([
                 //

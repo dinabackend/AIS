@@ -52,7 +52,7 @@ class EventController extends Controller
 
         $event = Event::query()->findOrFail($id);
         $read_also = Event::query()->where('id', '!=', $id)->where('status', true)
-            ->take(4)->get();
+            ->take(3)->get();
 
         return [
             'data' => new EventResource($event),

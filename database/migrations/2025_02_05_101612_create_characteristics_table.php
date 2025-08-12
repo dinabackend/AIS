@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('characteristics', function (Blueprint $table) {
+        Schema::create('characteristics', static function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('characteristicable_id');
             $table->string('characteristicable_type');
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('characteristic_translations', function (Blueprint $table) {
+        Schema::create('characteristic_translations', static function (Blueprint $table) {
             $table->id();
 
             $table->foreignId('characteristic_id')
@@ -42,12 +42,12 @@ return new class extends Migration
     public function down(): void
     {
 
-        Schema::table('characteristic_translations', function (Blueprint $table) {
+        Schema::table('characteristic_translations', static function (Blueprint $table) {
             $table->dropForeign(['characteristic_id']);
         });
         Schema::dropIfExists('characteristic_translations');
 
-        Schema::table('characteristics', function (Blueprint $table) {
+        Schema::table('characteristics', static function (Blueprint $table) {
             $table->dropForeign(['characteristic_key_id']);
         });
 
