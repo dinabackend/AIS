@@ -21,8 +21,24 @@ class EventController extends Controller
             ->withQueryString();
 
         $response = [];
-        foreach ($events as $event) {
+        foreach ($events->where('top' , true) as $event) {
             $response[] = [
+                'id' => $event->id,
+                'title' => $event->translations->mapWithKeys(function ($item) {
+                    return [$item->locale => $item->title];
+
+                }),
+                'description' => $event->translations->mapWithKeys(function ($item) {
+                    return [$item->locale => $item->description];
+                }),
+                'image' => $event->getFirstMediaUrl('events_img'),
+                'time' => $event->time
+            ];
+        }
+
+        $top = [];
+        foreach ($events->where('top' , true) as $event) {
+            $top[] = [
                 'id' => $event->id,
                 'title' => $event->translations->mapWithKeys(function ($item) {
                     return [$item->locale => $item->title];
@@ -44,7 +60,8 @@ class EventController extends Controller
             'from' => $events->firstItem(),
             'to' => $events->lastItem(),
             'page' => $request->has('page') ? $request->get('page') : 1,
-            'data' => $response
+            'data' => $response,
+            'top' => $top,
         ];
     }
 
