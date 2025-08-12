@@ -28,7 +28,7 @@ class EventController extends Controller
                     return [$item->locale => $item->title];
 
                 }),
-                'description' => $event->translations->mapWithKeys(function ($item) {
+                'infoText' => $event->translations->mapWithKeys(function ($item) {
                     return [$item->locale => $item->description];
                 }),
                 'image' => $event->getFirstMediaUrl('events_img'),

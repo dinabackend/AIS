@@ -2,8 +2,7 @@
 
 use Spatie\LaravelSettings\Migrations\SettingsMigration;
 
-return new class extends SettingsMigration
-{
+return new class extends SettingsMigration {
 
     public function up(): void
     {
@@ -12,21 +11,23 @@ return new class extends SettingsMigration
         $this->migrator->add('rent.main_title_en', 'Equipment rental');
 
         $this->migrator->add('rent.rents', [
-            'image' => '',
-            'ru' => [
-                    'title' => '',
-                    'text' => '',
-                    'category_text' => '',
-            ],
-            'uz' => [
-                    'title' => '',
-                    'text' => '',
-                    'category_text' => '',
-            ],
-            'en' => [
-                    'title' => '',
-                    'text' => '',
-                    'category_text' => '',
+            [
+                'image' => '',
+                'ru' => [
+                    'title' => 'null',
+                    'text' => 'null',
+                    'category_text' => 'null',
+                ],
+                'uz' => [
+                    'title' => 'null',
+                    'text' => 'null',
+                    'category_text' => 'null',
+                ],
+                'en' => [
+                    'title' => 'null',
+                    'text' => 'null',
+                    'category_text' => 'null',
+                ],
             ],
         ]);
 

@@ -40,9 +40,9 @@ class RentPage extends SettingsPage
             ]);
         }
 
-        $rent = [];
+        $rents = [];
         foreach (['ru', 'uz', 'en'] as $lang) {
-            $rent[] = Tabs\Tab::make($lang)->schema([
+            $rents[] = Tabs\Tab::make($lang)->schema([
                 TextInput::make("title_$lang")->label(__('form.title', locale: $lang))->required()->maxLength(255),
                 Textarea::make("text_$lang")->label(__('form.text', locale: $lang))->required()->maxLength(255),
                 TextInput::make("category_text_$lang")->label(__('form.category_text', locale: $lang))->required()->maxLength(255),
@@ -63,7 +63,7 @@ class RentPage extends SettingsPage
 
             Section::make(__('form.rents'))->schema([
                 Repeater::make('rents')->schema([
-                    Tabs::make()->schema($rent)->columnSpanFull(),
+                    Tabs::make()->schema($rents)->columnSpanFull(),
                     FileUpload::make(__('form.image'))->disk('public')->directory('banner')->required()
                 ])->defaultItems(1)->columnSpanFull(),
             ])->collapsed(),
