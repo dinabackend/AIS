@@ -4,7 +4,7 @@ namespace App\Settings;
 
 use Spatie\LaravelSettings\Settings;
 
-class AboutPageSettings extends Settings
+class AboutSettings extends Settings
 {
     public string $main_title_ru;
     public string $main_title_uz;

@@ -2,7 +2,7 @@
 
 namespace App\Filament\Pages;
 
-use App\Settings\GuaranteePageSettings;
+use App\Settings\AboutSettings;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Tabs;
@@ -28,7 +28,7 @@ class AboutPage extends SettingsPage
     protected static ?string $navigationGroup = 'Settings';
     protected static ?string $navigationIcon = 'heroicon-o-information-circle';
 
-    protected static string $settings = GuaranteePageSettings::class;
+    protected static string $settings = AboutSettings::class;
 
     public function form(Form $form): Form
     {
@@ -43,22 +43,22 @@ class AboutPage extends SettingsPage
         $info = [];
         foreach (['ru', 'uz', 'en'] as $lang) {
             $info[] = Tabs\Tab::make($lang)->schema([
-                TextInput::make("title_$lang")->label(__('form.title', locale: $lang))->required()->maxLength(255),
-                Textarea::make("text_$lang")->label(__('form.text', locale: $lang))->required()->maxLength(255),
+                TextInput::make("title0_$lang")->label(__('form.title', locale: $lang))->required()->maxLength(255),
+                Textarea::make("text0_$lang")->label(__('form.text', locale: $lang))->required()->maxLength(255),
             ]);
         }
 
         $questions = [];
         foreach (['ru', 'uz', 'en'] as $lang) {
             $questions[] = Tabs\Tab::make($lang)->schema([
-                TextInput::make("question_$lang")->label(__('form.question', locale: $lang))->required()->maxLength(255),
+                TextInput::make("question0_$lang")->label(__('form.question', locale: $lang))->required()->maxLength(255),
             ]);
         }
 
         $AisTechnoGroup = [];
         foreach (['ru', 'uz', 'en'] as $lang) {
             $AisTechnoGroup[] = Tabs\Tab::make($lang)->schema([
-                TextInput::make("title_$lang")->label(__('form.title', locale: $lang))->required()->maxLength(255),
+                TextInput::make("title2_$lang")->label(__('form.title', locale: $lang))->required()->maxLength(255),
                 TextInput::make("name1_$lang")->label(__('form.name1', locale: $lang))->required()->maxLength(255),
                 Textarea::make("text1_$lang")->label(__('form.text1', locale: $lang))->required()->maxLength(255),
                 TextInput::make("name2_$lang")->label(__('form.name2', locale: $lang))->required()->maxLength(255),
@@ -69,8 +69,8 @@ class AboutPage extends SettingsPage
         $OurPartners = [];
         foreach (['ru', 'uz', 'en'] as $lang) {
             $OurPartners[] = Tabs\Tab::make($lang)->schema([
-                TextInput::make("title_$lang")->label(__('form.question', locale: $lang))->required()->maxLength(255),
-                Textarea::make("text_$lang")->label(__('form.text', locale: $lang))->required()->maxLength(255),
+                TextInput::make("title3_$lang")->label(__('form.title', locale: $lang))->required()->maxLength(255),
+                Textarea::make("text3_$lang")->label(__('form.text', locale: $lang))->required()->maxLength(255),
             ]);
         }
 

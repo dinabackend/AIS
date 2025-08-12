@@ -4,7 +4,6 @@ use Spatie\LaravelSettings\Migrations\SettingsMigration;
 
 return new class extends SettingsMigration
 {
-
     public function up(): void
     {
         // Main title
@@ -51,6 +50,5 @@ return new class extends SettingsMigration
         $this->migrator->add('about.text3_ru', "null");
         $this->migrator->add('about.text3_uz', "null");
         $this->migrator->add('about.text3_en', "null");
-
     }
 };
