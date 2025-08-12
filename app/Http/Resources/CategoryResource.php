@@ -7,24 +7,39 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-/** @mixin  Category */
+/** @mixin Category */
 class CategoryResource extends JsonResource
 {
-
     public function toArray(Request $request): array
     {
         return [
             'id' => $this->id,
-            'name' => $this->translations->mapWithKeys(function ($item) {
-                return [$item->locale => $item->name];
+            'name' => $this->translation ? $this->translation->name : null,
+            'slug' => $this->slug,
+            'parent_id' => $this->parent_id,
+            'depth' => $this->depth,
+            'image' => $this->getFirstMediaUrl('category_img'),
+            /*'images' => $this->getMedia('category_img')->map(function ($media) {
+                return $media->getUrl();
+            }),*/
+            'parent' => $this->when($this->parent, function() {
+                return [
+                    'id' =>   $this->parent->id,
+                    'name' => $this->parent->translation ? $this->parent->translation->name : null,
+                    'slug' => $this->parent->slug,
+                ];
             }),
-            'count' => Product::whereHas('categories', function ($q) {
-                return $q->where('id', $this->id)->orWhere('parent_id', $this->id);
-            })->where('collection_visibility', '!=', 1)
-                ->orWhere('collection_visibility', null)
-                ->count(),
-            'order' => $this->order,
-            'childrens' => CategoryResource::collection($this->children),
+            'children' => CategoryResource::collection($this->whenLoaded('children')),
+            'products_count' => $this->when($this->relationLoaded('products'), function() {
+                return $this->products->count();
+            }, function() {
+                return Product::whereHas('categories', function ($query) {
+                    $query->where('category_id', $this->id);
+                })->count();
+            }),
+            'has_children' => $this->children()->count() > 0,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
     }
 }

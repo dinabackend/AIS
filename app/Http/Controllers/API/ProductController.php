@@ -142,4 +142,13 @@ class ProductController extends Controller
     {
         //
     }
+
+    public function category()
+    {
+        $categories = Category::query()->with('children')->get();
+
+        return [
+            'data' => CategoryResource::collection($categories)
+        ];
+    }
 }
