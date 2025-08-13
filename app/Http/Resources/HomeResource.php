@@ -20,16 +20,17 @@ class HomeResource extends JsonResource
     {
         $settings = app(HomePageSettings::class);
 
+        $replace = ['[' => '<span>', ']' => '</span>'];
         $banners = [];
         foreach ($settings->banner as $banner) {
             $url = Arr::get($banner, 'banner', '');
             $banners[] = [
-                'url' => strlen($url) ? asset("storage/$url") : '',
+                'url' => $url != '' ? asset("storage/$url") : '',
                 'type' => preg_match('/(.jpg|.png|.webp)/', $url) ? 'image' : 'video',
                 'title' => [
-                    'en' => Arr::get($banner, 'title_en'),
-                    'uz' => Arr::get($banner, 'title_uz'),
-                    'ru' => Arr::get($banner, 'title_ru'),
+                    'en' => strtr(Arr::get($banner, 'title_en', ""), $replace),
+                    'uz' => strtr(Arr::get($banner, 'title_uz', ""), $replace),
+                    'ru' => strtr(Arr::get($banner, 'title_ru', ""), $replace),
                 ],
                 'subtitle' => [
                     'en' => Arr::get($banner, 'subtitle_en'),
