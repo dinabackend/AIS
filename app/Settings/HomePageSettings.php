@@ -7,7 +7,17 @@ use Spatie\LaravelSettings\Settings;
 class HomePageSettings extends Settings
 {
     // Banner
-    public array $banner;
+    public string $title1_ru;
+    public string $title1_uz;
+    public string $title1_en;
+    public string $subtitle1_ru;
+    public string $subtitle1_uz;
+    public string $subtitle1_en;
+    public array $info_ru;
+    public array $info_uz;
+    public array $info_en;
+    public string $banner1;
+
     // Info
     public string $title2_ru;
     public string $title2_uz;

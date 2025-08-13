@@ -36,6 +36,7 @@ return [
     'right' => 'O\'ng',
 
     'banner' => 'Banner',
+    'banner1' => 'Banner',
     'title' => 'Sarlavha',
     'text' => 'Matn',
     'images' => 'Kollaj',

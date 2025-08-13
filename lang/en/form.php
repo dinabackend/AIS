@@ -36,6 +36,7 @@ return [
     'right' => 'Right',
 
     'banner' => 'Banner',
+    'banner1' => 'Banner',
     'title' => 'Title',
     'subtitle' => 'Subtitle',
     'text' => 'Text',

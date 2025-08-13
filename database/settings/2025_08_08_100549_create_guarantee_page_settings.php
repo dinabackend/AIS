@@ -8,9 +8,9 @@ return new class extends SettingsMigration
     public function up(): void
     {
         // Main title
-        $this->migrator->add('guarantee.main_ru', "Гарантия");
-        $this->migrator->add('guarantee.main_uz', "Kafolat");
-        $this->migrator->add('guarantee.main_en', "Guarantee");
+        $this->migrator->add('guarantee.main_title_ru', "Гарантия");
+        $this->migrator->add('guarantee.main_title_uz', "Kafolat");
+        $this->migrator->add('guarantee.main_title_en', "Guarantee");
 
         // Guarantee
         $this->migrator->add('guarantee.title_ru', "null");
@@ -34,13 +34,10 @@ return new class extends SettingsMigration
 
         $this->migrator->add('guarantee.defect_title_ru', "null");
         $this->migrator->add('guarantee.defect_list_ru', []);
-        $this->migrator->add('guarantee.defect_question_ru', "null");
         $this->migrator->add('guarantee.defect_title_uz', "null");
         $this->migrator->add('guarantee.defect_list_uz', []);
-        $this->migrator->add('guarantee.defect_question_uz', "null");
         $this->migrator->add('guarantee.defect_title_en', "null");
         $this->migrator->add('guarantee.defect_list_en', []);
-        $this->migrator->add('guarantee.defect_question_en', "null");
 
     }
 };

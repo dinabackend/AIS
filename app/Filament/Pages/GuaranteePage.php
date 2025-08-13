@@ -36,7 +36,7 @@ class GuaranteePage extends SettingsPage
         $many_titles = [];
         foreach (['ru', 'uz', 'en'] as $lang) {
             $many_titles[] = Tabs\Tab::make($lang)->schema([
-                TextInput::make("main_$lang")->label(__('form.main', locale: $lang))->required()->maxLength(255),
+                TextInput::make("main_title_$lang")->label(__('form.main', locale: $lang))->required()->maxLength(255),
             ]);
         }
 
@@ -70,8 +70,7 @@ class GuaranteePage extends SettingsPage
                 Repeater::make("defect_list_$lang")->schema([
                     TextInput::make("text")->label(__('form.text', locale: $lang))->required(),
                 ])->label(__('form.defect list', locale: $lang))->columns(),
-                TextInput::make("defect_question_$lang")->label(__('form.question', locale: $lang))->required()->maxLength(255),
-            ]);
+                ]);
         }
 
         return $form->schema([

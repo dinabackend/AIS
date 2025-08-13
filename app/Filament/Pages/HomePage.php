@@ -36,8 +36,8 @@ class HomePage extends SettingsPage
         $settings_array = [];
         foreach (['ru', 'uz', 'en'] as $lang) {
             $settings_array[] = Tabs\Tab::make($lang)->schema([
-                TextInput::make("title1_$lang")->label(__('form.Title', locale: $lang))->required()->maxLength(255),
-                TextInput::make("subtitle1_$lang")->label(__('form.Subtitle', locale: $lang))->required()->maxLength(255),
+                TextInput::make("title1_$lang")->label(__('form.title', locale: $lang))->required()->maxLength(255),
+                TextInput::make("subtitle1_$lang")->label(__('form.subtitle', locale: $lang))->required()->maxLength(255),
                 Repeater::make("info_$lang")->schema([
                     TextInput::make("number")->label(__('form.number'))->required(),
                     TextInput::make("text")->label(__('form.text'))->required(),
@@ -84,10 +84,8 @@ class HomePage extends SettingsPage
 
         return $form->schema([
             Section::make(__('form.banner'))->schema([
-                Repeater::make('banner')->schema([
-                    FileUpload::make('banner')->disk('public')->directory('banner')->required(),
+                    FileUpload::make(__('form.banner1'))->disk('public')->directory('banner')->required(),
                     Tabs::make()->schema($settings_array)->columnSpanFull(),
-                ])->defaultItems(1)->columnSpanFull(),
             ])->collapsed(),
 
             Section::make(__('form.info'))->schema([

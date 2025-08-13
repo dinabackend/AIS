@@ -6,9 +6,9 @@ use Spatie\LaravelSettings\Settings;
 
 class GuaranteePageSettings extends Settings
 {
-    public string $main_ru;
-    public string $main_uz;
-    public string $main_en;
+    public string $main_title_ru;
+    public string $main_title_uz;
+    public string $main_title_en;
     public string $title_ru;
     public string $subtitle_ru;
     public array $repeater_ru;
@@ -27,13 +27,10 @@ class GuaranteePageSettings extends Settings
     public array $question_list_en;
     public string $defect_title_ru;
     public array $defect_list_ru;
-    public string $defect_question_ru;
     public string $defect_title_uz;
     public array $defect_list_uz;
-    public string $defect_question_uz;
     public string $defect_title_en;
     public array $defect_list_en;
-    public string $defect_question_en;
     public static function group(): string
     {
         return 'guarantee';

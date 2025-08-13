@@ -8,6 +8,7 @@ use App\Http\Controllers\API\FooterController;
 use App\Http\Controllers\API\GuaranteeController;
 use App\Http\Controllers\API\HomePageController;
 use App\Http\Controllers\API\ProductController;
+use App\Http\Controllers\API\RentPageController;
 use App\Http\Controllers\API\SEOController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,7 +24,8 @@ Route::get('/{locale}/teams/{id}', [UserController::class, 'show']);*/
 Route::get('/home', [HomePageController::class, 'index']); //
 Route::get('/policy', [HomePageController::class, 'policy']);
 Route::get('/seo', [SEOController::class, 'index']);
-Route::get('/teams', [AboutPageController::class, 'index']);
+Route::get('/aboutUs', [AboutPageController::class, 'index']);
+Route::get('/rent', [RentPageController::class, 'index']);
 
 
 Route::get('/products', [ProductController::class, 'index']);
