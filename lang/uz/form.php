@@ -52,6 +52,7 @@ return [
 
     'image1' => 'Rasm 1',
     'image2' => 'Rasm 2',
+    'title2' => 'Sarlavha 2',
     'text1' => 'Matn 1',
     'text2' => 'Matn 2',
     'text3' => 'Matn 3',
@@ -87,5 +88,7 @@ return [
     'reviews_title' => 'Sharhlar Sarlavhasi',
     'rents' => 'Ijaralar',
     'category_text' => 'Kategoriya Matni',
+    'query' => 'Savol',
+    'SparePartsCatalog' => 'Ehtiyot qismlar katalogi',
 
 ];

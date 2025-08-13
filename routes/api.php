@@ -10,6 +10,7 @@ use App\Http\Controllers\API\HomePageController;
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\RentPageController;
 use App\Http\Controllers\API\SEOController;
+use App\Http\Controllers\API\SparePartsPageController;
 use Illuminate\Support\Facades\Route;
 
 /*Route::get('/{locale}/products/filter', [ProductController::class, 'filter']);
@@ -26,6 +27,7 @@ Route::get('/policy', [HomePageController::class, 'policy']);
 Route::get('/seo', [SEOController::class, 'index']);
 Route::get('/aboutUs', [AboutPageController::class, 'index']);
 Route::get('/rent', [RentPageController::class, 'index']);
+Route::get('/spareParts', [SparePartsPageController::class, 'index']);
 
 
 Route::get('/products', [ProductController::class, 'index']);

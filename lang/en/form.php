@@ -52,6 +52,7 @@ return [
 
     'image1' => 'Image 1',
     'image2' => 'Image 2',
+    'title2' => 'Title 2',
     'text1' => 'Text 1',
     'text2' => 'Text 2',
     'text3' => 'Text 3',
@@ -85,5 +86,7 @@ return [
     'rents' => 'Rents',
     'reviews_title' => 'Reviews Title',
     'category_text' => 'Category Text',
+    'query' => 'Query',
+    'SparePartsCatalog' => 'Spare Parts Catalog',
 
 ];

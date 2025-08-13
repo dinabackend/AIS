@@ -9,6 +9,7 @@ return [
     'about_page_settings' => 'Biz Haqimizdani sozlash',
     'guarantee_page_settings' => 'Kafolat sahifa sozlamalari',
     'rent_page_settings' => 'Ijaraga olish sahifa sozlamalari',
+    'SparePartsPage' => 'Ehtiyot qismlar sahifasi',
     'seo_settings' => 'SEOni sozlash',
     'footer_settings' => 'Footerni sozlash',
     'types' => 'Turlar',

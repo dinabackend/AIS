@@ -10,6 +10,7 @@ return [
     'home_page_settings' => 'Home Page Settings',
     'guarantee_page_settings' => 'Guarantee Page Settings',
     'rent_page_settings' => 'Rent Page Settings',
+    'SparePartsPage' => 'Spare Parts Page',
     'seo_settings' => 'SEO Settings',
     'footer_settings' => 'Footer Settings',
     'types' => 'Types',
