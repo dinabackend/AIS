@@ -18,17 +18,17 @@ class AboutPageController extends Controller
         $aboutUs = [];
         foreach (['ru', 'uz', 'en'] as $lang) {
             $aboutUs['main_title'][$lang] = $about->{'main_title_' . $lang} ?? '';
-            $aboutUs['title0'][$lang] = $about->{'title0_' . $lang} ?? '';
-            $aboutUs['text0'][$lang] = $about->{'text0_' . $lang} ?? '';
+            $aboutUs['about'][$lang] = $about->{'about_' . $lang} ?? '';
+            $aboutUs['text'][$lang] = $about->{'text_' . $lang} ?? '';
             $aboutUs['banner'] = $about->banner ?? '';
-            $aboutUs['question0'][$lang] = $about->{'question0_' . $lang} ?? '';
-            $aboutUs['title2'][$lang] = $about->{'title2_' . $lang} ?? '';
-            $aboutUs['name1'][$lang] = $about->{'name1_' . $lang} ?? '';
+            $aboutUs['question'][$lang] = $about->{'question_' . $lang} ?? '';
+            $aboutUs['dalgakiran'][$lang] = $about->{'dalgakiran_' . $lang} ?? '';
+            $aboutUs['Our_goal'][$lang] = $about->{'Our_goal_' . $lang} ?? '';
             $aboutUs['text1'][$lang] = $about->{'text1_' . $lang} ?? '';
-            $aboutUs['name2'][$lang] = $about->{'name2_' . $lang} ?? '';
+            $aboutUs['We_offer'][$lang] = $about->{'We_offer_' . $lang} ?? '';
             $aboutUs['text2'][$lang] = $about->{'text2_' . $lang} ?? '';
             $aboutUs['img'] = $about->img ?? '';
-            $aboutUs['title3'][$lang] = $about->{'title3_' . $lang} ?? '';
+            $aboutUs['ourPartners'][$lang] = $about->{'ourPartners_' . $lang} ?? '';
             $aboutUs['text3'][$lang] = $about->{'text3_' . $lang} ?? '';
         }
 
