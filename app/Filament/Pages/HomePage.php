@@ -36,8 +36,8 @@ class HomePage extends SettingsPage
         $settings_array = [];
         foreach (['ru', 'uz', 'en'] as $lang) {
             $settings_array[] = Tabs\Tab::make($lang)->schema([
-                TextInput::make("title_$lang")->label(__('form.Title', locale: $lang))->required()->maxLength(255),
-                TextInput::make("subtitle_$lang")->label(__('form.Subtitle', locale: $lang))->required()->maxLength(255),
+                TextInput::make("title1_$lang")->label(__('form.Title', locale: $lang))->required()->maxLength(255),
+                TextInput::make("subtitle1_$lang")->label(__('form.Subtitle', locale: $lang))->required()->maxLength(255),
                 Repeater::make("info_$lang")->schema([
                     TextInput::make("number")->label(__('form.number'))->required(),
                     TextInput::make("text")->label(__('form.text'))->required(),
@@ -48,30 +48,39 @@ class HomePage extends SettingsPage
         $settings2 = [];
         foreach (['ru', 'uz', 'en'] as $lang) {
             $settings2[] = Tabs\Tab::make($lang)->schema([
-                TextInput::make("title_$lang")->label(__('form.title', locale: $lang))->required()->maxLength(255),
-                TextInput::make("subtitle_$lang")->label(__('form.subtitle', locale: $lang))->required()->maxLength(255),
+                TextInput::make("title2_$lang")->label(__('form.title', locale: $lang))->required()->maxLength(255),
+                TextInput::make("subtitle2_$lang")->label(__('form.subtitle', locale: $lang))->required()->maxLength(255),
                 Textarea::make("text1_$lang")->label(__('form.text1', locale: $lang))->required(),
                 Textarea::make("text2_$lang")->label(__('form.text2', locale: $lang))->required(),
                 Textarea::make("text3_$lang")->label(__('form.text3', locale: $lang))->required(),
-                Repeater::make("info_$lang")->schema([
+                Repeater::make("info2_$lang")->schema([
                     TextInput::make("number")->label(__('form.number'))->required(),
                     TextInput::make("text")->label(__('form.text'))->required(),
                 ])->label(__('form.info list', locale: $lang))->columns(),
             ]);
         }
 
-        /*$companies = [];
+//        $advantages = [];
+//        foreach (['ru', 'uz', 'en'] as $lang) {
+//            $advantages[] = Tabs\Tab::make($lang)->schema([
+//                TextInput::make("title_$lang")->label(__('form.title', locale: $lang))->required()->maxLength(255),
+//                Repeater::make("items_$lang")->schema([
+//                    TextInput::make("title3")->label(__('form.title'))->required(),
+//                    Textarea::make("text4")->label(__('form.text'))->required(),
+//                ])->label(__('form.items list', locale: $lang))->columns(),
+//            ]);
+//        }
+
+        $companies = [];
         foreach (['ru', 'uz', 'en'] as $lang) {
             $companies[] = Tabs\Tab::make($lang)->schema([
-                TextInput::make("title_$lang")->label(__('form.they trust us.', locale: $lang))->required()->maxLength(255),
+                TextInput::make("title3_$lang")->label(__('form.they trust us.', locale: $lang))->required()->maxLength(255),
                 TextInput::make("name1_$lang")->label(__('form.name1', locale: $lang))->required()->maxLength(255),
                 TextInput::make("name2_$lang")->label(__('form.name2', locale: $lang))->required()->maxLength(255),
-                Textarea::make("text1_$lang")->label(__('form.text1', locale: $lang))->required()->maxLength(255),
-                Textarea::make("text2_$lang")->label(__('form.text2', locale: $lang))->required()->maxLength(255),
-                TextInput::make("title2_$lang")->label(__('form.official partners', locale: $lang))->required()->maxLength(255),
-                TextInput::make("title3_$lang")->label(__('form.news', locale: $lang))->required()->maxLength(255),
+                Textarea::make("text5_$lang")->label(__('form.text1', locale: $lang))->required()->maxLength(255),
+                Textarea::make("text6_$lang")->label(__('form.text2', locale: $lang))->required()->maxLength(255),
             ]);
-        }*/
+        }
 
         return $form->schema([
             Section::make(__('form.banner'))->schema([
@@ -82,14 +91,42 @@ class HomePage extends SettingsPage
             ])->collapsed(),
 
             Section::make(__('form.info'))->schema([
-                    Tabs::make()->schema($settings2)->columnSpanFull(),
-                    FileUpload::make("img_$lang")->label(__('form.image1', locale: $lang))->required(),
-                    FileUpload::make("img2_$lang")->label(__('form.image2', locale: $lang))->required(),
+                Tabs::make()->schema($settings2)->columnSpanFull(),
+                FileUpload::make("img")->label(__('form.image1'))->required(),
+                FileUpload::make("img2")->label(__('form.image2'))->required()
             ])->collapsed(),
 
-            /*Section::make(__('form.company'))->schema([
-                    Tabs::make()->schema($companies)->columnSpanFull(),
-            ])->collapsed(),*/
+            Section::make(__('form.company'))->schema([
+                Tabs::make()->schema($companies)->columnSpanFull(),
+                FileUpload::make('imagess')
+                    ->label(__('form.images'))
+                    ->disk('public')
+                    ->directory('images')
+                    ->multiple()
+                    ->required(),
+            ])->collapsed(),
+
+            Section::make(__('form.cooperation'))->schema([
+                Tabs::make()->tabs([
+                    Tabs\Tab::make('ru')->schema([
+                        TextInput::make('titleb_ru')->label(__('form.title'))->required()->maxLength(255),
+                    ]),
+                    Tabs\Tab::make('uz')->schema([
+                        TextInput::make('titleb_uz')->label(__('form.title'))->required()->maxLength(255),
+                    ]),
+                    Tabs\Tab::make('en')->schema([
+                        TextInput::make('titleb_en')->label(__('form.title'))->required()->maxLength(255),
+                    ]),
+                ]),
+                FileUpload::make('images')
+                    ->label(__('form.images'))
+                    ->disk('public')
+                    ->directory('images')
+                    ->multiple()
+                    ->required(),
+
+            ])->collapsed(),
+
         ]);
     }
 }

@@ -56,6 +56,8 @@ return [
     'text3' => 'Matn 3',
     'info' => 'Ma\'lumot',
     'number' => 'Raqam',
+    'items list' => 'Elementlar ro\'yxati',
+    'cooperation' => 'Hamkorlik',
 
     'icon' => 'Piktogramma',
     'advantages' => 'Afzalliklar',

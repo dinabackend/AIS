@@ -56,6 +56,8 @@ return [
     'text3' => 'Text 3',
     'info' => 'Info',
     'number' => 'Number',
+    'items list' => 'Items List',
+    'cooperation' => 'Cooperation',
 
     'icon' => 'Icon',
     'advantages' => 'Advantages',
