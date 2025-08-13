@@ -18,7 +18,7 @@ class GuaranteeController extends Controller
        // dd($guarantees);
         $data = [];
         foreach (['ru', 'uz', 'en'] as $lang) {
-            $data['main_title'][$lang] = $guarantees->{'main_' . $lang} ?? '';
+            $data['main_title'][$lang] = $guarantees->{'main_title' . $lang} ?? '';
             $data['title'][$lang] = $guarantees->{'title_' . $lang} ?? '';
             $data['subtitle'][$lang] = $guarantees->{'subtitle_' . $lang} ?? '';
             $data['repeater'][$lang] = collect($guarantees->{'repeater_' . $lang} ?? [])

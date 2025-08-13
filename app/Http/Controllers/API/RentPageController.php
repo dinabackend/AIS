@@ -13,21 +13,45 @@ class RentPageController extends Controller
      */
     public function index()
     {
-        $rent = app(RentPageSettings::class);
+        $settings = app(RentPageSettings::class);
 
-        $rents = [];
-        foreach (['ru', 'uz', 'en'] as $lang) {
-            $rents['main_title'][$lang] = $rent->{'main_title_' . $lang} ?? '';
-            $rents['title'][$lang] = $rent->{'title_' . $lang} ?? '';
-            $rents['text'][$lang] = $rent->{'text_' . $lang} ?? '';
-            $rents['category_text'][$lang] = $rent->{'category_text_' . $lang} ?? '';
-            $rents['image'] = $rent->img ?? '';
-            $rents['reviews_title'][$lang] = $rent->{'reviews_title_' . $lang} ?? '';
+        $data = [
+            'main_title' => [
+                'ru' => $settings->main_title_ru ?? '',
+                'uz' => $settings->main_title_uz ?? '',
+                'en' => $settings->main_title_en ?? '',
+            ],
+            'reviews_title' => [
+                'ru' => $settings->reviews_title_ru ?? '',
+                'uz' => $settings->reviews_title_uz ?? '',
+                'en' => $settings->reviews_title_en ?? '',
+            ],
+            'rents' => [],
+        ];
+
+        foreach ($settings->rents ?? [] as $rent) {
+            $item = [
+                'ru' => [
+                    'title' => $rent['title_ru'] ?? '',
+                    'text' => $rent['text_ru'] ?? '',
+                    'category_text' => $rent['category_text_ru'] ?? '',
+                ],
+                'uz' => [
+                    'title' => $rent['title_uz'] ?? '',
+                    'text' => $rent['text_uz'] ?? '',
+                    'category_text' => $rent['category_text_uz'] ?? '',
+                ],
+                'en' => [
+                    'title' => $rent['title_en'] ?? '',
+                    'text' => $rent['text_en'] ?? '',
+                    'category_text' => $rent['category_text_en'] ?? '',
+                ],
+                'image' => $rent['image'] ?? '',
+            ];
+            $data['rents'][] = $item;
         }
 
-        return response()->json([
-            'rents' => $rents
-        ]);
+        return response()->json($data);
     }
 
     /**
