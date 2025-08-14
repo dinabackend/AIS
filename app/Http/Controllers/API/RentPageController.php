@@ -39,6 +39,7 @@ class RentPageController extends Controller
                         return [$item->locale => $item->text];
                     }),
                     'created_at' => $review->created_at->format('Y-m-d H:i:s'),
+                    'rating' => $review->rating,
                 ];
             }),
         ];
