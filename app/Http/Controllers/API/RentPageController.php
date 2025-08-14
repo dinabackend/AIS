@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Review;
 use App\Settings\RentPageSettings;
 use Illuminate\Http\Request;
 
@@ -52,8 +53,22 @@ class RentPageController extends Controller
             $data['rents'][] = $item;
         }
 
+        $rents = Review::take(20)->get();
+
         return response()->json([
-            'data' => $data
+            'data' => $data,
+            'reviews' => $rents->map(function ($review) {
+                return [
+                    'id' => $review->id,
+                    'name' => $review->translations->mapWithKeys(function ($item) {
+                        return [$item->locale => $item->name];
+                    }),
+                    'text' => $review->translations->mapWithKeys(function ($item) {
+                        return [$item->locale => $item->text];
+                    }),
+                    'created_at' => $review->created_at->format('Y-m-d H:i:s'),
+                ];
+            }),
         ]);
     }
 
