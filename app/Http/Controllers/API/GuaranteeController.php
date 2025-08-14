@@ -15,12 +15,11 @@ class GuaranteeController extends Controller
     {
         $guarantees = app(GuaranteePageSettings::class);
 
-       // dd($guarantees);
         $data = [];
         foreach (['ru', 'uz', 'en'] as $lang) {
             $data['main_title'][$lang] = $guarantees->{'main_title_' . $lang} ?? '';
             $data['title'][$lang] = $guarantees->{'title_' . $lang} ?? '';
-            $data['subtitle'][$lang] = $guarantees->{'subtitle_' . $lang} ?? '';
+            $data['5 -year guarantee'][$lang] = $guarantees->{'subtitle_' . $lang} ?? '';
             $data['repeater'][$lang] = collect($guarantees->{'repeater_' . $lang} ?? [])
                 ->map(function ($item) {
                     return [
@@ -28,7 +27,7 @@ class GuaranteeController extends Controller
                         'text' => $item['text'] ?? '',
                     ];
                 })->toArray();
-            $data['image'][$lang] = $guarantees->{'image_' . $lang} ?? '';
+            $data['image'] = $guarantees->banner ?? '';
             $data['questions']['title'][$lang] = $guarantees->{'question_' . $lang} ?? '';
             $data['questions']['list'][$lang] = collect($guarantees->{'question_list_' . $lang} ?? [])
                 ->map(function ($item) {
@@ -39,6 +38,8 @@ class GuaranteeController extends Controller
                 ->map(function ($item) {
                     return $item['text'] ?? '';
                 })->toArray();
+            $data['consultation']['query'][$lang] = $guarantees->{'query_' . $lang} ?? '';
+            $data['consultation']['tell'][$lang] = $guarantees->{'tell_' . $lang} ?? '';
         }
 
         return response()->json([

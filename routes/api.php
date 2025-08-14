@@ -28,7 +28,7 @@ Route::get('/seo', [SEOController::class, 'index']);
 Route::get('/aboutUs', [AboutPageController::class, 'index']);
 Route::get('/rent', [RentPageController::class, 'index']);
 Route::get('/spareParts', [SparePartsPageController::class, 'index']);
-
+Route::get('/guarantee', [GuaranteeController::class, 'index']);
 
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/collections', [ProductController::class, 'collection']);
@@ -39,7 +39,6 @@ Route::get('/events', [EventController::class, 'index']); // ✅
 Route::get('/events/{id}', [EventController::class, 'show']); // ✅
 Route::get('/footer', [FooterController::class, 'index']);
 Route::get('/about', [AboutController::class, 'index']);
-Route::get('/guarantee', [GuaranteeController::class, 'index']);
 
 Route::get('/categories', [CategoryController::class, 'index']);
 Route::get('/categories/tree', [CategoryController::class, 'tree']);

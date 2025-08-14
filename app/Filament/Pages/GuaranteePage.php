@@ -73,6 +73,14 @@ class GuaranteePage extends SettingsPage
                 ]);
         }
 
+        $consultation = [];
+        foreach (['ru', 'uz', 'en'] as $lang) {
+            $consultation[] = Tabs\Tab::make($lang)->schema([
+                TextInput::make("query_$lang")->label(__('form.text', locale: $lang))->required()->maxLength(255),
+                TextInput::make("tell_$lang")->label(__('form.consultation', locale: $lang))->required()->maxLength(255),
+            ]);
+        }
+
         return $form->schema([
             Section::make(__('form.main'))->schema([
                 Tabs::make('main')->schema($many_titles)->columnSpanFull(),
@@ -89,6 +97,10 @@ class GuaranteePage extends SettingsPage
 
             Section::make(__('form.defect'))->schema([
                 Tabs::make('defect')->schema($defect)->columnSpanFull(),
+            ])->collapsed(),
+
+            Section::make(__('form.consultation'))->schema([
+                Tabs::make('consultation')->schema($consultation)->columnSpanFull(),
             ])->collapsed(),
         ]);
     }

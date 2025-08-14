@@ -36,7 +36,7 @@ class SparePartsPageController extends Controller
                 'uz' => $settings->PM_Series_uz ?? '',
                 'en' => $settings->PM_Series_en ?? '',
             ],
-            'PM_Series_text2' => [
+            'PM_Series_text' => [
                 'ru' => $settings->text2_ru ?? '',
                 'uz' => $settings->text2_uz ?? '',
                 'en' => $settings->text2_en ?? '',
@@ -58,7 +58,9 @@ class SparePartsPageController extends Controller
             ],
         ];
 
-        return response()->json($data);
+        return response()->json([
+            'data' => $data
+        ]);
     }
 
     /**

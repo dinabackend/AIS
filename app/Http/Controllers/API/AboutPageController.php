@@ -20,7 +20,7 @@ class AboutPageController extends Controller
             $aboutUs['main_title'][$lang] = $about->{'main_title_' . $lang} ?? '';
             $aboutUs['about'][$lang] = $about->{'about_' . $lang} ?? '';
             $aboutUs['text'][$lang] = $about->{'text_' . $lang} ?? '';
-            $aboutUs['banner'] = $about->banner ?? '';
+            $aboutUs['image'] = $about->banner ?? '';
             $aboutUs['question'][$lang] = $about->{'question_' . $lang} ?? '';
             $aboutUs['dalgakiran'][$lang] = $about->{'dalgakiran_' . $lang} ?? '';
             $aboutUs['Our_goal'][$lang] = $about->{'Our_goal_' . $lang} ?? '';

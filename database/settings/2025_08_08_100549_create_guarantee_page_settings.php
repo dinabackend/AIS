@@ -25,6 +25,7 @@ return new class extends SettingsMigration
         $this->migrator->add('guarantee.banner', "");
 
 
+        // Questions
         $this->migrator->add('guarantee.question_ru', "null");
         $this->migrator->add('guarantee.question_list_ru', []);
         $this->migrator->add('guarantee.question_uz', "null");
@@ -32,12 +33,21 @@ return new class extends SettingsMigration
         $this->migrator->add('guarantee.question_en', "null");
         $this->migrator->add('guarantee.question_list_en', []);
 
+        // Defect
         $this->migrator->add('guarantee.defect_title_ru', "null");
         $this->migrator->add('guarantee.defect_list_ru', []);
         $this->migrator->add('guarantee.defect_title_uz', "null");
         $this->migrator->add('guarantee.defect_list_uz', []);
         $this->migrator->add('guarantee.defect_title_en', "null");
         $this->migrator->add('guarantee.defect_list_en', []);
+
+        // Consultation
+        $this->migrator->add('guarantee.query_ru', "null");
+        $this->migrator->add('guarantee.query_uz', "null");
+        $this->migrator->add('guarantee.query_en', "null");
+        $this->migrator->add('guarantee.tell_ru', "null");
+        $this->migrator->add('guarantee.tell_uz', "null");
+        $this->migrator->add('guarantee.tell_en', "null");
 
     }
 };

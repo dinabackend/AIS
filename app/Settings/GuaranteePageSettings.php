@@ -31,6 +31,12 @@ class GuaranteePageSettings extends Settings
     public array $defect_list_uz;
     public string $defect_title_en;
     public array $defect_list_en;
+    public string $query_ru;
+    public string $query_uz;
+    public string $query_en;
+    public string $tell_ru;
+    public string $tell_uz;
+    public string $tell_en;
     public static function group(): string
     {
         return 'guarantee';

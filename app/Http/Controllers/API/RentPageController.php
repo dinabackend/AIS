@@ -21,12 +21,13 @@ class RentPageController extends Controller
                 'uz' => $settings->main_title_uz ?? '',
                 'en' => $settings->main_title_en ?? '',
             ],
+            'rents' => [],
             'reviews_title' => [
                 'ru' => $settings->reviews_title_ru ?? '',
                 'uz' => $settings->reviews_title_uz ?? '',
                 'en' => $settings->reviews_title_en ?? '',
             ],
-            'rents' => [],
+
         ];
 
         foreach ($settings->rents ?? [] as $rent) {
@@ -51,7 +52,9 @@ class RentPageController extends Controller
             $data['rents'][] = $item;
         }
 
-        return response()->json($data);
+        return response()->json([
+            'data' => $data
+        ]);
     }
 
     /**

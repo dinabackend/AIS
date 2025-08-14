@@ -89,5 +89,6 @@ return [
     'category_text' => 'Текст категории',
     'query' => 'Запросы',
     'SparePartsCatalog' => 'Каталог запчастей',
+    'consultation' => 'Консультация',
 
 ];

@@ -90,5 +90,5 @@ return [
     'category_text' => 'Kategoriya Matni',
     'query' => 'Savol',
     'SparePartsCatalog' => 'Ehtiyot qismlar katalogi',
-
+    'consultation' => 'Maslahatlar',
 ];

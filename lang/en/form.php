@@ -88,5 +88,6 @@ return [
     'category_text' => 'Category Text',
     'query' => 'Query',
     'SparePartsCatalog' => 'Spare Parts Catalog',
+    'consultation' => 'Consultation',
 
 ];
