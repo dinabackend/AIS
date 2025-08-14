@@ -15,6 +15,7 @@ class RentPageController extends Controller
     public function index()
     {
         $settings = app(RentPageSettings::class);
+        $rents = Review::take(20)->get();
 
         $data = [
             'main_title' => [
@@ -28,7 +29,18 @@ class RentPageController extends Controller
                 'uz' => $settings->reviews_title_uz ?? '',
                 'en' => $settings->reviews_title_en ?? '',
             ],
-
+            'reviews' => $rents->map(function ($review) {
+                return [
+                    'id' => $review->id,
+                    'name' => $review->translations->mapWithKeys(function ($item) {
+                        return [$item->locale => $item->name];
+                    }),
+                    'text' => $review->translations->mapWithKeys(function ($item) {
+                        return [$item->locale => $item->text];
+                    }),
+                    'created_at' => $review->created_at->format('Y-m-d H:i:s'),
+                ];
+            }),
         ];
 
         foreach ($settings->rents ?? [] as $rent) {
@@ -53,22 +65,10 @@ class RentPageController extends Controller
             $data['rents'][] = $item;
         }
 
-        $rents = Review::take(20)->get();
+
 
         return response()->json([
             'data' => $data,
-            'reviews' => $rents->map(function ($review) {
-                return [
-                    'id' => $review->id,
-                    'name' => $review->translations->mapWithKeys(function ($item) {
-                        return [$item->locale => $item->name];
-                    }),
-                    'text' => $review->translations->mapWithKeys(function ($item) {
-                        return [$item->locale => $item->text];
-                    }),
-                    'created_at' => $review->created_at->format('Y-m-d H:i:s'),
-                ];
-            }),
         ]);
     }
 

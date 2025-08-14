@@ -19,7 +19,7 @@ class GuaranteeController extends Controller
         foreach (['ru', 'uz', 'en'] as $lang) {
             $data['main_title'][$lang] = $guarantees->{'main_title_' . $lang} ?? '';
             $data['title'][$lang] = $guarantees->{'title_' . $lang} ?? '';
-            $data['5 -year guarantee'][$lang] = $guarantees->{'subtitle_' . $lang} ?? '';
+            $data['year_title'][$lang] = $guarantees->{'subtitle_' . $lang} ?? '';
             $data['repeater'][$lang] = collect($guarantees->{'repeater_' . $lang} ?? [])
                 ->map(function ($item) {
                     return [
@@ -38,8 +38,8 @@ class GuaranteeController extends Controller
                 ->map(function ($item) {
                     return $item['text'] ?? '';
                 })->toArray();
-            $data['consultation']['query'][$lang] = $guarantees->{'query_' . $lang} ?? '';
-            $data['consultation']['tell'][$lang] = $guarantees->{'tell_' . $lang} ?? '';
+            $data['consultation']['title'][$lang] = $guarantees->{'query_' . $lang} ?? '';
+            $data['consultation']['subtitle'][$lang] = $guarantees->{'tell_' . $lang} ?? '';
         }
 
         return response()->json([

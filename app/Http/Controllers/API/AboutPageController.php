@@ -15,25 +15,25 @@ class AboutPageController extends Controller
     {
         $about = app(AboutSettings::class);
 
-        $aboutUs = [];
+        $data = [];
         foreach (['ru', 'uz', 'en'] as $lang) {
-            $aboutUs['main_title'][$lang] = $about->{'main_title_' . $lang} ?? '';
-            $aboutUs['about'][$lang] = $about->{'about_' . $lang} ?? '';
-            $aboutUs['text'][$lang] = $about->{'text_' . $lang} ?? '';
-            $aboutUs['image'] = $about->banner ?? '';
-            $aboutUs['question'][$lang] = $about->{'question_' . $lang} ?? '';
-            $aboutUs['dalgakiran'][$lang] = $about->{'dalgakiran_' . $lang} ?? '';
-            $aboutUs['Our_goal'][$lang] = $about->{'Our_goal_' . $lang} ?? '';
-            $aboutUs['text1'][$lang] = $about->{'text1_' . $lang} ?? '';
-            $aboutUs['We_offer'][$lang] = $about->{'We_offer_' . $lang} ?? '';
-            $aboutUs['text2'][$lang] = $about->{'text2_' . $lang} ?? '';
-            $aboutUs['img'] = $about->img ?? '';
-            $aboutUs['ourPartners'][$lang] = $about->{'ourPartners_' . $lang} ?? '';
-            $aboutUs['text3'][$lang] = $about->{'text3_' . $lang} ?? '';
+            $data['main_title'][$lang] = $about->{'main_title_' . $lang} ?? '';
+            $data['about'][$lang] = $about->{'about_' . $lang} ?? '';
+            $data['text'][$lang] = $about->{'text_' . $lang} ?? '';
+            $data['image'] = $about->banner ?? '';
+            $data['question'][$lang] = $about->{'question_' . $lang} ?? '';
+            $data['dalgakiran_title'][$lang] = $about->{'dalgakiran_' . $lang} ?? '';
+            $data['Our_goal'][$lang] = $about->{'Our_goal_' . $lang} ?? '';
+            $data['text1'][$lang] = $about->{'text1_' . $lang} ?? '';
+            $data['We_offer'][$lang] = $about->{'We_offer_' . $lang} ?? '';
+            $data['text2'][$lang] = $about->{'text2_' . $lang} ?? '';
+            $data['img'] = $about->img ?? '';
+            $data['ourPartners'][$lang] = $about->{'ourPartners_' . $lang} ?? '';
+            $data['text3'][$lang] = $about->{'text3_' . $lang} ?? '';
         }
 
         return response()->json([
-            'aboutUs' => $aboutUs
+            'data' => $data
         ]);
     }
 
