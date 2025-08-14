@@ -7,16 +7,7 @@ return new class extends SettingsMigration
     public function up(): void
     {
         //Banner
-        $this->migrator->add('home.title1_ru', 'null');
-        $this->migrator->add('home.title1_uz', 'null');
-        $this->migrator->add('home.title1_en', 'null');
-        $this->migrator->add('home.subtitle1_ru', 'null');
-        $this->migrator->add('home.subtitle1_uz', 'null');
-        $this->migrator->add('home.subtitle1_en', 'null');
-        $this->migrator->add('home.info_ru', []);
-        $this->migrator->add('home.info_uz', []);
-        $this->migrator->add('home.info_en', []);
-        $this->migrator->add('home.banner1', '');
+        $this->migrator->add('home.banner', []);
 
         //Info
         $this->migrator->add('home.title2_ru', "null");

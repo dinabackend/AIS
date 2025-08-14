@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ProductCollection;
+use App\Models\Product;
 use App\Models\Review;
 use App\Settings\RentPageSettings;
 use Illuminate\Http\Request;
@@ -15,7 +17,8 @@ class RentPageController extends Controller
     public function index()
     {
         $settings = app(RentPageSettings::class);
-        $rents = Review::take(20)->get();
+        $rents = Review::query()->take(20)->get();
+        $recommended_products = Product::query()->take(10)->get();
 
         $data = [
             'main_title' => [
@@ -42,6 +45,15 @@ class RentPageController extends Controller
                     'rating' => $review->rating,
                 ];
             }),
+            'recommended_products' => ProductCollection::make(
+                $recommended_products
+            )->additional([
+                'meta' => [
+                    'total' => $recommended_products->count(),
+                    'per_page' => 10,
+                    'current_page' => 1,
+                ],
+            ]),
         ];
 
         foreach ($settings->rents ?? [] as $rent) {
