@@ -98,11 +98,11 @@ class AboutPage extends SettingsPage
 
             Section::make(__('form.information'))->schema([
                 Repeater::make('information')->schema([
-                        Tabs::make()->schema($information)->columnSpanFull(),
-                        FileUpload::make('img')->disk('public')->directory('img')->required()
-                    ])
-                    ->columns(1)
-                    ->columnSpanFull()
+                    Tabs::make()->schema($information)->columnSpanFull(),
+                    FileUpload::make('img')->disk('public')->directory('img')->required()
+                ])
+                ->columns(1)
+                ->columnSpanFull()
             ])->collapsed(),
 
             Section::make('AisTechnoGroup')->schema([

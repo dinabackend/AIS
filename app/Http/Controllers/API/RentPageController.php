@@ -38,7 +38,7 @@ class RentPageController extends Controller
                     'text' => $rent['text_en'] ?? '',
                     'category_text' => $rent['category_text_en'] ?? '',
                 ],
-                'image' => $rent['img'] ?? '',
+                'image' => $rent['img'] ? asset('storage/' . $rent['img']) : '',
             ];
             $rents_data[] = $item;
         }
