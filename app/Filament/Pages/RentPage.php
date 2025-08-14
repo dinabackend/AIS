@@ -62,7 +62,7 @@ class RentPage extends SettingsPage
             ])->collapsed(),
 
             Section::make(__('form.rents'))->schema([
-                Repeater::make(__('form.rents'))->schema([
+                Repeater::make('rents')->schema([
                     Tabs::make()->schema($rents)->columnSpanFull(),
                     FileUpload::make(__('form.image'))->disk('public')->directory('banner')->required()
                 ])->defaultItems(1)->columnSpanFull(),

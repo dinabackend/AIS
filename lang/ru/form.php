@@ -77,6 +77,7 @@ return [
     'guarantee' => 'Гарантия',
     'main' => 'Основной заголовок',
     'question' => 'Вопрос',
+    'information' => 'Информация',
     'step' => 'Шаг',
     'answer' => 'Ответ',
     'answers list' => 'Список шагов',

@@ -19,6 +19,7 @@ class AboutSettings extends Settings
     public string $question_ru;
     public string $question_uz;
     public string $question_en;
+    public array $information;
     public string $dalgakiran_ru;
     public string $dalgakiran_uz;
     public string $dalgakiran_en;

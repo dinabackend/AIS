@@ -78,6 +78,7 @@ return [
     'guarantee' => 'Kafolat',
     'main' => 'Asosiy Sarlavha',
     'question' => 'Savol',
+    'information' => 'Ma\'lumot',
     'step' => 'Qadam',
     'answer' => 'Javob',
     'answers list' => 'Qadamlar ro\'yxati',

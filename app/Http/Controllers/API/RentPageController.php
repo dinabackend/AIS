@@ -20,42 +20,7 @@ class RentPageController extends Controller
         $rents = Review::query()->take(20)->get();
         $recommended_products = Product::query()->take(10)->get();
 
-        $data = [
-            'main_title' => [
-                'ru' => $settings->main_title_ru ?? '',
-                'uz' => $settings->main_title_uz ?? '',
-                'en' => $settings->main_title_en ?? '',
-            ],
-            'rents' => [],
-            'reviews_title' => [
-                'ru' => $settings->reviews_title_ru ?? '',
-                'uz' => $settings->reviews_title_uz ?? '',
-                'en' => $settings->reviews_title_en ?? '',
-            ],
-            'reviews' => $rents->map(function ($review) {
-                return [
-                    'id' => $review->id,
-                    'name' => $review->translations->mapWithKeys(function ($item) {
-                        return [$item->locale => $item->name];
-                    }),
-                    'text' => $review->translations->mapWithKeys(function ($item) {
-                        return [$item->locale => $item->text];
-                    }),
-                    'created_at' => $review->created_at->format('Y-m-d H:i:s'),
-                    'rating' => $review->rating,
-                ];
-            }),
-            'recommended_products' => ProductCollection::make(
-                $recommended_products
-            )->additional([
-                'meta' => [
-                    'total' => $recommended_products->count(),
-                    'per_page' => 10,
-                    'current_page' => 1,
-                ],
-            ]),
-        ];
-
+        $rents_data = [];
         foreach ($settings->rents ?? [] as $rent) {
             $item = [
                 'ru' => [
@@ -75,10 +40,43 @@ class RentPageController extends Controller
                 ],
                 'image' => $rent['image'] ?? '',
             ];
-            $data['rents'][] = $item;
+            $rents_data[] = $item;
         }
 
 
+        $data = [
+            'main_title' => [
+                'ru' => $settings->main_title_ru ?? '',
+                'uz' => $settings->main_title_uz ?? '',
+                'en' => $settings->main_title_en ?? '',
+            ],
+            'rents' => $rents_data,
+            'reviews_title' => [
+                'ru' => $settings->reviews_title_ru ?? '',
+                'uz' => $settings->reviews_title_uz ?? '',
+                'en' => $settings->reviews_title_en ?? '',
+            ],
+            'reviews' => $rents->map(function ($review) {
+                return [
+                    'id' => $review->id,
+                    'name' => $review->translations->mapWithKeys(function ($item) {
+                        return [$item->locale => $item->name];
+                    }),
+                    'text' => $review->translations->mapWithKeys(function ($item) {
+                        return [$item->locale => $item->text];
+                    }),
+                    'created_at' => $review->created_at->format('Y-m-d H:i:s'),
+                    'rating' => $review->rating,
+                ];
+            }),
+            'recommended_products' => ProductCollection::make($recommended_products)->additional([
+                'meta' => [
+                    'total' => $recommended_products->count(),
+                    'per_page' => 10,
+                    'current_page' => 1,
+                ],
+            ]),
+        ];
 
         return response()->json([
             'data' => $data,

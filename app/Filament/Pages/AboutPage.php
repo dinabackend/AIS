@@ -4,6 +4,7 @@ namespace App\Filament\Pages;
 
 use App\Settings\AboutSettings;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Textarea;
@@ -32,7 +33,6 @@ class AboutPage extends SettingsPage
 
     public function form(Form $form): Form
     {
-
         $main_title = [];
         foreach (['ru', 'uz', 'en'] as $lang) {
             $main_title[] = Tabs\Tab::make($lang)->schema([
@@ -52,6 +52,14 @@ class AboutPage extends SettingsPage
         foreach (['ru', 'uz', 'en'] as $lang) {
             $questions[] = Tabs\Tab::make($lang)->schema([
                 TextInput::make("question_$lang")->label(__('form.question', locale: $lang))->required()->maxLength(255),
+            ]);
+        }
+
+        $information = [];
+        foreach (['ru', 'uz', 'en'] as $lang) {
+            $information[] = Tabs\Tab::make($lang)->schema([
+                TextInput::make("title_$lang")->label(__('form.title', locale: $lang))->required()->maxLength(255),
+                TextInput::make("text_$lang")->label(__('form.text', locale: $lang))->required()->maxLength(255),
             ]);
         }
 
@@ -86,6 +94,15 @@ class AboutPage extends SettingsPage
 
             Section::make(__('form.question'))->schema([
                 Tabs::make()->schema($questions)->columnSpanFull(),
+            ])->collapsed(),
+
+            Section::make(__('form.information'))->schema([
+                Repeater::make('information')->schema([
+                        Tabs::make()->schema($information)->columnSpanFull(),
+                        FileUpload::make('img')->disk('public')->directory('img')->required()
+                    ])
+                    ->columns(1)
+                    ->columnSpanFull()
             ])->collapsed(),
 
             Section::make('AisTechnoGroup')->schema([

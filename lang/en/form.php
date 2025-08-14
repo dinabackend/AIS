@@ -76,6 +76,7 @@ return [
     'guarantee' => 'Guarantee',
     'main' => 'Main Title',
     'question' => 'Question',
+    'information' => 'Information',
     'step' => 'Step',
     'answer' => 'Answer',
     'answers list' => 'List of steps',

@@ -36,8 +36,8 @@ class HomePage extends SettingsPage
         $settings_array = [];
         foreach (['ru', 'uz', 'en'] as $lang) {
             $settings_array[] = Tabs\Tab::make($lang)->schema([
-                TextInput::make("title1_$lang")->label(__('form.title', locale: $lang))->required()->maxLength(255),
-                TextInput::make("subtitle1_$lang")->label(__('form.subtitle', locale: $lang))->required()->maxLength(255),
+                TextInput::make("title_$lang")->label(__('form.title', locale: $lang))->required()->maxLength(255),
+                TextInput::make("subtitle_$lang")->label(__('form.subtitle', locale: $lang))->required()->maxLength(255),
                 Repeater::make("info_$lang")->schema([
                     TextInput::make("number")->label(__('form.number'))->required(),
                     TextInput::make("text")->label(__('form.text'))->required(),
