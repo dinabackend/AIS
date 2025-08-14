@@ -42,7 +42,7 @@ class AboutSettings extends Settings
     public string $text3_ru;
     public string $text3_uz;
     public string $text3_en;
-
+    public array $images;
 
     public static function group(): string
     {

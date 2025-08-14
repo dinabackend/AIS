@@ -41,15 +41,25 @@ class AboutPageController extends Controller
             $data['about']['text'][$lang] = $about->{'text_' . $lang} ?? '';
             $data['about']['image'] = $about->banner ? asset('storage/' . $about->banner) : '';
             $data['information']['question'][$lang] = $about->{'question_' . $lang} ?? '';
-            $data['information']['items'] = $informations;
+        }
+        $data['information']['items'] = $informations;
+        foreach (['ru', 'uz', 'en'] as $lang) {
             $data['dalgakiran']['title'][$lang] = $about->{'dalgakiran_' . $lang} ?? '';
             $data['dalgakiran']['name1'][$lang] = $about->{'Our_goal_' . $lang} ?? '';
             $data['dalgakiran']['text1'][$lang] = $about->{'text1_' . $lang} ?? '';
             $data['dalgakiran']['name2'][$lang] = $about->{'We_offer_' . $lang} ?? '';
             $data['dalgakiran']['text2'][$lang] = $about->{'text2_' . $lang} ?? '';
-            $data['dalgakiran']['img'] = $about->img ? asset('storage/' . $about->img) : '';
+        }
+        $data['dalgakiran']['img'] = $about->img ? asset('storage/' . $about->img) : '';
+        foreach (['ru', 'uz', 'en'] as $lang) {
             $data['our_partners']['title'][$lang] = $about->{'ourPartners_' . $lang} ?? '';
             $data['our_partners']['text'][$lang] = $about->{'text3_' . $lang} ?? '';
+        }
+        $data['our_partners']['images'] = [];
+        if (is_array($about->images)) {
+            foreach ($about->images as $img) {
+                $data['our_partners']['images'][] = asset('storage/' . $img);
+            }
         }
 
         return response()->json([

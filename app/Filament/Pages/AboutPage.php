@@ -112,6 +112,12 @@ class AboutPage extends SettingsPage
 
             Section::make(__('form.OurPartners'))->schema([
                 Tabs::make()->schema($OurPartners)->columnSpanFull(),
+                FileUpload::make('images')
+                    ->label(__('form.images'))
+                    ->disk('public')
+                    ->directory('images')
+                    ->multiple()
+                    ->required(),
             ])->collapsed(),
         ]);
     }

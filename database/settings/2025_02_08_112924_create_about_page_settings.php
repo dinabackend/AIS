@@ -53,5 +53,6 @@ return new class extends SettingsMigration
         $this->migrator->add('about.text3_ru', "test");
         $this->migrator->add('about.text3_uz', "test");
         $this->migrator->add('about.text3_en', "test");
+        $this->migrator->add('about.images', []);
     }
 };
