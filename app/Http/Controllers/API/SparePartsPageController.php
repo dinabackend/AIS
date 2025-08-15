@@ -26,6 +26,9 @@ class SparePartsPageController extends Controller
                 'title' => $part->translations->mapWithKeys(function ($item) {
                     return [$item->locale => $item->name];
                 }),
+                'description' => $part->translations->mapWithKeys(function ($item) {
+                    return [$item->locale => $item->description];
+                }),
                 'image' => $part->getFirstMediaUrl('product_image'),
                 'price' => $part->price,
                 'slug' => $part->slug,
