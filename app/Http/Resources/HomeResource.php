@@ -55,12 +55,15 @@ class HomeResource extends JsonResource
         $data = [
             'banners' => $banners,
         ];
-        foreach (['ru', 'uz', 'en'] as $key => $lang) {
+        foreach (['ru', 'uz', 'en'] as $lang) {
             $data['info']['title'][$lang] = $settings->{'title2_' . $lang} ?? '';
             $data['info']['subtitle'][$lang] = $settings->{'subtitle2_' . $lang} ?? '';
-            $data['info_text'][$key][$lang] = $settings->{'text1_' . $lang} ?? '';
-            $data['info_text'][$key][$lang] = $settings->{'text2_' . $lang} ?? '';
-            $data['info_text'][$key][$lang] = $settings->{'text3_' . $lang} ?? '';
+            foreach (range(1, 3) as $i) {
+                $data['info_text'][$i][$lang] = $settings->{'text1_' . $lang} ?? '';
+                $data['info_text'][$i][$lang] = $settings->{'text2_' . $lang} ?? '';
+                $data['info_text'][$i][$lang] = $settings->{'text3_' . $lang} ?? '';
+            }
+
         }
         $data['info']['left_img'] = $settings->img ? asset('storage/' . $settings->img) : '';
         $data['info']['right_img'] = $settings->img2 ? asset('storage/' . $settings->img2) : '';
