@@ -68,6 +68,14 @@ class SparePartsPage extends SettingsPage
             ]);
         }
 
+        $recommended_products = [];
+        foreach (['ru', 'uz', 'en'] as $lang) {
+            $recommended_products[] = Tabs\Tab::make($lang)->schema([
+                TextInput::make('title')->label(__('form.title', locale: $lang))->required()->maxLength(255),
+                TextInput::make('text4')->label(__('form.text', locale: $lang))->required()->maxLength(255),
+            ]);
+        }
+
         return $form->schema([
             Section::make(__('form.main'))->schema([
                     Tabs::make()->schema($main_titles)->columnSpanFull(),
@@ -83,6 +91,10 @@ class SparePartsPage extends SettingsPage
 
             Section::make(__('form.query'))->schema([
                 Tabs::make()->schema($query)->columnSpanFull(),
+            ])->collapsed(),
+
+            Section::make(__('form.recommended_products'))->schema([
+                Tabs::make()->schema($recommended_products)->columnSpanFull(),
             ])->collapsed(),
         ]);
     }

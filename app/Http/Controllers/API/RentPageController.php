@@ -51,31 +51,45 @@ class RentPageController extends Controller
                 'en' => $settings->main_title_en ?? '',
             ],
             'rents' => $rents_data,
-            'reviews_title' => [
-                'ru' => $settings->reviews_title_ru ?? '',
-                'uz' => $settings->reviews_title_uz ?? '',
-                'en' => $settings->reviews_title_en ?? '',
-            ],
-            'reviews' => $rents->map(function ($review) {
-                return [
-                    'id' => $review->id,
-                    'name' => $review->translations->mapWithKeys(function ($item) {
-                        return [$item->locale => $item->name];
-                    }),
-                    'text' => $review->translations->mapWithKeys(function ($item) {
-                        return [$item->locale => $item->text];
-                    }),
-                    'created_at' => $review->created_at->format('Y-m-d H:i:s'),
-                    'rating' => $review->rating,
-                ];
-            }),
-            'recommended_products' => ProductCollection::make($recommended_products)->additional([
-                'meta' => [
-                    'total' => $recommended_products->count(),
-                    'per_page' => 10,
-                    'current_page' => 1,
+            'reviews' => [
+                'title' => [
+                    'ru' => $settings->reviews_title_ru ?? '',
+                    'uz' => $settings->reviews_title_uz ?? '',
+                    'en' => $settings->reviews_title_en ?? '',
                 ],
-            ]),
+                'review' => $rents->map(function ($review) {
+                    return [
+                        'id' => $review->id,
+                        'name' => $review->translations->mapWithKeys(function ($item) {
+                            return [$item->locale => $item->name];
+                        }),
+                        'text' => $review->translations->mapWithKeys(function ($item) {
+                            return [$item->locale => $item->text];
+                        }),
+                        'created_at' => $review->created_at->format('Y-m-d H:i:s'),
+                        'rating' => $review->rating,
+                    ];
+                }),
+            ],
+            'recommended_products' => [
+                'title' => [
+                    'ru' => $settings->products_title_ru ?? '',
+                    'uz' => $settings->products_title_uz ?? '',
+                    'en' => $settings->products_title_en ?? '',
+                ],
+                'text' => [
+                    'ru' => $settings->products_text_ru ?? '',
+                    'uz' => $settings->products_text_uz ?? '',
+                    'en' => $settings->products_text_en ?? '',
+                ],
+                'items' => ProductCollection::make($recommended_products)->additional([
+                    'meta' => [
+                        'total' => $recommended_products->count(),
+                        'per_page' => 10,
+                        'current_page' => 1,
+                    ],
+                ]),
+            ],
         ];
 
         return response()->json([

@@ -15,5 +15,12 @@ return new class extends SettingsMigration {
         $this->migrator->add('rent.reviews_title_ru', 'Отзывы');
         $this->migrator->add('rent.reviews_title_uz', 'Sharhlar');
         $this->migrator->add('rent.reviews_title_en', 'Reviews');
+
+        $this->migrator->add('rent.products_title_ru', 'test');
+        $this->migrator->add('rent.products_title_uz', 'test');
+        $this->migrator->add('rent.products_title_en', 'test');
+        $this->migrator->add('rent.products_text_ru', 'test');
+        $this->migrator->add('rent.products_text_uz', 'test');
+        $this->migrator->add('rent.products_text_en', 'test');
     }
 };

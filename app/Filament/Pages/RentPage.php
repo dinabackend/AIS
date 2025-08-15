@@ -55,6 +55,13 @@ class RentPage extends SettingsPage
                 TextInput::make("reviews_title_$lang")->label(__('form.reviews_title', locale: $lang))->required()->maxLength(255),
             ]);
         }
+        $recommended_products = [];
+        foreach (['ru', 'uz', 'en'] as $lang) {
+            $recommended_products[] = Tabs\Tab::make($lang)->schema([
+                TextInput::make("products_title_$lang")->label(__('form.title', locale: $lang))->required()->maxLength(255),
+                TextInput::make("products_text_$lang")->label(__('form.text', locale: $lang))->required()->maxLength(255),
+            ]);
+        }
 
         return $form->schema([
             Section::make(__('form.main'))->schema([
@@ -70,6 +77,10 @@ class RentPage extends SettingsPage
 
             Section::make(__('form.reviews_title'))->schema([
                     Tabs::make()->schema($reviews)->columnSpanFull(),
+            ])->collapsed(),
+
+            Section::make(__('form.recommended_products'))->schema([
+                    Tabs::make()->schema($recommended_products)->columnSpanFull(),
             ])->collapsed(),
         ]);
     }

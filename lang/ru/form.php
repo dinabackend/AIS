@@ -91,5 +91,6 @@ return [
     'query' => 'Запросы',
     'SparePartsCatalog' => 'Каталог запчастей',
     'consultation' => 'Консультация',
+    'recommended_products' => 'Рекомендуемые продукты',
 
 ];

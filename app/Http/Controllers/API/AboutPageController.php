@@ -39,7 +39,7 @@ class AboutPageController extends Controller
             $data['main_title'][$lang] = $about->{'main_title_' . $lang} ?? '';
             $data['about']['title'][$lang] = $about->{'about_' . $lang} ?? '';
             $data['about']['text'][$lang] = $about->{'text_' . $lang} ?? '';
-            $data['about']['image'] = $about->banner ? asset('storage/' . $about->banner) : '';
+            $data['about']['image'][$lang] = $about->banner ? asset('storage/' . $about->banner) : '';
             $data['information']['question'][$lang] = $about->{'question_' . $lang} ?? '';
         }
         $data['information']['items'] = $informations;

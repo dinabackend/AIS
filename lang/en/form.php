@@ -90,5 +90,6 @@ return [
     'query' => 'Query',
     'SparePartsCatalog' => 'Spare Parts Catalog',
     'consultation' => 'Consultation',
+    'recommended_products' => 'Recommended Products',
 
 ];

@@ -34,6 +34,13 @@ class SparePartsPageSettings extends Settings
     public string $answer_ru;
     public string $answer_uz;
     public string $answer_en;
+    // recommended_products
+    public string $title_ru;
+    public string $title_uz;
+    public string $title_en;
+    public string $text4_ru;
+    public string $text4_uz;
+    public string $text4_en;
 
     public static function group(): string
     {
