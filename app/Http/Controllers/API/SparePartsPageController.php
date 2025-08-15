@@ -64,25 +64,25 @@ class SparePartsPageController extends Controller
                     'uz' => $settings->answer_uz ?? '',
                     'en' => $settings->answer_en ?? '',
                 ],
-                'recommended_products' => [
-                    'title' => [
-                        'ru' => $settings->title_ru ?? '',
-                        'uz' => $settings->title_uz ?? '',
-                        'en' => $settings->title_en ?? '',
-                    ],
-                    'text' => [
-                        'ru' => $settings->text4_ru ?? '',
-                        'uz' => $settings->text4_uz ?? '',
-                        'en' => $settings->text4_en ?? '',
-                    ],
-                    'items' => ProductCollection::make($recommended_products)->additional([
-                        'meta' => [
-                            'total' => $recommended_products->count(),
-                            'per_page' => 10,
-                            'current_page' => 1,
-                        ],
-                    ]),
+            ],
+            'recommended_products' => [
+                'title' => [
+                    'ru' => $settings->title_ru ?? '',
+                    'uz' => $settings->title_uz ?? '',
+                    'en' => $settings->title_en ?? '',
                 ],
+                'text' => [
+                    'ru' => $settings->text4_ru ?? '',
+                    'uz' => $settings->text4_uz ?? '',
+                    'en' => $settings->text4_en ?? '',
+                ],
+                'items' => ProductCollection::make($recommended_products)->additional([
+                    'meta' => [
+                        'total' => $recommended_products->count(),
+                        'per_page' => 10,
+                        'current_page' => 1,
+                    ],
+                ]),
             ],
         ];
 

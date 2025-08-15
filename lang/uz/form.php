@@ -94,4 +94,5 @@ return [
     'consultation' => 'Maslahatlar',
     'recommended_products' => 'Tavsiya etilgan mahsulotlar',
     'items' => 'Elementlar',
+    'certificate' => 'Sertifikat',
 ];

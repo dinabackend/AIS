@@ -87,7 +87,7 @@ class AboutPage extends SettingsPage
                 Tabs::make()->schema($main_title)->columnSpanFull(),
             ])->collapsed(),
 
-            Section::make(__('form.info'))->schema([
+            Section::make(__('form.about'))->schema([
                 Tabs::make()->schema($info)->columnSpanFull(),
                 FileUpload::make('banner')->disk('public')->directory('img')->required()
             ])->collapsed(),
@@ -105,7 +105,7 @@ class AboutPage extends SettingsPage
                 ->columnSpanFull()
             ])->collapsed(),
 
-            Section::make('AisTechnoGroup')->schema([
+            Section::make(__('form.certificate'))->schema([
                 Tabs::make()->schema($AisTechnoGroup)->columnSpanFull(),
                 FileUpload::make('img')->disk('public')->directory('img')->required()
             ])->collapsed(),

@@ -92,5 +92,6 @@ return [
     'consultation' => 'Consultation',
     'recommended_products' => 'Recommended Products',
     'items' => 'Items',
+    'certificate' => 'Certificate',
 
 ];

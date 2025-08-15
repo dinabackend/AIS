@@ -14,7 +14,7 @@ class ProductCollection extends ResourceCollection
 
             return [
                 'id' => $product->id,
-                'img' => $product->getFirstMediaUrl('product_img'),
+                'img' => $product->getFirstMediaUrl('product_image'),
                 'title' => $product->translations->mapWithKeys(function ($item) {
                     return [$item->locale => $item->name];
                 }),
