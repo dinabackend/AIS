@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Event;
 use App\Settings\HomePageSettings;
 use Arr;
 use Illuminate\Http\Request;
@@ -17,6 +18,7 @@ class HomeResource extends JsonResource
     public function toArray(Request $request): array
     {
         $settings = app(HomePageSettings::class);
+        $events = Event::query()->take(3)->get();
 
         $replace = ['[' => '<span>', ']' => '</span>'];
         $banners = [];
@@ -76,7 +78,9 @@ class HomeResource extends JsonResource
             $data['company']['images'] = $companyImages;
             $data['cooperation']['title'][$lang] = $settings->{'titleb_' . $lang} ?? '';
             $data['cooperation']['images'] = $cooperationImages;
+            $data['event']['title'][$lang] = $settings->{'event_title_' . $lang} ?? '';
         }
+        $data['event']['items'] = EventCollection::make($events);
 
         return [
             'banners' => $banners,

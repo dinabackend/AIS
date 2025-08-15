@@ -127,6 +127,19 @@ class HomePage extends SettingsPage
 
             ])->collapsed(),
 
+            Section::make(__('form.events'))->schema([
+                Tabs::make()->tabs([
+                    Tabs\Tab::make('ru')->schema([
+                        TextInput::make('event_title_ru')->label(__('form.title'))->required()->maxLength(255),
+                    ]),
+                    Tabs\Tab::make('uz')->schema([
+                        TextInput::make('event_title_uz')->label(__('form.title'))->required()->maxLength(255),
+                    ]),
+                    Tabs\Tab::make('en')->schema([
+                        TextInput::make('event_title_en')->label(__('form.title'))->required()->maxLength(255),
+                    ]),
+                ]),
+            ])->collapsed(),
         ]);
     }
 }

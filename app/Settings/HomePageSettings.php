@@ -54,6 +54,10 @@ class HomePageSettings extends Settings
     public string $titleb_uz;
     public string $titleb_en;
     public array $images;
+    // event
+    public string $event_title_ru;
+    public string $event_title_uz;
+    public string $event_title_en;
     public static function group(): string
     {
         return 'home';
