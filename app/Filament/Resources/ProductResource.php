@@ -114,14 +114,16 @@ class ProductResource extends Resource
                         ])->columnSpanFull(),
                 ])->collapsed(),
 
-                Toggle::make('home_visibility')
-                    ->label(__('form.home_visibility')),
-
                 Select::make('categories')->multiple()->label(__('form.category'))
                     ->relationship('categories', 'name')
                     ->options(fn () => CategoryTranslation::whereLocale(app()->getLocale())->pluck('name', 'category_id')->toArray()),
 
-                //Toggle::make('status'),
+                Select::make('type')->options([
+                    'product' => __('form.product'),
+                    'spare_part' => __('form.spare_part'),
+                ]),
+
+                Toggle::make('home_visibility')->label(__('form.home_visibility')),
             ]);
     }
 

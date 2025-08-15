@@ -72,6 +72,7 @@ return [
     'date' => 'Date',
     'rating' => 'Rating',
     'product' => 'Products',
+    'spare_part' => 'Spare Part',
 
     'guarantee' => 'Guarantee',
     'main' => 'Main Title',

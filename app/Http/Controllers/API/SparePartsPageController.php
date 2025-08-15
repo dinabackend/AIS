@@ -17,6 +17,32 @@ class SparePartsPageController extends Controller
     {
         $settings = app(SparePartsPageSettings::class);
         $recommended_products = Product::query()->take(10)->get();
+        $spare_parts = Product::query()->where('type', 'spare_part')->get();
+
+        $sp = [];
+        foreach ($spare_parts as $part) {
+            $sp[] = [
+                'id' => $part->id,
+                'title' => $part->translations->mapWithKeys(function ($item) {
+                    return [$item->locale => $item->name];
+                }),
+                'image' => $part->getFirstMediaUrl('product_image'),
+                'price' => $part->price,
+                'slug' => $part->slug,
+            ];
+        }
+
+        $pm_series = [];
+        foreach (['ru', 'uz', 'en'] as $i => $lang) {
+            $pm_series[$lang] = collect($settings->{'DALGAKIRAN_' . $lang} ?? [])
+                ->map(function ($item) use ($i) {
+                    return [
+                        'title' => $item['title'] ?? '',
+                        'text' => $item['text'] ?? '',
+                        'image' => asset("img/pm_series$i.png"),
+                    ];
+                })->toArray();
+        }
 
         $data = [
             'main_title' => [
@@ -36,6 +62,7 @@ class SparePartsPageController extends Controller
                     'en' => $settings->text_en ?? '',
                 ],
             ],
+            'spare_parts' => $sp,
             'pm_series' => [
                 'title' => [
                     'ru' => $settings->PM_Series_ru ?? '',
@@ -47,11 +74,7 @@ class SparePartsPageController extends Controller
                     'uz' => $settings->text2_uz ?? '',
                     'en' => $settings->text2_en ?? '',
                 ],
-                'item' => [
-                    'ru' => $settings->DALGAKIRAN_ru ?? [],
-                    'uz' => $settings->DALGAKIRAN_uz ?? [],
-                    'en' => $settings->DALGAKIRAN_en ?? [],
-                ],
+                'item' => $pm_series,
             ],
             'query' => [
                 'title' => [

@@ -74,6 +74,7 @@ return [
     'date' => 'Sana',
     'rating' => 'Reyting',
     'product' => 'Mahsulot',
+    'spare_part' => 'Ehtiyot qism',
 
     'guarantee' => 'Kafolat',
     'main' => 'Asosiy Sarlavha',
