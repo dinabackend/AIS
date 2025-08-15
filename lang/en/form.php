@@ -91,5 +91,6 @@ return [
     'SparePartsCatalog' => 'Spare Parts Catalog',
     'consultation' => 'Consultation',
     'recommended_products' => 'Recommended Products',
+    'items' => 'Items',
 
 ];

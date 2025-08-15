@@ -93,4 +93,5 @@ return [
     'SparePartsCatalog' => 'Ehtiyot qismlar katalogi',
     'consultation' => 'Maslahatlar',
     'recommended_products' => 'Tavsiya etilgan mahsulotlar',
+    'items' => 'Elementlar',
 ];

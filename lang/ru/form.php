@@ -92,5 +92,6 @@ return [
     'SparePartsCatalog' => 'Каталог запчастей',
     'consultation' => 'Консультация',
     'recommended_products' => 'Рекомендуемые продукты',
+    'items' => 'Элементы',
 
 ];

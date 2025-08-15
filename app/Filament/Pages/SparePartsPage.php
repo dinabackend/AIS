@@ -53,10 +53,10 @@ class SparePartsPage extends SettingsPage
             $PM_Series[] = Tabs\Tab::make($lang)->schema([
                 TextInput::make("PM_Series_$lang")->label(__('form.title2', locale: $lang))->required()->maxLength(255),
                 Textarea::make("text2_$lang")->label(__('form.text2', locale: $lang))->required()->maxLength(255),
-                Repeater::make("dalgakiran_$lang")->schema([
+                Repeater::make("DALGAKIRAN_$lang")->schema([
                     TextInput::make("title")->label(__('form.number'))->required(),
                     TextInput::make("text")->label(__('form.text'))->required(),
-                ])->label('dalgakiran')->columns(),
+                ])->label(__('form.items'))->columns(),
             ]);
         }
 
@@ -71,8 +71,8 @@ class SparePartsPage extends SettingsPage
         $recommended_products = [];
         foreach (['ru', 'uz', 'en'] as $lang) {
             $recommended_products[] = Tabs\Tab::make($lang)->schema([
-                TextInput::make('title')->label(__('form.title', locale: $lang))->required()->maxLength(255),
-                TextInput::make('text4')->label(__('form.text', locale: $lang))->required()->maxLength(255),
+                TextInput::make("title_$lang")->label(__('form.title', locale: $lang))->required()->maxLength(255),
+                TextInput::make("text4_$lang")->label(__('form.text', locale: $lang))->required()->maxLength(255),
             ]);
         }
 
