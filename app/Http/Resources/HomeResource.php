@@ -63,7 +63,6 @@ class HomeResource extends JsonResource
                 $data['info_text'][$i][$lang] = $settings->{'text2_' . $lang} ?? '';
                 $data['info_text'][$i][$lang] = $settings->{'text3_' . $lang} ?? '';
             }
-
         }
         $data['info']['left_img'] = $settings->img ? asset('storage/' . $settings->img) : '';
         $data['info']['right_img'] = $settings->img2 ? asset('storage/' . $settings->img2) : '';
@@ -76,10 +75,11 @@ class HomeResource extends JsonResource
                     ];
                 })->toArray();
             $data['company']['title'][$lang] = $settings->{'title3_' . $lang} ?? '';
-            $data['company']['name1'][$lang] = $settings->{'name1_' . $lang} ?? '';
-            $data['company']['text1'][$lang] = $settings->{'text5_' . $lang} ?? '';
-            $data['company']['name2'][$lang] = $settings->{'name2_' . $lang} ?? '';
-            $data['company']['text2'][$lang] = $settings->{'text6_' . $lang} ?? '';
+            foreach (range(1,2) as $i) {
+                $data['company_content'][$i]['name'][$lang] = $settings->{'name'. $i+1 . "_$lang"} ?? '';
+                $data['company_content'][$i]['text'][$lang] = $settings->{'text'. $i+5 . "_$lang"} ?? '';
+            }
+
             $data['company']['images'] = $companyImages;
             $data['cooperation']['title'][$lang] = $settings->{'titleb_' . $lang} ?? '';
             $data['cooperation']['images'] = $cooperationImages;
