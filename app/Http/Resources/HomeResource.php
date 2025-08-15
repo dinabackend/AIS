@@ -58,9 +58,9 @@ class HomeResource extends JsonResource
         foreach (['ru', 'uz', 'en'] as $lang) {
             $data['info']['title'][$lang] = $settings->{'title2_' . $lang} ?? '';
             $data['info']['subtitle'][$lang] = $settings->{'subtitle2_' . $lang} ?? '';
-            $data['info']['text1'][$lang] = $settings->{'text1_' . $lang} ?? '';
-            $data['info']['text2'][$lang] = $settings->{'text2_' . $lang} ?? '';
-            $data['info']['text3'][$lang] = $settings->{'text3_' . $lang} ?? '';
+            $data['info_text'][][$lang] = $settings->{'text1_' . $lang} ?? '';
+            $data['info_text'][][$lang] = $settings->{'text2_' . $lang} ?? '';
+            $data['info_text'][][$lang] = $settings->{'text3_' . $lang} ?? '';
         }
         $data['info']['left_img'] = $settings->img ? asset('storage/' . $settings->img) : '';
         $data['info']['right_img'] = $settings->img2 ? asset('storage/' . $settings->img2) : '';
