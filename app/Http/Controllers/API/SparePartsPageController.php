@@ -20,8 +20,8 @@ class SparePartsPageController extends Controller
         $spare_parts = Product::query()->where('type', 'spare_part')->get();
 
         $sp = [];
-        foreach ($spare_parts as $part) {
-            $sp[] = [
+        foreach ($spare_parts as $key => $part) {
+            $sp[$key] = [
                 'id' => $part->id,
                 'title' => $part->translations->mapWithKeys(function ($item) {
                     return [$item->locale => $item->name];
