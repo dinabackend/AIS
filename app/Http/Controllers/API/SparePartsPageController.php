@@ -39,7 +39,7 @@ class SparePartsPageController extends Controller
                     return [
                         'title' => $item['title'] ?? '',
                         'text' => $item['text'] ?? '',
-                        'image' => asset("img/pm_series$i.png"),
+                        'image' => asset("img/pm_series$i.svg"),
                     ];
                 })->toArray();
         }
