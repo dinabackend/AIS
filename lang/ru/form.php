@@ -93,5 +93,6 @@ return [
     'consultation' => 'Консультация',
     'recommended_products' => 'Рекомендуемые продукты',
     'items' => 'Элементы',
+    'certificate' => 'Сертификат',
 
 ];

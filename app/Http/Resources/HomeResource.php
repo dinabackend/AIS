@@ -2,8 +2,7 @@
 
 namespace App\Http\Resources;
 
-use App\Models\Group;
-use App\Models\Product;
+use App\Models\Event;
 use App\Settings\HomePageSettings;
 use Arr;
 use Illuminate\Http\Request;
@@ -19,6 +18,7 @@ class HomeResource extends JsonResource
     public function toArray(Request $request): array
     {
         $settings = app(HomePageSettings::class);
+        $events = Event::query()->take(3)->get();
 
         $replace = ['[' => '<span>', ']' => '</span>'];
         $banners = [];
@@ -45,6 +45,13 @@ class HomeResource extends JsonResource
             ];
         }
 
+        $companyImages = is_array($settings->imagess ?? null)
+            ? array_map(fn($img) => asset('storage/' . $img), $settings->imagess)
+            : [];
+        $cooperationImages = is_array($settings->images ?? null)
+            ? array_map(fn($img) => asset('storage/' . $img), $settings->images)
+            : [];
+
         $data = [];
         foreach (['ru', 'uz', 'en'] as $lang) {
             $data['info']['title'][$lang] = $settings->{'title2_' . $lang} ?? '';
@@ -52,7 +59,9 @@ class HomeResource extends JsonResource
             $data['info']['text1'][$lang] = $settings->{'text1_' . $lang} ?? '';
             $data['info']['text2'][$lang] = $settings->{'text2_' . $lang} ?? '';
             $data['info']['text3'][$lang] = $settings->{'text3_' . $lang} ?? '';
-            $data['info']['img'] = $settings->img ?? '';
+        }
+        $data['info']['img'] = $settings->img ? asset('storage/' . $settings->img) : '';
+        foreach (['ru', 'uz', 'en'] as $lang) {
             $data['info']['info'][$lang] = collect($settings->{'info2_' . $lang} ?? [])
                 ->map(function ($item) {
                     return [
@@ -60,16 +69,18 @@ class HomeResource extends JsonResource
                         'text' => $item['text'] ?? '',
                     ];
                 })->toArray();
-            $data['info']['image'] = $settings->img2 ?? '';
+            $data['info']['image'] = $settings->img2 ? asset('storage/' . $settings->img2) : '';
             $data['company']['title'][$lang] = $settings->{'title3_' . $lang} ?? '';
             $data['company']['name1'][$lang] = $settings->{'name1_' . $lang} ?? '';
             $data['company']['text1'][$lang] = $settings->{'text5_' . $lang} ?? '';
             $data['company']['name2'][$lang] = $settings->{'name2_' . $lang} ?? '';
             $data['company']['text2'][$lang] = $settings->{'text6_' . $lang} ?? '';
-            $data['company']['images'] = $settings->imagess ?? [];
+            $data['company']['images'] = $companyImages;
             $data['cooperation']['title'][$lang] = $settings->{'titleb_' . $lang} ?? '';
-            $data['cooperation']['images'] = $settings->images ?? [];
+            $data['cooperation']['images'] = $cooperationImages;
+            $data['event']['title'][$lang] = $settings->{'event_title_' . $lang} ?? '';
         }
+        $data['event']['items'] = EventCollection::make($events);
 
         return [
             'banners' => $banners,
@@ -77,3 +88,4 @@ class HomeResource extends JsonResource
         ];
     }
 }
+

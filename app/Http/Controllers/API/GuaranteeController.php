@@ -27,7 +27,7 @@ class GuaranteeController extends Controller
                         'text' => $item['text'] ?? '',
                     ];
                 })->toArray();
-            $data['image'] = $guarantees->banner ?? '';
+            $data['image'] = $guarantees->banner ? asset('storage/' . $guarantees->banner) : '';
             $data['questions']['title'][$lang] = $guarantees->{'question_' . $lang} ?? '';
             $data['questions']['list'][$lang] = collect($guarantees->{'question_list_' . $lang} ?? [])
                 ->map(function ($item) {
@@ -41,6 +41,7 @@ class GuaranteeController extends Controller
             $data['consultation']['title'][$lang] = $guarantees->{'query_' . $lang} ?? '';
             $data['consultation']['subtitle'][$lang] = $guarantees->{'tell_' . $lang} ?? '';
         }
+
 
         return response()->json([
             'data' => $data
