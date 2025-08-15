@@ -117,10 +117,7 @@ class ProductResource extends Resource
                 Toggle::make('home_visibility')
                     ->label(__('form.home_visibility')),
 
-                Select::make('categories')
-                    ->multiple()
-                    ->required()
-                    ->label(__('form.category'))
+                Select::make('categories')->multiple()->label(__('form.category'))
                     ->relationship('categories', 'name')
                     ->options(fn () => CategoryTranslation::whereLocale(app()->getLocale())->pluck('name', 'category_id')->toArray()),
 
