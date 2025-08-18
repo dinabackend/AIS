@@ -8,7 +8,6 @@ use App\Models\Category;
 use CactusGalaxy\FilamentAstrotomic\Forms\Components\TranslatableTabs;
 use CactusGalaxy\FilamentAstrotomic\TranslatableTab;
 use Filament\Forms;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Form;
@@ -59,7 +58,7 @@ class CategoryResource extends Resource
                     ->collection('category_img')
                     ->label(__('form.image')),
 
-                /*Select::make('parent_id')
+                Select::make('parent_id')
                     ->label('Parent Category')
                     ->options(fn ($get) => Category::query()->whereNull('parent_id')
                         ->where('id', '!=', $get('id'))
@@ -69,7 +68,7 @@ class CategoryResource extends Resource
                     )
                     ->searchable()
                     ->preload()
-                    ->nullable(),*/
+                    ->nullable(),
             ]);
     }
 

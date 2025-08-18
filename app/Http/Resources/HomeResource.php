@@ -59,9 +59,9 @@ class HomeResource extends JsonResource
             $data['info']['title'][$lang] = $settings->{'title2_' . $lang} ?? '';
             $data['info']['subtitle'][$lang] = $settings->{'subtitle2_' . $lang} ?? '';
             foreach (range(1, 3) as $i) {
-                $data['info_text'][$i][$lang] = $settings->{'text1_' . $lang} ?? '';
-                $data['info_text'][$i][$lang] = $settings->{'text2_' . $lang} ?? '';
-                $data['info_text'][$i][$lang] = $settings->{'text3_' . $lang} ?? '';
+                $data['info']['info_text'][$i][$lang] = $settings->{'text1_' . $lang} ?? '';
+                $data['info']['info_text'][$i][$lang] = $settings->{'text2_' . $lang} ?? '';
+                $data['info']['info_text'][$i][$lang] = $settings->{'text3_' . $lang} ?? '';
             }
         }
         $data['info']['left_img'] = $settings->img ? asset('storage/' . $settings->img) : '';
@@ -74,6 +74,7 @@ class HomeResource extends JsonResource
                         'text' => $item['text'] ?? '',
                     ];
                 })->toArray();
+
             $data['company']['title'][$lang] = $settings->{'title3_' . $lang} ?? '';
             foreach (range(1,2) as $i) {
                 $data['company_content'][$i]['name'][$lang] = $settings->{'name'. $i+1 . "_$lang"} ?? '';
@@ -84,6 +85,9 @@ class HomeResource extends JsonResource
             $data['cooperation']['title'][$lang] = $settings->{'titleb_' . $lang} ?? '';
             $data['cooperation']['images'] = $cooperationImages;
             $data['event']['title'][$lang] = $settings->{'event_title_' . $lang} ?? '';
+            $data['event']['subtitle']['ru'] = 'Новости';
+            $data['event']['subtitle']['uz'] = 'Yangiliklar';
+            $data['event']['subtitle']['en'] = 'News';
         }
         $data['event']['items'] = EventCollection::make($events);
 
