@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Models\Event;
+use App\Settings\ButtonsSettings;
 use App\Settings\HomePageSettings;
 use Arr;
 use Illuminate\Http\Request;
@@ -18,6 +19,7 @@ class HomeResource extends JsonResource
     public function toArray(Request $request): array
     {
         $settings = app(HomePageSettings::class);
+        $buttons = app(ButtonsSettings::class);
         $events = Event::query()->take(3)->get();
 
         $replace = ['[' => '<span>', ']' => '</span>'];
@@ -52,20 +54,25 @@ class HomeResource extends JsonResource
             ? array_map(fn($img) => asset('storage/' . $img), $settings->images)
             : [];
 
-        $data = [
-            'banners' => $banners,
-        ];
+        $data = ['banners' => $banners];
+
         foreach (['ru', 'uz', 'en'] as $lang) {
             $data['info']['title'][$lang] = $settings->{'title2_' . $lang} ?? '';
             $data['info']['subtitle'][$lang] = $settings->{'subtitle2_' . $lang} ?? '';
+
             foreach (range(1, 3) as $i) {
                 $data['info']['info_text'][$i][$lang] = $settings->{'text1_' . $lang} ?? '';
                 $data['info']['info_text'][$i][$lang] = $settings->{'text2_' . $lang} ?? '';
                 $data['info']['info_text'][$i][$lang] = $settings->{'text3_' . $lang} ?? '';
             }
+
+            $data['info']['button']['text'][$lang] = $buttons->{'info_link_text_' . $lang} ?? '';
         }
+        $data['info']['button']['link'] = $buttons->info_link_link ?? '';
+
         $data['info']['left_img'] = $settings->img ? asset('storage/' . $settings->img) : '';
         $data['info']['right_img'] = $settings->img2 ? asset('storage/' . $settings->img2) : '';
+
         foreach (['ru', 'uz', 'en'] as $lang) {
             $data['info']['info'][$lang] = collect($settings->{'info2_' . $lang} ?? [])
                 ->map(function ($item) {
@@ -75,14 +82,20 @@ class HomeResource extends JsonResource
                     ];
                 })->toArray();
 
-            $data['company']['title'][$lang] = $settings->{'title3_' . $lang} ?? '';
+            $data['company']['title'][$lang] = strtr($settings->{'title_' . $lang} ?? '', $replace);
+            $data['company']['subtitle']['ru'] = 'Нам доверяют';
+            $data['company']['subtitle']['uz'] = 'Bizga ishonishadi';
+            $data['company']['subtitle']['en'] = 'They trust us';
             foreach (range(1,2) as $i) {
                 $data['company']['company_content'][$i]['name'][$lang] = $settings->{'name'. $i+1 . "_$lang"} ?? '';
                 $data['company']['company_content'][$i]['text'][$lang] = $settings->{'text'. $i+5 . "_$lang"} ?? '';
             }
 
             $data['company']['images'] = $companyImages;
-            $data['cooperation']['title'][$lang] = strtr($settings->{'titleb_' . $lang} ?? '', ['[' => '<span>', ']' => '</span>']);
+            $data['company']['buttons']['left']['text'][$lang] = $buttons->{'company_link_text_' . $lang} ?? '';
+            $data['company']['buttons']['right']['text'][$lang] = $buttons->{'catalog_link_text_' . $lang} ?? '';
+
+            $data['cooperation']['title'][$lang] = strtr($settings->{'titleb_' . $lang} ?? '', $replace);
             $data['cooperation']['subtitle']['ru'] = 'Официальные партнеры';
             $data['cooperation']['subtitle']['uz'] = 'Rasmiy hamkorlar';
             $data['cooperation']['subtitle']['en'] = 'Official partners';
@@ -92,6 +105,9 @@ class HomeResource extends JsonResource
             $data['event']['subtitle']['uz'] = 'Yangiliklar';
             $data['event']['subtitle']['en'] = 'News';
         }
+        $data['company']['buttons']['left']['link'] = $buttons->company_link_link ?? '';
+        $data['company']['buttons']['right']['link'] = $buttons->catalog_link_link ?? '';
+
         $data['event']['items'] = EventCollection::make($events);
 
         return $data;
