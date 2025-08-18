@@ -24,6 +24,8 @@ class Category extends TranslatableModel implements HasMedia, Sortable
         'name',
         'parent_id',
         'slug',
+        'home_visibility',
+        'order',
     ];
 
     public array $translatedAttributes = ['name'];
@@ -67,7 +69,7 @@ class Category extends TranslatableModel implements HasMedia, Sortable
         }])->whereNull('parent_id');
     }
 
-    // Rekursiv tarzda barcha child kategoriyalarni olish
+    // Recursively get all child categories
     public function getAllChildren()
     {
         $children = collect();
@@ -80,7 +82,7 @@ class Category extends TranslatableModel implements HasMedia, Sortable
         return $children;
     }
 
-    // Kategoriya darajasini aniqlash
+    // Category level determination
     public function getDepthAttribute()
     {
         $depth = 0;
@@ -97,14 +99,35 @@ class Category extends TranslatableModel implements HasMedia, Sortable
     protected static function boot()
     {
         parent::boot();
-        static::saving(function ($category) {
+
+        // Generate slug when category is created or updated
+        static::saved(function ($category) {
+            // Check if we need to generate a slug
             if (empty($category->slug)) {
-                // Slug ni translation dan olish
-                $translation = $category->translations()
-                    ->where('locale', 'uz')
-                    ->first();
-                if ($translation && $translation->name) {
-                    $category->slug = Str::slug($translation->name);
+                // Try to get the name from the current translations
+                $name = null;
+
+                // First try to get from 'uz' locale
+                if ($category->hasTranslation('uz')) {
+                    $name = $category->translate('uz')->name;
+                } else {
+                    // If 'uz' is not available, try current locale
+                    $currentLocale = app()->getLocale();
+                    if ($category->hasTranslation($currentLocale)) {
+                        $name = $category->translate($currentLocale)->name;
+                    } else {
+                        // Get any available translation
+                        $translation = $category->translations->first();
+                        if ($translation) {
+                            $name = $translation->name;
+                        }
+                    }
+                }
+
+                // Generate slug if we found a name
+                if ($name) {
+                    $category->slug = Str::slug($name);
+                    $category->saveQuietly(); // Save without triggering events again
                 }
             }
         });

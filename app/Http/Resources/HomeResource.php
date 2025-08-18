@@ -112,6 +112,21 @@ class HomeResource extends JsonResource
         $data['company']['buttons']['right']['link'] = $buttons->catalog_link_link ?? '';
 
         $data['event']['items'] = EventCollection::make($events);
+        $categories = \App\Models\Category::query()
+            ->where('home_visibility', true)
+            ->with(['translations', 'children'])
+            ->orderBy('order')
+            ->get();
+        $data['categories'] = $categories->map(function ($category) {
+            return [
+                'id' => $category->id,
+                'name' => $category->translations->mapWithKeys(function ($item) {
+                    return [$item->locale => $item->name];
+                }),
+                'slug' => $category->slug,
+                'img' => $category->getFirstMediaUrl('category_img'),
+            ];
+        });
 
         return $data;
     }
