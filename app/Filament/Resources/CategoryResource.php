@@ -66,9 +66,10 @@ class CategoryResource extends Resource
                         ->get()
                         ->pluck('name', 'id')
                     )
-                    ->searchable()
                     ->preload()
                     ->nullable(),
+
+                Forms\Components\Toggle::make('home_visibility')->label(__('form.home_visibility'))
             ]);
     }
 

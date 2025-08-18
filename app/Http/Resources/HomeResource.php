@@ -58,6 +58,9 @@ class HomeResource extends JsonResource
 
         foreach (['ru', 'uz', 'en'] as $lang) {
             $data['info']['title'][$lang] = $settings->{'title2_' . $lang} ?? '';
+            $data['info']['subtitle']['ru'] = 'AIS TECHNO GROUP';
+            $data['info']['subtitle']['uz'] = 'AIS TECHNO GROUP';
+            $data['info']['subtitle']['en'] = 'AIS TECHNO GROUP';
             $data['info']['text_top'][$lang] = $settings->{'subtitle2_' . $lang} ?? '';
 
             foreach (range(1, 3) as $i) {

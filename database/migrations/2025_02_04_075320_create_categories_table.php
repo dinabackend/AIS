@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('img')->nullable();
             $table->string('slug')->nullable();
             $table->integer('order')->default(0);
+            $table->boolean('home_visibility')->default(false)->nullable();
             $table->timestamps();
         });
 
