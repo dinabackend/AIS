@@ -89,10 +89,10 @@ class HomeResource extends JsonResource
             $data['company']['subtitle']['ru'] = 'Нам доверяют';
             $data['company']['subtitle']['uz'] = 'Bizga ishonishadi';
             $data['company']['subtitle']['en'] = 'They trust us';
-            $data['company']['company_content'][$i]['name'][$lang] = $settings->{'name1'. "_$lang"} ?? '';
-            $data['company']['company_content'][$i]['text'][$lang] = $settings->{'text5'. "_$lang"} ?? '';
-            $data['company']['company_content'][$i]['name'][$lang] = $settings->{'name2'. "_$lang"} ?? '';
-            $data['company']['company_content'][$i]['text'][$lang] = $settings->{'text6'. "_$lang"} ?? '';
+            $data['company']['company_content'][0]['name'][$lang] = $settings->{'name1'. "_$lang"} ?? '';
+            $data['company']['company_content'][0]['text'][$lang] = $settings->{'text5'. "_$lang"} ?? '';
+            $data['company']['company_content'][1]['name'][$lang] = $settings->{'name2'. "_$lang"} ?? '';
+            $data['company']['company_content'][1]['text'][$lang] = $settings->{'text6'. "_$lang"} ?? '';
 
             $data['company']['images'] = $companyImages;
             $data['company']['buttons']['left']['text'][$lang] = $buttons->{'company_link_text_' . $lang} ?? '';
