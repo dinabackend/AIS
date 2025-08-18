@@ -77,12 +77,15 @@ class HomeResource extends JsonResource
 
             $data['company']['title'][$lang] = $settings->{'title3_' . $lang} ?? '';
             foreach (range(1,2) as $i) {
-                $data['company_content'][$i]['name'][$lang] = $settings->{'name'. $i+1 . "_$lang"} ?? '';
-                $data['company_content'][$i]['text'][$lang] = $settings->{'text'. $i+5 . "_$lang"} ?? '';
+                $data['company']['company_content'][$i]['name'][$lang] = $settings->{'name'. $i+1 . "_$lang"} ?? '';
+                $data['company']['company_content'][$i]['text'][$lang] = $settings->{'text'. $i+5 . "_$lang"} ?? '';
             }
 
             $data['company']['images'] = $companyImages;
-            $data['cooperation']['title'][$lang] = $settings->{'titleb_' . $lang} ?? '';
+            $data['cooperation']['title'][$lang] = strtr($settings->{'titleb_' . $lang} ?? '', ['[' => '<span>', ']' => '</span>']);
+            $data['cooperation']['subtitle']['ru'] = 'Официальные партнеры';
+            $data['cooperation']['subtitle']['uz'] = 'Rasmiy hamkorlar';
+            $data['cooperation']['subtitle']['en'] = 'Official partners';
             $data['cooperation']['images'] = $cooperationImages;
             $data['event']['title'][$lang] = $settings->{'event_title_' . $lang} ?? '';
             $data['event']['subtitle']['ru'] = 'Новости';
