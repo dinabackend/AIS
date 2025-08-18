@@ -117,7 +117,18 @@ class HomeResource extends JsonResource
             ->with(['translations', 'children'])
             ->orderBy('order')
             ->get();
-        $data['categories'] = $categories->map(function ($category) {
+
+        $data['categories']['title'] = [
+            'ru' => 'Широкий ассортимент промышленного оборудования',
+            'uz' => 'Sanoat uskunalarining keng assortimenti',
+            'en' => 'Wide range of industrial equipment',
+        ];
+        $data['categories']['subtitle'] = [
+            'ru' => 'Каталог продукции',
+            'uz' => 'Mahsulotlar katalogi',
+            'en' => 'Product catalog',
+        ];
+        $data['categories']['items'] = $categories->map(function ($category) {
             return [
                 'id' => $category->id,
                 'name' => $category->translations->mapWithKeys(function ($item) {
@@ -127,6 +138,24 @@ class HomeResource extends JsonResource
                 'img' => $category->getFirstMediaUrl('category_img'),
             ];
         });
+
+        $data['categories']['full_catalog'] = [
+            'title' => [
+                'ru' => 'Перейти к полному списку категорий',
+                'uz' => 'To\'liq kategoriyalar ro\'yxatiga o\'tish',
+                'en' => 'Go to the full list of categories',
+            ],
+            'subtitle' => [
+                'ru' => 'Вся продукция',
+                'uz' => 'Barcha mahsulotlar',
+                'en' => 'All products',
+            ],
+            'text' => [
+                'ru' => 'Ознакомьтесь с полным перечнем продукции',
+                'uz' => 'To\'liq mahsulotlar ro\'yxati bilan tanishing',
+                'en' => 'Familiarize yourself with the full list of products',
+            ],
+        ];
 
         return $data;
     }
