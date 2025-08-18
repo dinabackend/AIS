@@ -85,7 +85,7 @@ class HomeResource extends JsonResource
                     ];
                 })->toArray();
 
-            $data['company']['title'][$lang] = strtr($settings->{'title_' . $lang} ?? '', $replace);
+            $data['company']['title'][$lang] = strtr($settings->{'title3_' . $lang} ?? '', $replace);
             $data['company']['subtitle']['ru'] = 'Нам доверяют';
             $data['company']['subtitle']['uz'] = 'Bizga ishonishadi';
             $data['company']['subtitle']['en'] = 'They trust us';
