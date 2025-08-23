@@ -31,9 +31,16 @@ return new class extends SettingsMigration
         $this->migrator->add('home.img', '');
         $this->migrator->add('home.img2', '');
 
-
         //Advantages
-
+        $this->migrator->add('home.assortment_ru', 'test');
+        $this->migrator->add('home.assortment_uz', 'test');
+        $this->migrator->add('home.assortment_en', 'test');
+        $this->migrator->add('home.titlee_ru', 'test');
+        $this->migrator->add('home.titlee_uz', 'test');
+        $this->migrator->add('home.titlee_en', 'test');
+        $this->migrator->add('home.itemss_ru', []);
+        $this->migrator->add('home.itemss_uz', []);
+        $this->migrator->add('home.itemss_en', []);
 
         //Companies
         $this->migrator->add('home.title3_ru', 'test');

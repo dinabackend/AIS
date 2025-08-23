@@ -41,6 +41,7 @@ return [
     'subtitle' => 'Subtitle',
     'text' => 'Text',
     'images' => 'Images',
+    'background_img' => 'Background img',
     'our title' => 'Our Title',
     'our text' => 'Our Text',
     'info name' => 'Info Name',

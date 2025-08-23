@@ -31,6 +31,17 @@ class HomePageSettings extends Settings
     public string $img;
     public string $img2;
 
+    //Advantages
+    public string $assortment_ru;
+    public string $assortment_uz;
+    public string $assortment_en;
+    public string $titlee_ru;
+    public string $titlee_uz;
+    public string $titlee_en;
+    public array $itemss_ru;
+    public array $itemss_uz;
+    public array $itemss_en;
+
     // company
     public string $title3_ru;
     public string $title3_uz;

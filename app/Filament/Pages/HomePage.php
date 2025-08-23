@@ -56,20 +56,21 @@ class HomePage extends SettingsPage
                 Repeater::make("info2_$lang")->schema([
                     TextInput::make("number")->label(__('form.number'))->required(),
                     TextInput::make("text")->label(__('form.text'))->required(),
-                ])->label(__('form.info list', locale: $lang))->columns(),
+                ])->label(__('form.info', locale: $lang))->columns(),
             ]);
         }
 
-//        $advantages = [];
-//        foreach (['ru', 'uz', 'en'] as $lang) {
-//            $advantages[] = Tabs\Tab::make($lang)->schema([
-//                TextInput::make("title_$lang")->label(__('form.title', locale: $lang))->required()->maxLength(255),
-//                Repeater::make("items_$lang")->schema([
-//                    TextInput::make("title3")->label(__('form.title'))->required(),
-//                    Textarea::make("text4")->label(__('form.text'))->required(),
-//                ])->label(__('form.items list', locale: $lang))->columns(),
-//            ]);
-//        }
+        $advantages = [];
+        foreach (['ru', 'uz', 'en'] as $lang) {
+            $advantages [] = Tabs\Tab::make($lang)->schema([
+                TextInput::make("assortment_$lang")->label('assortment_title')->required()->maxLength(255),
+                TextInput::make("titlee_$lang")->label(__('form.title', locale: $lang))->required()->maxLength(255),
+                Repeater::make("itemss_$lang")->schema([
+                    TextInput::make("title33")->label(__('form.title'))->required(),
+                    Textarea::make("text4")->label(__('form.text'))->required(),
+                ])->label(__('form.items list', locale: $lang))->columns(),
+            ]);
+        }
 
         $companies = [];
         foreach (['ru', 'uz', 'en'] as $lang) {
@@ -94,6 +95,10 @@ class HomePage extends SettingsPage
                 Tabs::make()->schema($settings2)->columnSpanFull(),
                 FileUpload::make("img")->label(__('form.image1'))->required(),
                 FileUpload::make("img2")->label(__('form.image2'))->required()
+            ])->collapsed(),
+
+            Section::make(__('form.advantages'))->schema([
+                Tabs::make()->schema($advantages)->columnSpanFull(),
             ])->collapsed(),
 
             Section::make(__('form.company'))->schema([
