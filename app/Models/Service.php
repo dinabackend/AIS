@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use Astrotomic\Translatable\Translatable;
-use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Service extends TranslatableModel
+class Service extends TranslatableModel implements HasMedia
 {
-    use Translatable;
+    use Translatable, InteractsWithMedia;
     protected $fillable =['title', 'description', 'img', 'locale'];
 
     protected array $translatedAttributes = ['title', 'description'];

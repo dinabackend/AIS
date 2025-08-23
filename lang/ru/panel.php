@@ -7,6 +7,7 @@ return [
     'products' => 'Продукция',
     'specialists' => 'Эксперты',
     'about_page_settings' => 'Настройки о нас',
+    'service_page_settings' => 'Инженеры и сервис',
     'home_page_settings' => 'Настройки домашней страницы',
     'guarantee_page_settings' => 'Настройки страницы гарантии',
     'rent_page_settings' => 'Настройки страницы аренды',
@@ -28,4 +29,5 @@ return [
     'catalog_management' => 'Управление каталогом',
     'content_management' => 'Управление контентом',
     'settings' => 'Настройки',
+    'service' => 'Услуги',
 ];

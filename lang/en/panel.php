@@ -7,6 +7,7 @@ return [
     'products' => 'Products',
     'specialists' => 'Specialists',
     'about_page_settings' => 'Aboute Page Settings',
+    'service_page_settings' => 'Engineers and Service',
     'home_page_settings' => 'Home Page Settings',
     'guarantee_page_settings' => 'Guarantee Page Settings',
     'rent_page_settings' => 'Rent Page Settings',
@@ -30,4 +31,5 @@ return [
     'catalog_management' => 'Catalog Management',
     'content_management' => 'Content Management',
     'settings' => 'Settings',
+    'service' => 'Service',
 ];

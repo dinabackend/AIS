@@ -9,6 +9,7 @@ use App\Http\Controllers\API\HomePageController;
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\RentPageController;
 use App\Http\Controllers\API\SEOController;
+use App\Http\Controllers\API\ServicePageController;
 use App\Http\Controllers\API\SparePartsPageController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,7 @@ Route::get('/home', [HomePageController::class, 'index']); //
 Route::get('/guarantee', [GuaranteeController::class, 'index']);
 Route::get('/rent', [RentPageController::class, 'index']);
 Route::get('/spare-parts', [SparePartsPageController::class, 'index']);
+Route::get('/service', [ServicePageController::class, 'index']);
 
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/collections', [ProductController::class, 'collection']);

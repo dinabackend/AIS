@@ -7,6 +7,7 @@ return [
     'products' => 'Mahsulotlar',
     'specialists' => 'Mutaxassislar',
     'about_page_settings' => 'Biz Haqimizdani sozlash',
+    'service_page_settings' => 'Muhandislar va xizmat',
     'guarantee_page_settings' => 'Kafolat sahifa sozlamalari',
     'rent_page_settings' => 'Ijaraga olish sahifa sozlamalari',
     'SparePartsPage' => 'Ehtiyot qismlar sahifasi',
@@ -28,4 +29,5 @@ return [
     'catalog_management' => 'Katalog boshqaruvi',
     'content_management' => 'Kontent boshqaruvi',
     'settings' => 'Sozlamalar',
+    'service' => 'xizmat',
 ];

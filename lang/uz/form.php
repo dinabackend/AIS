@@ -97,4 +97,6 @@ return [
     'recommended_products' => 'Tavsiya etilgan mahsulotlar',
     'items' => 'Elementlar',
     'certificate' => 'Sertifikat',
+    'services' => 'Muhandislar',
+    'engineers' => 'xizmatlar',
 ];
