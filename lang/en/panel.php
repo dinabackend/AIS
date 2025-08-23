@@ -26,4 +26,8 @@ return [
     'about' => 'About',
     'variant' => 'Variants',
 
+    // Navigation Groups
+    'catalog_management' => 'Catalog Management',
+    'content_management' => 'Content Management',
+    'settings' => 'Settings',
 ];

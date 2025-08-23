@@ -33,9 +33,16 @@ class AboutResource extends Resource
 
     protected static ?string $model = About::class;
 
-    protected static ?string $slug = 'abouts';
+    protected static ?string $navigationIcon = 'heroicon-o-information-circle';
 
-    protected static ?string $navigationIcon = 'heroicon-s-flag';
+    protected static ?string $navigationGroup = 'Content Management';
+
+    protected static ?int $navigationSort = 2;
+
+    public static function getNavigationGroup(): ?string
+    {
+        return __('panel.content_management');
+    }
 
     public static function getNavigationBadge(): ?string
     {

@@ -53,12 +53,39 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $slug)
     {
         $category = Category::with(['translation', 'parent.translation', 'children.translation'])
-            ->findOrFail($id);
+            ->where('slug', $slug)
+            ->firstOrFail();
 
         return new CategoryResource($category);
+    }
+
+    /**
+     * Display products for a specific category (catalog)
+     */
+    public function catalog(string $category)
+    {
+        $categoryModel = Category::with(['translation', 'parent.translation', 'children.translation'])
+            ->where('slug', $category)
+            ->firstOrFail();
+
+        // Get all products that belong to this category and its children
+        $categoryIds = collect([$categoryModel->id]);
+        $categoryIds = $categoryIds->merge($categoryModel->getAllChildren()->pluck('id'));
+
+        $products = \App\Models\Product::with(['translations', 'categories.translation'])
+            ->whereHas('categories', function($query) use ($categoryIds) {
+                $query->whereIn('categories.id', $categoryIds);
+            })
+            ->get();
+
+        return [
+            'category' => new CategoryResource($categoryModel),
+            'products' => \App\Http\Resources\ProductResource::collection($products),
+            'total_products' => $products->count()
+        ];
     }
 
     /**

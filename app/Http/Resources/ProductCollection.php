@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources;
 
-use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
@@ -21,19 +20,13 @@ class ProductCollection extends ResourceCollection
                 'categories' => $product->categories->map(function ($category) {
                     return [
                         'id' => $category->id,
+                        'slug' => $category->slug,
                         'name' => $category->translations->mapWithKeys(function ($item) {
                             return [$item->locale => $item->name];
                         })
                     ];
                 }),
-                'types' => $product->types->map(function ($type) {
-                    return [
-                        'id' => $type->id,
-                        'name' => $type->translations->mapWithKeys(function ($item) {
-                            return [$item->locale => $item->name];
-                        })
-                    ];
-                }) ,
+                'type' => $product->type,
                 'slug' => $product->slug,
                 'price' => $product->price,
                 'order' => $product->order,

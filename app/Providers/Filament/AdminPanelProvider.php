@@ -50,7 +50,13 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ])->plugins([
+            ])
+            ->navigationGroups([
+                __('panel.catalog_management'),
+                __('panel.content_management'),
+                __('panel.settings'),
+            ])
+            ->plugins([
                 FilamentAstrotomicTranslatablePlugin::make(),
             ])->viteTheme('resources/css/filament/admin/theme.css');
     }

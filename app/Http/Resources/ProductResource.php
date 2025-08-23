@@ -17,9 +17,10 @@ class ProductResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        $boxes = BoxProduct::query()->where('product_id', $this->id)->get();
+        //$boxes = BoxProduct::query()->where('product_id', $this->id)->get();
+        //dd($request->all());
 
-        $recommendations = Product::query()->select('id')->with(['categories' => function ($query) {
+        /*$recommendations = Product::query()->select('id')->with(['categories' => function ($query) {
             $query->whereIn('id', $this->categories->pluck('id'));
         }])->take(8)->get();
         if ($recommendations->count() < 8) {
@@ -27,7 +28,7 @@ class ProductResource extends JsonResource
                 Product::query()->inRandomOrder()->select(['id'])->with('categories')->take(8 - $recommendations->count())
             );
         }
-        $recProducts = Product::query()->with('categories')->whereIn('id', $recommendations->pluck('id'))->get();
+        $recProducts = Product::query()->with('categories')->whereIn('id', $recommendations->pluck('id'))->get();*/
 
         return [
             'id' => $this->id,
@@ -50,25 +51,25 @@ class ProductResource extends JsonResource
             }),
             'img' => $this->getFirstMediaUrl('product_img'),
             'images' => $this->getMedia('product_image')->pluck('original_url'),
-            'wrapper' => $this->getFirstMediaUrl('wrapper'),
-            'history_images' => $this->getMedia('history_images')->pluck('original_url'),
-            'price' => $this->price,
+            /*'wrapper' => $this->getFirstMediaUrl('wrapper'),
+            'history_images' => $this->getMedia('history_images')->pluck('original_url'),*/
+            /*'price' => $this->price,*/
             'amount' => $this->amount,
-            'term' => [
+            /*'term' => [
                 'uz' => "$this->min_days dan $this->max_days kungacha",
                 'en' => "from $this->min_days to $this->max_days days",
                 'ru' => "от $this->min_days до $this->max_days дней",
             ],
-            'term_show' => $this->min_days&&$this->min_days ? $this->getPreorder() : false,
-            'sku' => $this->sku,
+            'term_show' => $this->min_days&&$this->min_days ? $this->getPreorder() : false,*/
+            /*'sku' => $this->sku,*/
             'slug' => $this->slug,
-            'candyBoxes' => BoxResource::collection($boxes),
+            //'candyBoxes' => BoxResource::collection($boxes),
             'characteristics' => CharacteristicResource::collection($this->characteristics),
             'history' => $this->translations->mapWithKeys(function ($item) {
                 return [$item->locale => $item->history];
             }),
             'order' => $this->order,
-            'recommendations' => new ProductCollection($recProducts),
+            //'recommendations' => new ProductCollection($recProducts),
             'seo_title' => $this->translations->mapWithKeys(function ($item) {
                 return [$item->locale => $item->seo_title];
             }),

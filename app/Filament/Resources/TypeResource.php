@@ -30,9 +30,16 @@ class TypeResource extends Resource
 
     protected static ?string $model = Type::class;
 
-    protected static ?string $slug = 'types';
+    protected static ?string $navigationIcon = 'heroicon-o-tag';
 
-    protected static ?string $navigationIcon = 'heroicon-s-inbox-stack';
+    protected static ?string $navigationGroup = 'Catalog Management';
+
+    protected static ?int $navigationSort = 8;
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return false;
+    }
 
     public static function getNavigationBadge(): ?string
     {

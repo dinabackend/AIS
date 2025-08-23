@@ -23,4 +23,9 @@ return [
     'about' => 'Biz haqimizda',
     'variant' => 'Variantlar',
     'buttons' => 'Tugmalar',
+
+    // Navigation Groups
+    'catalog_management' => 'Katalog boshqaruvi',
+    'content_management' => 'Kontent boshqaruvi',
+    'settings' => 'Sozlamalar',
 ];

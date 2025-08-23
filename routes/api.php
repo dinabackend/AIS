@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\API\AboutController;
-use App\Http\Controllers\API\AboutPageController;
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\EventController;
 use App\Http\Controllers\API\FooterController;
@@ -27,7 +26,6 @@ Route::get('/policy', [HomePageController::class, 'policy']);
 Route::get('/home', [HomePageController::class, 'index']); //
 Route::get('/guarantee', [GuaranteeController::class, 'index']);
 Route::get('/rent', [RentPageController::class, 'index']);
-Route::get('/about-us', [AboutPageController::class, 'index']);
 Route::get('/spare-parts', [SparePartsPageController::class, 'index']);
 
 Route::get('/products', [ProductController::class, 'index']);
@@ -43,4 +41,5 @@ Route::get('/about', [AboutController::class, 'index']);
 Route::get('/categories', [CategoryController::class, 'index']);
 Route::get('/categories/tree', [CategoryController::class, 'tree']);
 Route::get('/categories/{id}/children', [CategoryController::class, 'children']);
-Route::get('/categories/{id}', [CategoryController::class, 'show']);
+Route::get('/categories/{slug}', [CategoryController::class, 'show']);
+Route::get('/catalog/{category}', [CategoryController::class, 'catalog']);

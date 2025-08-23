@@ -30,13 +30,18 @@ class ReviewsResource extends Resource
         return __('panel.Reviews');
     }
 
-    public static function getNavigationBadge(): ?string
-    {
-        return Review::count();
-    }
     protected static ?string $model = Review::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-star';
+
+    protected static ?string $navigationGroup = 'Content Management';
+
+    protected static ?int $navigationSort = 3;
+
+    public static function getNavigationGroup(): ?string
+    {
+        return __('panel.content_management');
+    }
 
     public static function form(Form $form): Form
     {

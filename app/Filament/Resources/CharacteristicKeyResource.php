@@ -30,9 +30,18 @@ class CharacteristicKeyResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-s-adjustments-horizontal';
 
+    protected static ?string $navigationGroup = 'Catalog Management';
+
+    protected static ?int $navigationSort = 1;
+
     public static function getNavigationBadge(): ?string
     {
         return CharacteristicKey::count();
+    }
+
+    public static function getNavigationGroup(): ?string
+    {
+        return __('panel.catalog_management');
     }
 
     public static function form(Form $form): Form

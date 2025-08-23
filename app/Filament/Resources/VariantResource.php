@@ -38,6 +38,15 @@ class VariantResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $navigationGroup = 'Catalog Management';
+
+    protected static ?int $navigationSort = 15;
+
+    public static function getNavigationGroup(): ?string
+    {
+        return __('panel.catalog_management');
+    }
+
     public static function getNavigationBadge(): ?string
     {
         return Variant::count();

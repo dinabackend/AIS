@@ -23,4 +23,9 @@ return [
     'about' => 'О нас',
     'variant' => 'Варианты',
     'buttons' => 'Кнопки',
+
+    // Navigation Groups
+    'catalog_management' => 'Управление каталогом',
+    'content_management' => 'Управление контентом',
+    'settings' => 'Настройки',
 ];

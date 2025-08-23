@@ -50,6 +50,15 @@ class ProductResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-s-lifebuoy';
 
+    protected static ?string $navigationGroup = 'Catalog Management';
+
+    protected static ?int $navigationSort = 10;
+
+    public static function getNavigationGroup(): ?string
+    {
+        return __('panel.catalog_management');
+    }
+
     public static function form(Form $form): Form
     {
         return $form
@@ -179,6 +188,7 @@ class ProductResource extends Resource
         //TypesRelationManager::class,
         return [
             CharacteristicsRelationManager::class,
+            VariantsRelationManager::class,
         ];
     }
 

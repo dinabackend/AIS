@@ -38,6 +38,15 @@ class CategoryResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-s-rectangle-stack';
 
+    protected static ?string $navigationGroup = 'Catalog Management';
+
+    protected static ?int $navigationSort = 5;
+
+    public static function getNavigationGroup(): ?string
+    {
+        return __('panel.catalog_management');
+    }
+
     public static function form(Form $form): Form
     {
         return $form
