@@ -48,7 +48,6 @@ class ServicePageController extends Controller
                     'uz' => $settings->service_subtitle_uz ?? '',
                     'en' => $settings->service_subtitle_en ?? '',
                 ],
-                'repair' => $repair,
                 'services' => $services->map(function ($service) {
                     return [
                         'id' => $service->id,
