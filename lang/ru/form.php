@@ -40,6 +40,7 @@ return [
     'banner1' => 'Баннер',
     'text' => 'Текст',
     'images' => 'Коллаж',
+    'background_img' => 'бакгроунд img',
     'our title' => 'Наш заголовок',
     'our text' => 'Наш текст',
     'info name' => 'Имя информации',

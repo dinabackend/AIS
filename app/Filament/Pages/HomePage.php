@@ -97,6 +97,7 @@ class HomePage extends SettingsPage
             ])->collapsed(),
 
             Section::make(__('form.company'))->schema([
+                FileUpload::make('background_img')->label(__('form.background_img')),
                 Tabs::make()->schema($companies)->columnSpanFull(),
                 FileUpload::make('imagess')
                     ->label(__('form.images'))

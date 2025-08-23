@@ -36,6 +36,7 @@ return new class extends SettingsMigration
 
 
         //Companies
+        $this->migrator->add('home.background_img', '');
         $this->migrator->add('home.title3_ru', 'test');
         $this->migrator->add('home.title3_uz', 'test');
         $this->migrator->add('home.title3_en', 'test');

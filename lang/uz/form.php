@@ -40,6 +40,7 @@ return [
     'title' => 'Sarlavha',
     'text' => 'Matn',
     'images' => 'Kollaj',
+    'background_img' => 'background img',
     'our title' => 'Bizning Sarlavha',
     'our text' => 'Bizning Matn',
     'info name' => 'Ma\'lumot Nomi',

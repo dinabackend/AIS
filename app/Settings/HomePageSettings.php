@@ -32,6 +32,7 @@ class HomePageSettings extends Settings
     public string $img2;
 
     // company
+    public string $background_img;
     public string $title3_ru;
     public string $title3_uz;
     public string $title3_en;
