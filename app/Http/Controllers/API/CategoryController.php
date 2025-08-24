@@ -4,7 +4,9 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CategoryResource;
+use App\Http\Resources\ProductResource;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -72,18 +74,18 @@ class CategoryController extends Controller
             ->firstOrFail();
 
         // Get all products that belong to this category and its children
-        $categoryIds = collect([$categoryModel->id]);
-        $categoryIds = $categoryIds->merge($categoryModel->getAllChildren()->pluck('id'));
+        $allCategoryIds = collect([$categoryModel->id]);
+        $allCategoryIds = $allCategoryIds->merge($categoryModel->getAllChildren()->pluck('id'));
 
-        $products = \App\Models\Product::with(['translations', 'categories.translation'])
-            ->whereHas('categories', function($query) use ($categoryIds) {
-                $query->whereIn('categories.id', $categoryIds);
+        $products = Product::with(['translations', 'categories.translation'])
+            ->whereHas('categories', function($query) use ($allCategoryIds) {
+                $query->whereIn('categories.id', $allCategoryIds);
             })
             ->get();
 
         return [
             'category' => new CategoryResource($categoryModel),
-            'products' => \App\Http\Resources\ProductResource::collection($products),
+            'products' => ProductResource::collection($products),
             'total_products' => $products->count()
         ];
     }

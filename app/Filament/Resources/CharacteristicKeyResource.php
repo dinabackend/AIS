@@ -32,7 +32,7 @@ class CharacteristicKeyResource extends Resource
 
     protected static ?string $navigationGroup = 'Catalog Management';
 
-    protected static ?int $navigationSort = 1;
+    protected static ?int $navigationSort = 100;
 
     public static function getNavigationBadge(): ?string
     {
