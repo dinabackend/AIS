@@ -5,35 +5,20 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Service;
 use App\Settings\ServiceSettings;
-use Illuminate\Http\Request;
 
 class ServicePageController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $settings = app(ServiceSettings::class);
         $services = Service::query()->take(10)->get();
-        $info = [];
-        foreach ($settings->repair ?? [] as $repair) {
-            $item = [
-                'ru' => [
-                    'title' => $repair['repair_title_ru'] ?? '',
-                    'description' => $repair['description_ru'] ?? '',
-                ],
-                'uz' => [
-                    'title' => $repair['repair_title_uz'] ?? '',
-                    'description' => $repair['description_uz'] ?? '',
-                ],
-                'en' => [
-                    'title' => $repair['repair_title_en'] ?? '',
-                    'description' => $repair['description_en'] ?? '',
-                ],
-                'image' => !empty($repair['img']) ? asset('storage/' . $repair['img']) : '',
-            ];
-            $info[] = $item;
+        $repair = [];
+        foreach ($settings->repair ?? [] as $i => $item) {
+            foreach (['ru', 'uz', 'en'] as $lang) {
+                $repair[$i]['title'][$lang] = $item["repair_title_$lang"];
+                $repair[$i]['description'][$lang] = $item["repair_title_$lang"];
+            }
+            $repair[$i]['image'] = !empty($item['img']) ? asset('storage/' . $item['img']) : '';
         }
 
         $data = [
@@ -55,7 +40,7 @@ class ServicePageController extends Controller
                 ],
                 'banner' => $settings->banner ? asset('storage/' . $settings->banner) : '',
             ],
-            'repair' => $info,
+            'repair' => $repair,
             'our service' => [
                 'title' => [
                     'ru' => $settings->service_title_ru ?? '',
@@ -76,45 +61,25 @@ class ServicePageController extends Controller
                         'description' => $service->translations->mapWithKeys(function ($item) {
                             return [$item->locale => $item->description];
                         }),
-                        'img' => $service->getFirstMediaUrl('service_img')
+                        'img' => $service->getFirstMediaUrl('service_image')
                     ];
                 }),
+            ],
+            'application' => [
+                'title' => [
+                    'ru' => $settings->nearby_title_ru ?? '',
+                    'uz' => $settings->nearby_title_uz ?? '',
+                    'en' => $settings->nearby_title_en ?? '',
+                ],
+                'subtitle' => [
+                    'ru' => $settings->subtitle2_ru ?? '',
+                    'uz' => $settings->subtitle2_uz ?? '',
+                    'en' => $settings->subtitle2_en ?? '',
+                ],
             ],
         ];
         return response()->json([
             'data' => $data
         ]);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }
