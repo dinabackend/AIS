@@ -10,6 +10,7 @@ use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\RentPageController;
 use App\Http\Controllers\API\SEOController;
 use App\Http\Controllers\API\SparePartsPageController;
+use App\Http\Controllers\API\VariantController;
 use Illuminate\Support\Facades\Route;
 
 /*Route::get('/{locale}/products/filter', [ProductController::class, 'filter']);
@@ -29,10 +30,12 @@ Route::get('/rent', [RentPageController::class, 'index']);
 Route::get('/spare-parts', [SparePartsPageController::class, 'index']);
 
 Route::get('/products', [ProductController::class, 'index']);
-Route::get('/collections', [ProductController::class, 'collection']);
-Route::get('/products/filters', [ProductController::class, 'filter']);
 Route::get('/products/{slug}', [ProductController::class, 'show']);
-Route::get('/collections/{slug}', [ProductController::class, 'show']);
+//Route::get('/products/filters', [ProductController::class, 'filter']);
+
+Route::get('/variants', [VariantController::class, 'index']);
+Route::get('/variants/{slug}', [VariantController::class, 'show']);
+
 Route::get('/events', [EventController::class, 'index']); // ✅
 Route::get('/events/{id}', [EventController::class, 'show']); // ✅
 Route::get('/footer', [FooterController::class, 'index']);

@@ -122,7 +122,7 @@ class ProductController extends Controller
      */
     public function show(string $slug)
     {
-        $product = Product::query()->with(['categories', 'boxes'])->where('slug', $slug)->firstOrFail();
+        $product = Product::query()->with('categories')->where('slug', $slug)->firstOrFail();
 
         return new ProductResource($product);
     }

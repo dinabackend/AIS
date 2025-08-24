@@ -2,11 +2,10 @@
 
 namespace App\Http\Resources;
 
-use App\Settings\HomePageSettings;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ProductResource extends JsonResource
+class VariantResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,44 +16,27 @@ class ProductResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'title' => $this->translations->mapWithKeys(function ($item) {
+            'name' => $this->translations->mapWithKeys(function ($item) {
                 return [$item->locale => $item->name];
             }),
             'description' => $this->translations->mapWithKeys(function ($item) {
                 return [$item->locale => $item->description];
             }),
-            'categories' => $this->categories->map(function ($category) {
-                return [
-                    'id' => $category->id,
-                    'name' => $category->translations->mapWithKeys(function ($item) {
-                        return [$item->locale => $item->name];
-                    })
-                ];
+            'advantages' => $this->translations->mapWithKeys(function ($item) {
+                return [$item->locale => $item->advantages];
             }),
             'img' => $this->getFirstMediaUrl('product_img'),
             'images' => $this->getMedia('product_image')->pluck('original_url'),
-            'amount' => $this->amount,
+            'video' => $this->getFirstMediaUrl('product_video'),
             'slug' => $this->slug,
+            'home_visibility' => $this->home_visibility,
             'characteristics' => CharacteristicResource::collection($this->characteristics),
-            'variants' => VariantResource::collection($this->variants),
-            'has_variant' => $this->variants->count() > 0,
-            'order' => $this->order,
             'seo_title' => $this->translations->mapWithKeys(function ($item) {
                 return [$item->locale => $item->seo_title];
             }),
             'seo_description' => $this->translations->mapWithKeys(function ($item) {
                 return [$item->locale => $item->seo_description];
             }),
-        ];
-    }
-
-    public function getPreorder(): array
-    {
-        $settings = app(HomePageSettings::class);
-        return [
-            'uz' => $settings->preorder_uz,
-            'ru' => $settings->preorder_ru,
-            'en' => $settings->preorder_en,
         ];
     }
 }
