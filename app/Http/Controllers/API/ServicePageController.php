@@ -16,9 +16,17 @@ class ServicePageController extends Controller
         foreach ($settings->repair ?? [] as $i => $item) {
             foreach (['ru', 'uz', 'en'] as $lang) {
                 $repair[$i]['title'][$lang] = $item["repair_title_$lang"];
-                $repair[$i]['description'][$lang] = $item["repair_title_$lang"];
+                $repair[$i]['description'][$lang] = $item["description_$lang"];
             }
             $repair[$i]['image'] = !empty($item['img']) ? asset('storage/' . $item['img']) : '';
+        }
+
+        $card = [];
+        foreach ($settings->card ?? [] as $i => $item) {
+            foreach (['ru', 'uz', 'en'] as $lang) {
+                $card[$i]['title'][$lang] = $item["card_title_$lang"];
+                $card[$i]['description'][$lang] = $item["card_text_$lang"];
+            }
         }
 
         $data = [
@@ -77,6 +85,7 @@ class ServicePageController extends Controller
                     'en' => $settings->subtitle2_en ?? '',
                 ],
             ],
+            'advantages' => $card
         ];
         return response()->json([
             'data' => $data

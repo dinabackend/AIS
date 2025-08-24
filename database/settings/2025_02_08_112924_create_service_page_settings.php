@@ -36,5 +36,6 @@ return new class extends SettingsMigration
         $this->migrator->add('service.subtitle2_ru', "test");
         $this->migrator->add('service.subtitle2_uz', "test");
         $this->migrator->add('service.subtitle2_en', "test");
+        $this->migrator->add('service.card', []);
     }
 };

@@ -72,6 +72,14 @@ class ServicePage extends SettingsPage
             ]);
         }
 
+        $card= [];
+        foreach (['ru', 'uz', 'en'] as $lang) {
+            $card[] = Tabs\Tab::make($lang)->schema([
+                TextInput::make("card_title_$lang")->label(__('form.title', locale: $lang))->required()->maxLength(255),
+                Textarea::make("card_text_$lang")->label(__('form.text', locale: $lang))->required()->maxLength(255),
+            ]);
+        }
+
         return $form->schema([
             Section::make(__('form.main'))->schema([
                 Tabs::make()->schema($main_title)->columnSpanFull(),
@@ -90,11 +98,17 @@ class ServicePage extends SettingsPage
                 Repeater::make('repair')->schema([
                     Tabs::make()->schema($repair)->columnSpanFull(),
                     FileUpload::make('img')->label(__('form.img'))->disk('public')->directory('img')->required()
-                ])->defaultItems(1)->columnSpanFull(),
+                ])->defaultItems(1)->columnSpanFull()->label(__('form.repair')),
             ])->collapsed(),
 
             Section::make(__('form.application'))->schema([
                 Tabs::make()->schema($application)->columnSpanFull(),
+            ])->collapsed(),
+
+            Section::make(__('form.advantages'))->schema([
+                Repeater::make('card')->schema([
+                    Tabs::make()->schema($card)->columnSpanFull(),
+                ])->defaultItems(1)->columnSpanFull()->label(__('form.advantages')),
             ])->collapsed(),
         ]);
     }

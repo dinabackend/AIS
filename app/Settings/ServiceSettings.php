@@ -29,6 +29,7 @@ class ServiceSettings extends Settings
     public string $subtitle2_ru;
     public string $subtitle2_uz;
     public string $subtitle2_en;
+    public array $card;
 
     public static function group(): string
     {
