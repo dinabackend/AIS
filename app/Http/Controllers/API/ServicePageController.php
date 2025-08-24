@@ -16,7 +16,25 @@ class ServicePageController extends Controller
     {
         $settings = app(ServiceSettings::class);
         $services = Service::query()->take(10)->get();
-
+        $info = [];
+        foreach ($settings->repair ?? [] as $repair) {
+            $item = [
+                'ru' => [
+                    'title' => $repair['repair_title_ru'] ?? '',
+                    'description' => $repair['description_ru'] ?? '',
+                ],
+                'uz' => [
+                    'title' => $repair['repair_title_uz'] ?? '',
+                    'description' => $repair['description_uz'] ?? '',
+                ],
+                'en' => [
+                    'title' => $repair['repair_title_en'] ?? '',
+                    'description' => $repair['description_en'] ?? '',
+                ],
+                'image' => !empty($repair['img']) ? asset('storage/' . $repair['img']) : '',
+            ];
+            $info[] = $item;
+        }
 
         $data = [
             'main_title' => [
@@ -37,6 +55,7 @@ class ServicePageController extends Controller
                 ],
                 'banner' => $settings->banner ? asset('storage/' . $settings->banner) : '',
             ],
+            'repair' => $info,
             'our service' => [
                 'title' => [
                     'ru' => $settings->service_title_ru ?? '',
