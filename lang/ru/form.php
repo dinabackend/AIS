@@ -96,5 +96,8 @@ return [
     'recommended_products' => 'Рекомендуемые продукты',
     'items' => 'Элементы',
     'certificate' => 'Сертификат',
-
+    'engineers' => 'Инженеры',
+    'services' => 'сервис',
+    'repair' => 'Ремонт',
+    'application' => 'Заявка',
 ];

@@ -95,5 +95,8 @@ return [
     'recommended_products' => 'Recommended Products',
     'items' => 'Items',
     'certificate' => 'Certificate',
-
+    'engineers' => 'Engineers',
+    'services' => 'Services',
+    'repair' => 'Repair',
+    'application' => 'Application',
 ];
