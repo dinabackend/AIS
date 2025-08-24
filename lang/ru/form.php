@@ -98,5 +98,6 @@ return [
     'certificate' => 'Сертификат',
     'engineers' => 'Инженеры',
     'services' => 'сервис',
-
+    'repair' => 'Ремонт',
+    'application' => 'Заявка',
 ];

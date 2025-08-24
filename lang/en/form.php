@@ -97,4 +97,6 @@ return [
     'certificate' => 'Certificate',
     'engineers' => 'Engineers',
     'services' => 'Services',
+    'repair' => 'Repair',
+    'application' => 'Application',
 ];

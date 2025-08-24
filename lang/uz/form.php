@@ -99,4 +99,6 @@ return [
     'certificate' => 'Sertifikat',
     'services' => 'Muhandislar',
     'engineers' => 'xizmatlar',
+    'repair' => 'Ta\'mirlash',
+    'application' => 'Ariza',
 ];

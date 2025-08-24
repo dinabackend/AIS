@@ -64,6 +64,13 @@ class ServicePage extends SettingsPage
                 TextInput::make("description_$lang")->label(__('form.description', locale: $lang))->required()->maxLength(255),
             ]);
         }
+        $application= [];
+        foreach (['ru', 'uz', 'en'] as $lang) {
+            $application[] = Tabs\Tab::make($lang)->schema([
+                TextInput::make("nearby_title_$lang")->label(__('form.title', locale: $lang))->required()->maxLength(255),
+                TextInput::make("subtitle2_$lang")->label(__('form.subtitle', locale: $lang))->required()->maxLength(255),
+            ]);
+        }
 
         return $form->schema([
             Section::make(__('form.main'))->schema([
@@ -86,6 +93,9 @@ class ServicePage extends SettingsPage
                 ])->defaultItems(1)->columnSpanFull(),
             ])->collapsed(),
 
+            Section::make(__('form.application'))->schema([
+                Tabs::make()->schema($application)->columnSpanFull(),
+            ])->collapsed(),
         ]);
     }
 }

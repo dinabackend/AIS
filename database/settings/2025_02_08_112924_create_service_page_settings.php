@@ -11,7 +11,7 @@ return new class extends SettingsMigration
         $this->migrator->add('service.main_title_uz', "Muhandislar va xizmat");
         $this->migrator->add('service.main_title_en', "Engineers and Service");
 
-        //engineers
+        // engineers
         $this->migrator->add('service.title_ru', "test");
         $this->migrator->add('service.title_uz', "test");
         $this->migrator->add('service.title_en', "test");
@@ -28,5 +28,13 @@ return new class extends SettingsMigration
         $this->migrator->add('service.service_subtitle_uz', "test");
         $this->migrator->add('service.service_subtitle_en', "test");
         $this->migrator->add('service.repair', []);
+
+        // application
+        $this->migrator->add('service.nearby_title_ru', "test");
+        $this->migrator->add('service.nearby_title_uz', "test");
+        $this->migrator->add('service.nearby_title_en', "test");
+        $this->migrator->add('service.subtitle2_ru', "test");
+        $this->migrator->add('service.subtitle2_uz', "test");
+        $this->migrator->add('service.subtitle2_en', "test");
     }
 };

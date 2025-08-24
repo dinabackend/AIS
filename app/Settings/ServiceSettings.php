@@ -23,6 +23,12 @@ class ServiceSettings extends Settings
     public string $service_subtitle_uz;
     public string $service_subtitle_en;
     public array $repair;
+    public string $nearby_title_ru;
+    public string $nearby_title_uz;
+    public string $nearby_title_en;
+    public string $subtitle2_ru;
+    public string $subtitle2_uz;
+    public string $subtitle2_en;
 
     public static function group(): string
     {
