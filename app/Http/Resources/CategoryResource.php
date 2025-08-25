@@ -14,7 +14,9 @@ class CategoryResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->translation ? $this->translation->name : null,
+            'name' => $this->translations->mapWithKeys(function ($item, $key) {
+                return [$item->locale => $item->name];
+            }),
             'slug' => $this->slug,
             'parent_id' => $this->parent_id,
             'depth' => $this->depth,

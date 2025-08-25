@@ -28,7 +28,6 @@ class ProductCollection extends ResourceCollection
                 }),
                 'type' => $product->type,
                 'slug' => $product->slug,
-                'price' => $product->price,
                 'order' => $product->order,
             ];
         });
