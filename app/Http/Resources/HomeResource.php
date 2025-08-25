@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Category;
 use App\Models\Event;
 use App\Settings\ButtonsSettings;
 use App\Settings\HomePageSettings;
@@ -27,7 +28,7 @@ class HomeResource extends JsonResource
         foreach ($settings->banner as $banner) {
             $url = Arr::get($banner, 'banner', '');
             $banners[] = [
-                'url' => $url != '' ? asset("storage/$url") : '',
+                'url' => $url !== '' ? asset("storage/$url") : '',
                 'type' => preg_match('/(.jpg|.png|.webp)/', $url) ? 'image' : 'video',
                 'title' => [
                     'en' => strtr(Arr::get($banner, 'title_en', ""), $replace),
@@ -48,10 +49,10 @@ class HomeResource extends JsonResource
         }
 
         $companyImages = is_array($settings->imagess ?? null)
-            ? array_map(fn($img) => asset('storage/' . $img), $settings->imagess)
+            ? array_map(static fn($img) => asset('storage/' . $img), $settings->imagess)
             : [];
         $cooperationImages = is_array($settings->images ?? null)
-            ? array_map(fn($img) => asset('storage/' . $img), $settings->images)
+            ? array_map(static fn($img) => asset('storage/' . $img), $settings->images)
             : [];
 
         $data = ['banners' => $banners];
@@ -92,13 +93,11 @@ class HomeResource extends JsonResource
             $data['advantages']['subtitle']['ru'] = 'Почему именно мы?';
             $data['advantages']['subtitle']['uz'] = 'Nima uchun biz?';
             $data['advantages']['subtitle']['en'] = 'Why us?';
-            $data['advantages']['items'][$lang] = collect($settings->{'itemss_' . $lang} ?? [])
-                ->map(function ($item) {
-                    return [
-                        'title' => $item['title33'] ?? '',
-                        'text' => $item['text4'] ?? '',
-                    ];
-                })->toArray();
+            foreach ($settings->{'itemss_' . $lang} as $i => $item) {
+                $data['advantages']['items'][$i]['title'][$lang] = $item['title'] ?? '';
+                $data['advantages']['items'][$i]['text'][$lang] = $item['text'] ?? '';
+                $data['advantages']['items'][$i]['icon'] = asset("img/advantage$i.svg");
+            }
 
             $data['company']['title'][$lang] = strtr($settings->{'title3_' . $lang} ?? '', $replace);
             $data['company']['subtitle']['ru'] = 'Нам доверяют';
@@ -127,7 +126,7 @@ class HomeResource extends JsonResource
         $data['company']['buttons']['right']['link'] = $buttons->catalog_link_link ?? '';
 
         $data['event']['items'] = EventCollection::make($events);
-        $categories = \App\Models\Category::query()
+        $categories = Category::query()
             ->where('home_visibility', true)
             ->with(['translations', 'children'])
             ->orderBy('order')

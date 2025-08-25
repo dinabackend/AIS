@@ -66,8 +66,8 @@ class HomePage extends SettingsPage
                 TextInput::make("assortment_$lang")->label('assortment_title')->required()->maxLength(255),
                 TextInput::make("titlee_$lang")->label(__('form.title', locale: $lang))->required()->maxLength(255),
                 Repeater::make("itemss_$lang")->schema([
-                    TextInput::make("title33")->label(__('form.title'))->required(),
-                    Textarea::make("text4")->label(__('form.text'))->required(),
+                    TextInput::make("title")->label(__('form.title'))->required(),
+                    Textarea::make("text")->label(__('form.text'))->required(),
                 ])->label(__('form.items list', locale: $lang))->columns(),
             ]);
         }
