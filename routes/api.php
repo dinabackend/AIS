@@ -13,6 +13,7 @@ use App\Http\Controllers\API\ServicePageController;
 use App\Http\Controllers\API\SparePartsPageController;
 use App\Http\Controllers\API\VariantController;
 use Illuminate\Support\Facades\Route;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 
 /*Route::get('/{locale}/products/filter', [ProductController::class, 'filter']);
 Route::get('/{locale}/products/{id}', [ProductController::class, 'show']);
@@ -21,6 +22,12 @@ Route::get('/{locale}/footer', [FooterController::class, 'index']);
 Route::get('/{locale}/about', [AboutController::class, 'index']);
 Route::get('/{locale}/teams', [UserController::class, 'index']);
 Route::get('/{locale}/teams/{id}', [UserController::class, 'show']);*/
+
+Route::get('/test', static function () {
+    $spreadsheet = IOFactory::load('');
+
+    return response()->json(['message' => 'API is working']);
+});
 
 // AIS API
 Route::get('/seo', [SEOController::class, 'index']);

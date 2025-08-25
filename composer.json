@@ -25,6 +25,7 @@
         "laravel/tinker": "^2.9",
         "mll-lab/laravel-graphiql": "^3.2",
         "mokhosh/filament-rating": "^1.4",
+        "phpoffice/phpspreadsheet": "^5.0",
         "spatie/eloquent-sortable": "^4.4"
     },
     "require-dev": {

@@ -92,7 +92,7 @@ class HomeResource extends JsonResource
             foreach ($settings->{'itemss_' . $lang} as $i => $item) {
                 $data['advantages']['items'][$i]['title'][$lang] = $item['title'] ?? '';
                 $data['advantages']['items'][$i]['text'][$lang] = $item['text'] ?? '';
-                $data['advantages']['items'][$i]['icon'] = asset("img/advantage$i.svg");
+                $data['advantages']['items'][$i]['icon'] = asset("img/advantages$i.svg");
             }
             $data['advantages']['buttons']['left']['text'][$lang] = $buttons->{'info_link_text_' . $lang} ?? '';
             $data['advantages']['buttons']['right']['text'][$lang] = $buttons->{'info_contact_text_' . $lang} ?? '';
