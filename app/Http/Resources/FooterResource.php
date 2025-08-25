@@ -16,6 +16,12 @@ class FooterResource extends JsonResource
     public function toArray(Request $request): array
     {
         $settings = app(FooterSettings::class);
+        $text = [];
+        foreach (['uz', 'ru', 'en'] as $lang) {
+            foreach (range(1, 3) as $i) {
+                $text[$i][$lang] = $settings->{"contact_text{$i}_$lang"};
+            }
+        }
 
         return [
             'telegram' => $settings->telegram,
@@ -62,21 +68,7 @@ class FooterResource extends JsonResource
                     'ru' => $settings->contact_subtitle_ru,
                     'en' => $settings->contact_subtitle_en,
                 ],
-                'text1' => [
-                    'uz' => $settings->contact_text1_uz,
-                    'ru' => $settings->contact_text1_ru,
-                    'en' => $settings->contact_text1_en,
-                ],
-                'text2' => [
-                    'uz' => $settings->contact_text2_uz,
-                    'ru' => $settings->contact_text2_ru,
-                    'en' => $settings->contact_text2_en,
-                ],
-                'text3' => [
-                    'uz' => $settings->contact_text3_uz,
-                    'ru' => $settings->contact_text3_ru,
-                    'en' => $settings->contact_text3_en,
-                ],
+                'text' => $text,
             ],
         ];
     }

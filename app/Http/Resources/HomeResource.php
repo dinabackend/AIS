@@ -70,9 +70,9 @@ class HomeResource extends JsonResource
                 $data['info']['info_text'][$i][$lang] = $settings->{'text3_' . $lang} ?? '';
             }
 
-            $data['info']['button']['text'][$lang] = $buttons->{'info_link_text_' . $lang} ?? '';
+            $data['info']['button']['text'][$lang] = $buttons->{'about_link_text_' . $lang} ?? '';
         }
-        $data['info']['button']['link'] = $buttons->info_link_link ?? '';
+        $data['info']['button']['link'] = $buttons->about_link_link ?? '';
 
         $data['info']['left_img'] = $settings->img ? asset('storage/' . $settings->img) : '';
         $data['info']['right_img'] = $settings->img2 ? asset('storage/' . $settings->img2) : '';
@@ -97,6 +97,9 @@ class HomeResource extends JsonResource
                 $data['advantages']['items'][$i]['text'][$lang] = $item['text'] ?? '';
                 $data['advantages']['items'][$i]['icon'] = asset("img/advantage$i.svg");
             }
+            $data['advantages']['buttons']['left']['text'][$lang] = $buttons->{'info_link_text_' . $lang} ?? '';
+            $data['advantages']['buttons']['right']['text'][$lang] = $buttons->{'info_contact_text_' . $lang} ?? '';
+
 
             $data['company']['title'][$lang] = strtr($settings->{'title3_' . $lang} ?? '', $replace);
             $data['company']['subtitle']['ru'] = 'Нам доверяют';
@@ -121,6 +124,8 @@ class HomeResource extends JsonResource
             $data['event']['subtitle']['uz'] = 'Yangiliklar';
             $data['event']['subtitle']['en'] = 'News';
         }
+        $data['advantages']['buttons']['left']['link'] = $buttons->info_link_link ?? '';
+        $data['advantages']['buttons']['right']['link'] = $buttons->info_contact_link ?? '';
         $data['company']['buttons']['left']['link'] = $buttons->company_link_link ?? '';
         $data['company']['buttons']['right']['link'] = $buttons->catalog_link_link ?? '';
 
