@@ -63,7 +63,6 @@ class HomePage extends SettingsPage
         $advantages = [];
         foreach (['ru', 'uz', 'en'] as $lang) {
             $advantages [] = Tabs\Tab::make($lang)->schema([
-                TextInput::make("assortment_$lang")->label('assortment_title')->required()->maxLength(255),
                 TextInput::make("titlee_$lang")->label(__('form.title', locale: $lang))->required()->maxLength(255),
                 Repeater::make("itemss_$lang")->schema([
                     TextInput::make("title")->label(__('form.title'))->required(),

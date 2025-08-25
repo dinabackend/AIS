@@ -32,9 +32,6 @@ class HomePageSettings extends Settings
     public string $img2;
 
     //Advantages
-    public string $assortment_ru;
-    public string $assortment_uz;
-    public string $assortment_en;
     public string $titlee_ru;
     public string $titlee_uz;
     public string $titlee_en;
