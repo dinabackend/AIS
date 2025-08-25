@@ -85,9 +85,6 @@ class HomeResource extends JsonResource
                         'text' => $item['text'] ?? '',
                     ];
                 })->toArray();
-            $data['assortment']['subtitle']['ru'] = 'Каталог продукции';
-            $data['assortment']['subtitle']['uz'] = 'Mahsulotlar katalogi';
-            $data['assortment']['subtitle']['en'] = 'Product catalog';
             $data['advantages']['title'][$lang] = strtr($settings->{'titlee_' . $lang} ?? '', $replace);
             $data['advantages']['subtitle']['ru'] = 'Почему именно мы?';
             $data['advantages']['subtitle']['uz'] = 'Nima uchun biz?';
