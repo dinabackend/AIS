@@ -17,10 +17,12 @@ class FooterResource extends JsonResource
     {
         $settings = app(FooterSettings::class);
         $text = [];
-        foreach (['uz', 'ru', 'en'] as $lang) {
-            foreach (range(1, 3) as $i) {
+
+        foreach (range(1, 3) as $i) {
+            foreach (['uz', 'ru', 'en'] as $lang) {
                 $text[$i][$lang] = $settings->{"contact_text{$i}_$lang"};
             }
+            $text[$i]['icon'] = asset("img/contact$i.svg");
         }
 
         return [
