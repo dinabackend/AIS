@@ -82,6 +82,15 @@ class HomePage extends SettingsPage
             ]);
         }
 
+        $cooperation = [];
+        foreach (['ru', 'uz', 'en'] as $lang) {
+            $cooperation[] = Tabs\Tab::make($lang)->schema([
+                    TextInput::make("cooperation_subtitle_$lang")->label(__('form.title', locale: $lang))->required()->maxLength(255),
+                    TextInput::make("cooperation_text_$lang")->label(__('form.subtitle', locale: $lang))->required()->maxLength(255),
+                ]);
+        }
+
+
         return $form->schema([
             Section::make(__('form.banner'))->schema([
                 Repeater::make('banner')->schema([
@@ -113,22 +122,20 @@ class HomePage extends SettingsPage
             Section::make(__('form.cooperation'))->schema([
                 Tabs::make()->tabs([
                     Tabs\Tab::make('ru')->schema([
-                        TextInput::make('titleb_ru')->label(__('form.title'))->required()->maxLength(255),
+                        TextInput::make('cooperation_title_ru')->label('Заголовок')->required()->maxLength(255),
                     ]),
                     Tabs\Tab::make('uz')->schema([
-                        TextInput::make('titleb_uz')->label(__('form.title'))->required()->maxLength(255),
+                        TextInput::make('cooperation_title_uz')->label('Sarlavha')->required()->maxLength(255),
                     ]),
                     Tabs\Tab::make('en')->schema([
-                        TextInput::make('titleb_en')->label(__('form.title'))->required()->maxLength(255),
+                        TextInput::make('cooperation_title_en')->label('Title')->required()->maxLength(255),
                     ]),
                 ]),
-                FileUpload::make('images')
-                    ->label(__('form.images'))
-                    ->disk('public')
-                    ->directory('images')
-                    ->multiple()
-                    ->required(),
-
+                Repeater::make('cooperation')->schema([
+                    FileUpload::make('logo')->disk('public')->directory('img')->required(),
+                    FileUpload::make('img_document')->disk('public')->directory('banner')->required()->label(__('form.img')),
+                    Tabs::make()->schema($cooperation)->columnSpanFull(),
+                ])->label(__('form.cooperation'))->columns(),
             ])->collapsed(),
 
             Section::make(__('form.events'))->schema([

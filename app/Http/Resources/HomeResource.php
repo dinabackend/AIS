@@ -102,20 +102,29 @@ class HomeResource extends JsonResource
             $data['company']['subtitle']['ru'] = 'Нам доверяют';
             $data['company']['subtitle']['uz'] = 'Bizga ishonishadi';
             $data['company']['subtitle']['en'] = 'They trust us';
-            $data['company']['company_content'][0]['name'][$lang] = $settings->{'name1'. "_$lang"} ?? '';
-            $data['company']['company_content'][0]['text'][$lang] = $settings->{'text5'. "_$lang"} ?? '';
-            $data['company']['company_content'][1]['name'][$lang] = $settings->{'name2'. "_$lang"} ?? '';
-            $data['company']['company_content'][1]['text'][$lang] = $settings->{'text6'. "_$lang"} ?? '';
+            $data['company']['company_content'][0]['name'][$lang] = $settings->{'name1' . "_$lang"} ?? '';
+            $data['company']['company_content'][0]['text'][$lang] = $settings->{'text5' . "_$lang"} ?? '';
+            $data['company']['company_content'][1]['name'][$lang] = $settings->{'name2' . "_$lang"} ?? '';
+            $data['company']['company_content'][1]['text'][$lang] = $settings->{'text6' . "_$lang"} ?? '';
 
             $data['company']['images'] = $companyImages;
             $data['company']['buttons']['left']['text'][$lang] = $buttons->{'company_link_text_' . $lang} ?? '';
             $data['company']['buttons']['right']['text'][$lang] = $buttons->{'catalog_link_text_' . $lang} ?? '';
 
-            $data['cooperation']['title'][$lang] = strtr($settings->{'titleb_' . $lang} ?? '', $replace);
+            $data['cooperation']['title'][$lang] = strtr($settings->{'cooperation_title_' . $lang} ?? '', $replace);
+            $cooperation = [];
+            foreach ($settings->cooperation ?? [] as $i => $item) {
+                foreach (['ru', 'uz', 'en'] as $lang) {
+                    $cooperation[$i]['cooperation']['subtitle'][$lang] = $item["cooperation_subtitle_$lang"];
+                    $cooperation[$i]['cooperation']['text'][$lang] = $item["cooperation_text_$lang"];
+                }
+                $cooperation[$i]['cooperation']['logo'] = !empty($item['logo']) ? asset('storage/' . $item['logo']) : '';
+                $cooperation[$i]['cooperation']['img'] = !empty($item['img_document']) ? asset('storage/' . $item['img_document']) : '';
+            }
+            $data[] = $cooperation;
             $data['cooperation']['subtitle']['ru'] = 'Официальные партнеры';
             $data['cooperation']['subtitle']['uz'] = 'Rasmiy hamkorlar';
             $data['cooperation']['subtitle']['en'] = 'Official partners';
-            $data['cooperation']['images'] = $cooperationImages;
             $data['event']['title'][$lang] = $settings->{'event_title_' . $lang} ?? '';
             $data['event']['subtitle']['ru'] = 'Новости';
             $data['event']['subtitle']['uz'] = 'Yangiliklar';

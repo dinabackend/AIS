@@ -58,10 +58,11 @@ class HomePageSettings extends Settings
     public array $imagess;
 
     // cooperation
-    public string $titleb_ru;
-    public string $titleb_uz;
-    public string $titleb_en;
-    public array $images;
+    public string $cooperation_title_ru;
+    public string $cooperation_title_uz;
+    public string $cooperation_title_en;
+    public array $cooperation;
+
     // event
     public string $event_title_ru;
     public string $event_title_uz;

@@ -58,10 +58,10 @@ return new class extends SettingsMigration
         $this->migrator->add('home.imagess', []);
 
         //cooperation
-        $this->migrator->add('home.titleb_ru', 'test');
-        $this->migrator->add('home.titleb_uz', 'test');
-        $this->migrator->add('home.titleb_en', 'test');
-        $this->migrator->add('home.images', []);
+        $this->migrator->add('home.cooperation_title_ru', 'test');
+        $this->migrator->add('home.cooperation_title_uz', 'test');
+        $this->migrator->add('home.cooperation_title_en', 'test');
+        $this->migrator->add('home.cooperation', []);
 
         // event
         $this->migrator->add('home.event_title_ru', 'test');
