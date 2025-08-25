@@ -2,8 +2,7 @@
 
 use Spatie\LaravelSettings\Migrations\SettingsMigration;
 
-return new class extends SettingsMigration
-{
+return new class extends SettingsMigration {
 
     public function up(): void
     {
@@ -21,15 +20,21 @@ return new class extends SettingsMigration
             'mail1' => false,
             'mail2' => false,
             'phone' => false,
+            'contact_main_title' => true,
+            'contact_title' => true,
+            'contact_subtitle' => true,
+            'contact_text1' => true,
+            'contact_text2' => true,
+            'contact_text3' => true,
         ];
 
         foreach ($settings as $setting => $translatable) {
             if ($translatable) {
                 foreach ($langs as $lang) {
-                    $this->migrator->add("general.{$setting}_{$lang}", "null");
+                    $this->migrator->add("general.{$setting}_{$lang}", "test");
                 }
             } else {
-                $this->migrator->add("general.{$setting}", "null");
+                $this->migrator->add("general.{$setting}", "test");
             }
         }
     }

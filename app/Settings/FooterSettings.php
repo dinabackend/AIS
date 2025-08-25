@@ -30,6 +30,24 @@ class FooterSettings extends Settings
     public string $text_uz;
     public string $text_ru;
     public string $text_en;
+    public string $contact_main_title_uz;
+    public string $contact_main_title_ru;
+    public string $contact_main_title_en;
+    public string $contact_title_uz;
+    public string $contact_title_ru;
+    public string $contact_title_en;
+    public string $contact_subtitle_uz;
+    public string $contact_subtitle_ru;
+    public string $contact_subtitle_en;
+    public string $contact_text1_uz;
+    public string $contact_text1_ru;
+    public string $contact_text1_en;
+    public string $contact_text2_uz;
+    public string $contact_text2_ru;
+    public string $contact_text2_en;
+    public string $contact_text3_uz;
+    public string $contact_text3_ru;
+    public string $contact_text3_en;
 
     public static function group(): string
     {

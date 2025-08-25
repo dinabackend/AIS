@@ -45,8 +45,39 @@ class FooterResource extends JsonResource
                 'ru' => $settings->text_ru,
                 'en' => $settings->text_en,
             ],
-            'img' => $settings->img,
-
+            'img' => $settings->img ? asset('storage/' . $settings->img) : '',
+            'contact_page' => [
+                'main_title' => [
+                    'uz' => $settings->contact_main_title_uz,
+                    'ru' => $settings->contact_main_title_ru,
+                    'en' => $settings->contact_main_title_en,
+                ],
+                'title' => [
+                    'uz' => $settings->contact_title_uz,
+                    'ru' => $settings->contact_title_ru,
+                    'en' => $settings->contact_title_en,
+                ],
+                'subtitle' => [
+                    'uz' => $settings->contact_subtitle_uz,
+                    'ru' => $settings->contact_subtitle_ru,
+                    'en' => $settings->contact_subtitle_en,
+                ],
+                'text1' => [
+                    'uz' => $settings->contact_text1_uz,
+                    'ru' => $settings->contact_text1_ru,
+                    'en' => $settings->contact_text1_en,
+                ],
+                'text2' => [
+                    'uz' => $settings->contact_text2_uz,
+                    'ru' => $settings->contact_text2_ru,
+                    'en' => $settings->contact_text2_en,
+                ],
+                'text3' => [
+                    'uz' => $settings->contact_text3_uz,
+                    'ru' => $settings->contact_text3_ru,
+                    'en' => $settings->contact_text3_en,
+                ],
+            ],
         ];
     }
 }
