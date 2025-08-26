@@ -120,22 +120,50 @@ class ProductResource extends Resource
                         ->visibility('private')
                         ->downloadable()
                         ->previewable(false)
+                        ->customProperties(fn ($get) => [
+                            'language' => 'ru',
+                            'header_rows' => $get('ru_header_rows') ?? 1,
+                            'file_type' => 'characteristics'
+                        ])
                         ->label('RU Excel File'),
+
+                    TextInput::make('ru_header_rows')
+                        ->numeric()
+                        ->minValue(1)
+                        ->label('RU Header Rows Count'),
+
                     SpatieMediaLibraryFileUpload::make('UZ')
                         ->acceptedFileTypes(['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'xlsx'])
                         ->collection('product_sheet_uz')
                         ->visibility('private')
                         ->downloadable()
                         ->previewable(false)
+                        ->customProperties(fn ($get) => [
+                            'language' => 'uz',
+                            'header_rows' => $get('uz_header_rows') ?? 1,
+                            'file_type' => 'characteristics'
+                        ])
                         ->label('UZ Excel File'),
+
+                    TextInput::make('uz_header_rows')
+                        ->numeric()
+                        ->minValue(1)
+                        ->label('UZ Header Rows Count'),
+
                     SpatieMediaLibraryFileUpload::make('En')
                         ->acceptedFileTypes(['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'xlsx'])
                         ->collection('product_sheet_en')
                         ->visibility('private')
                         ->downloadable()
                         ->previewable(false)
+                        ->customProperties(fn ($get) => ['header_rows' => $get('en_header_rows') ?? 1])
                         ->label('EN Excel File'),
-                ])->columns(3)->collapsed(),
+
+                    TextInput::make('en_header_rows')
+                        ->numeric()
+                        ->minValue(1)
+                        ->label('EN Header Rows Count'),
+                ])->columns(2)->collapsed(),
 
                 Select::make('categories')->multiple()->label(__('form.category'))
                     ->relationship('categories', 'name')
