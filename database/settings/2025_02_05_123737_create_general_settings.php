@@ -8,7 +8,8 @@ return new class extends SettingsMigration {
     {
         $langs = ['uz', 'ru', 'en'];
         $settings = [
-            'footer_title' => true,
+            'right_text' => true,
+            'left_text' => true,
             'address' => true,
             'title' => true,
             'text' => true,

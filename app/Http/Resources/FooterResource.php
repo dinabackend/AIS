@@ -17,6 +17,10 @@ class FooterResource extends JsonResource
     {
         $settings = app(FooterSettings::class);
 
+        $address = urlencode($settings->address_ru ?: $settings->address_uz);
+
+        $yandexUrl = "https://yandex.uz/maps/?text={$address}";
+
         return [
             'telegram' => $settings->telegram,
             'instagram' => $settings->instagram,
@@ -30,10 +34,16 @@ class FooterResource extends JsonResource
                 'ru' => $settings->address_ru,
                 'en' => $settings->address_en,
             ],
-            'footer_title' => [
-                'uz' => $settings->footer_title_uz,
-                'ru' => $settings->footer_title_ru,
-                'en' => $settings->footer_title_en,
+            'address_url' => $yandexUrl,
+            'left_text' => [
+                'uz' => $settings->left_text_uz,
+                'ru' => $settings->left_text_ru,
+                'en' => $settings->left_text_en,
+            ],
+            'right_text' => [
+                'uz' => $settings->right_text_uz,
+                'ru' => $settings->right_text_ru,
+                'en' => $settings->right_text_en,
             ],
             'title' => [
                 'uz' => $settings->title_uz,
@@ -48,4 +58,5 @@ class FooterResource extends JsonResource
             'img' => $settings->img ? asset('storage/' . $settings->img) : '',
         ];
     }
+
 }

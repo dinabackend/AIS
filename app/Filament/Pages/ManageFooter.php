@@ -42,22 +42,25 @@ class ManageFooter extends SettingsPage
                         ->schema([
                             TextInput::make('title_uz')->label('Title uz')->required()->columnSpanFull(),
                             Textarea::make('text_uz')->label('Text uz')->required()->columnSpanFull(),
-                            TextInput::make('footer_title_uz')->label('Footer Title uz')->required()->columnSpanFull(),
                             TextInput::make('address_uz')->label('Manzil')->required(),
+                            TextInput::make('left_text_uz')->label('Left text uz')->required()->columnSpanFull(),
+                            TextInput::make('right_text_uz')->label('Right text uz')->required()->columnSpanFull(),
                         ]),
                     Tabs\Tab::make("Русский")
                         ->schema([
                             TextInput::make('title_ru')->label('Title ru')->required()->columnSpanFull(),
                             Textarea::make('text_ru')->label('Text ru')->required()->columnSpanFull(),
-                            TextInput::make('footer_title_ru')->label('Footer Title ru')->required()->columnSpanFull(),
                             TextInput::make('address_ru')->label('Адрес')->required(),
+                            TextInput::make('left_text_ru')->label('Left text ru')->required()->columnSpanFull(),
+                            TextInput::make('right_text_ru')->label('Right text ru')->required()->columnSpanFull(),
                         ]),
                     Tabs\Tab::make("English")
                         ->schema([
                             TextInput::make('title_en')->label('Title en')->required()->columnSpanFull(),
                             Textarea::make('text_en')->label('Text en')->required()->columnSpanFull(),
-                            TextInput::make('footer_title_en')->label('Footer Title en')->required()->columnSpanFull(),
                             TextInput::make('address_en')->label('Address')->required(),
+                            TextInput::make('left_text_en')->label('Left text en')->required()->columnSpanFull(),
+                            TextInput::make('right_text_en')->label('Right text en')->required()->columnSpanFull(),
                         ]),
                 ])->columnSpanFull(),
 

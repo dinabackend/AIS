@@ -7,9 +7,12 @@ use Spatie\LaravelSettings\Settings;
 class FooterSettings extends Settings
 {
     public string $img;
-    public string $footer_title_uz;
-    public string $footer_title_ru;
-    public string $footer_title_en;
+    public string $left_text_uz;
+    public string $left_text_ru;
+    public string $left_text_en;
+    public string $right_text_uz;
+    public string $right_text_ru;
+    public string $right_text_en;
 
     public string $address_uz;
     public string $address_ru;
