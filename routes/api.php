@@ -34,6 +34,7 @@ Route::get('/seo', [SEOController::class, 'index']);
 Route::get('/policy', [HomePageController::class, 'policy']);
 Route::get('/home', [HomePageController::class, 'index']);
 Route::get('/contact', [HomePageController::class, 'contact']);
+Route::get('/header', [FooterController::class, 'header']);
 Route::get('/footer', [FooterController::class, 'index']);
 Route::get('/guarantee', [GuaranteeController::class, 'index']);
 Route::get('/rent', [RentPageController::class, 'index']);
