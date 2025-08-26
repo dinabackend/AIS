@@ -141,7 +141,7 @@
                             }
 
                             // Determine if this is a header row (first 4 rows contain headers)
-                            $isHeader = $row <= 3;
+                            $isHeader = $row <= $headerRows;
 
                             // Determine cell class based on content
                             $cellClass = '';

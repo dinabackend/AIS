@@ -2,25 +2,23 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Filament\Pages\Policy;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\HomeResource;
 use App\Settings\FooterSettings;
 use App\Settings\PolicySettings;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class HomePageController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): JsonResponse
     {
         return response()->json(['data' => new HomeResource([])]);
     }
 
-    public function policy()
+    public function policy(): JsonResponse
     {
         $policy = app(PolicySettings::class);
 
