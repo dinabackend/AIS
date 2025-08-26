@@ -42,6 +42,7 @@ Route::get('/service', [ServicePageController::class, 'index']);
 
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/products/{slug}', [ProductController::class, 'show']);
+Route::get('/products/{slug}/sheet/{lang}', [ProductController::class, 'sheet']);
 //Route::get('/products/filters', [ProductController::class, 'filter']);
 
 Route::get('/variants', [VariantController::class, 'index']);

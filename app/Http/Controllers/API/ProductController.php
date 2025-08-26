@@ -151,4 +151,18 @@ class ProductController extends Controller
             'data' => CategoryResource::collection($categories)
         ];
     }
+
+    public function sheet(string $slug, string $lang)
+    {
+        $product = Product::query()->where('slug', $slug)->firstOrFail();
+        if (!in_array($lang, ['ru', 'uz', 'en'])) {
+            return response()->json(['message' => 'Invalid language'], 400);
+        }
+        $media = $product->getFirstMedia('product_sheet_' . $lang);
+        if (!$media) {
+            return response()->json(['message' => 'File not found'], 404);
+        }
+
+        return view('table', ['file' => $media->getPath()]);
+    }
 }

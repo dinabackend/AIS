@@ -35,9 +35,9 @@ class HomePageController extends Controller
 
         foreach (range(1, 3) as $i) {
             foreach (['uz', 'ru', 'en'] as $lang) {
-                $text[$i][$lang] = $settings->{"contact_text{$i}_$lang"};
+                $text[$i - 1][$lang] = $settings->{"contact_text{$i}_$lang"};
             }
-            $text[$i]['icon'] = asset("img/contact$i.svg");
+            $text[$i - 1]['icon'] = asset("img/contact$i.svg");
         }
 
         return response()->json(['data' => [
