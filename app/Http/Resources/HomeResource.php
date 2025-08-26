@@ -141,7 +141,6 @@ class HomeResource extends JsonResource
             ->with(['translations', 'children'])
             ->orderBy('order')
             ->get();
-
         $data['categories']['title'] = [
             'ru' => 'Широкий ассортимент промышленного оборудования',
             'uz' => 'Sanoat uskunalarining keng assortimenti',
