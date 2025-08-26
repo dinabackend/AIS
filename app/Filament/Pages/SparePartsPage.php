@@ -52,7 +52,7 @@ class SparePartsPage extends SettingsPage
         foreach (['ru', 'uz', 'en'] as $lang) {
             $PM_Series[] = Tabs\Tab::make($lang)->schema([
                 TextInput::make("PM_Series_$lang")->label(__('form.title2', locale: $lang))->required()->maxLength(255),
-                Textarea::make("text2_$lang")->label(__('form.text2', locale: $lang))->required()->maxLength(255),
+                Textarea::make("text2_$lang")->label(__('form.text2', locale: $lang))->required(),
                 Repeater::make("DALGAKIRAN_$lang")->schema([
                     TextInput::make("title")->label(__('form.number'))->required(),
                     TextInput::make("text")->label(__('form.text'))->required(),
@@ -76,6 +76,14 @@ class SparePartsPage extends SettingsPage
             ]);
         }
 
+        $product_card = [];
+        foreach (['ru', 'uz', 'en'] as $lang) {
+            $product_card[] = Tabs\Tab::make($lang)->schema([
+                TextInput::make("card_title_$lang")->label(__('form.title', locale: $lang))->required()->maxLength(255),
+                Textarea::make("card_text_$lang")->label(__('form.text', locale: $lang))->required(),
+            ]);
+        }
+
         return $form->schema([
             Section::make(__('form.main'))->schema([
                     Tabs::make()->schema($main_titles)->columnSpanFull(),
@@ -95,6 +103,10 @@ class SparePartsPage extends SettingsPage
 
             Section::make(__('form.recommended_products'))->schema([
                 Tabs::make()->schema($recommended_products)->columnSpanFull(),
+            ])->collapsed(),
+
+            Section::make(__('form.product_card'))->schema([
+                Tabs::make()->schema($product_card)->columnSpanFull(),
             ])->collapsed(),
         ]);
     }

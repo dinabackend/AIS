@@ -110,6 +110,19 @@ class SparePartsPageController extends Controller
                     ],
                 ]),
             ],
+            'product_card' => [
+                'title' => [
+                    'ru' => $settings->card_title_ru ?? '',
+                    'uz' => $settings->card_title_uz ?? '',
+                    'en' => $settings->card_title_en ?? '',
+                ],
+                'text' => [
+                    'ru' => $settings->card_text_ru ?? '',
+                    'uz' => $settings->card_text_uz ?? '',
+                    'en' => $settings->card_text_en ?? '',
+                ],
+
+            ],
         ];
 
         return response()->json([

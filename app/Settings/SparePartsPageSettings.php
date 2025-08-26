@@ -41,6 +41,13 @@ class SparePartsPageSettings extends Settings
     public string $text4_ru;
     public string $text4_uz;
     public string $text4_en;
+    //product card
+    public string $card_title_ru;
+    public string $card_title_uz;
+    public string $card_title_en;
+    public string $card_text_ru;
+    public string $card_text_uz;
+    public string $card_text_en;
 
     public static function group(): string
     {

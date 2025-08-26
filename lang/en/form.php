@@ -99,4 +99,5 @@ return [
     'services' => 'Services',
     'repair' => 'Repair',
     'application' => 'Application',
+    'product_card' => 'Product card'
 ];

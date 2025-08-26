@@ -45,5 +45,13 @@ return new class extends SettingsMigration {
         $this->migrator->add('spare_parts.text4_ru', 'test');
         $this->migrator->add('spare_parts.text4_uz', 'test');
         $this->migrator->add('spare_parts.text4_en', 'test');
+
+        //Product card
+        $this->migrator->add('spare_parts.card_title_ru', 'test');
+        $this->migrator->add('spare_parts.card_title_uz', 'test');
+        $this->migrator->add('spare_parts.card_title_en', 'test');
+        $this->migrator->add('spare_parts.card_text_ru', 'test');
+        $this->migrator->add('spare_parts.card_text_uz', 'test');
+        $this->migrator->add('spare_parts.card_text_en', 'test');
     }
 };

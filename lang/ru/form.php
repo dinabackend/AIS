@@ -100,4 +100,5 @@ return [
     'services' => 'сервис',
     'repair' => 'Ремонт',
     'application' => 'Заявка',
+    'product_card' => 'Карточка товара'
 ];

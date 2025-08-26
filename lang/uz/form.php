@@ -101,4 +101,5 @@ return [
     'engineers' => 'xizmatlar',
     'repair' => 'Ta\'mirlash',
     'application' => 'Ariza',
+    'product_card' => 'Mahsulot kartasi'
 ];
