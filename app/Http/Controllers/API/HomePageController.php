@@ -5,7 +5,9 @@ namespace App\Http\Controllers\API;
 use App\Filament\Pages\Policy;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\HomeResource;
+use App\Settings\FooterSettings;
 use App\Settings\PolicySettings;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class HomePageController extends Controller
@@ -25,35 +27,38 @@ class HomePageController extends Controller
         return response()->json($policy->toArray());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function contact(): JsonResponse
     {
-        //
-    }
+        $settings = app(FooterSettings::class);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+        $text = [];
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+        foreach (range(1, 3) as $i) {
+            foreach (['uz', 'ru', 'en'] as $lang) {
+                $text[$i][$lang] = $settings->{"contact_text{$i}_$lang"};
+            }
+            $text[$i]['icon'] = asset("img/contact$i.svg");
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return response()->json(['data' => [
+            'contact_page' => [
+                'main_title' => [
+                    'uz' => $settings->contact_main_title_uz,
+                    'ru' => $settings->contact_main_title_ru,
+                    'en' => $settings->contact_main_title_en,
+                ],
+                'title' => [
+                    'uz' => $settings->contact_title_uz,
+                    'ru' => $settings->contact_title_ru,
+                    'en' => $settings->contact_title_en,
+                ],
+                'subtitle' => [
+                    'uz' => $settings->contact_subtitle_uz,
+                    'ru' => $settings->contact_subtitle_ru,
+                    'en' => $settings->contact_subtitle_en,
+                ],
+                'text' => $text,
+            ],
+        ]]);
     }
 }

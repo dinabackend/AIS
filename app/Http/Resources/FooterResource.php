@@ -16,14 +16,6 @@ class FooterResource extends JsonResource
     public function toArray(Request $request): array
     {
         $settings = app(FooterSettings::class);
-        $text = [];
-
-        foreach (range(1, 3) as $i) {
-            foreach (['uz', 'ru', 'en'] as $lang) {
-                $text[$i][$lang] = $settings->{"contact_text{$i}_$lang"};
-            }
-            $text[$i]['icon'] = asset("img/contact$i.svg");
-        }
 
         return [
             'telegram' => $settings->telegram,
@@ -54,24 +46,6 @@ class FooterResource extends JsonResource
                 'en' => $settings->text_en,
             ],
             'img' => $settings->img ? asset('storage/' . $settings->img) : '',
-            'contact_page' => [
-                'main_title' => [
-                    'uz' => $settings->contact_main_title_uz,
-                    'ru' => $settings->contact_main_title_ru,
-                    'en' => $settings->contact_main_title_en,
-                ],
-                'title' => [
-                    'uz' => $settings->contact_title_uz,
-                    'ru' => $settings->contact_title_ru,
-                    'en' => $settings->contact_title_en,
-                ],
-                'subtitle' => [
-                    'uz' => $settings->contact_subtitle_uz,
-                    'ru' => $settings->contact_subtitle_ru,
-                    'en' => $settings->contact_subtitle_en,
-                ],
-                'text' => $text,
-            ],
         ];
     }
 }

@@ -73,13 +73,10 @@ class HomeResource extends JsonResource
         $data['info']['right_img'] = $settings->img2 ? asset('storage/' . $settings->img2) : '';
 
         foreach (['ru', 'uz', 'en'] as $lang) {
-            $data['info']['info'][$lang] = collect($settings->{'info2_' . $lang} ?? [])
-                ->map(function ($item) {
-                    return [
-                        'number' => $item['number'] ?? '',
-                        'text' => $item['text'] ?? '',
-                    ];
-                })->toArray();
+            foreach ($settings->{'info2_' . $lang} as $i => $item) {
+                $data['info']['info'][$i]['number'][$lang] = $item['number'] ?? '';
+                $data['info']['info'][$i]['text'][$lang] = $item['text'] ?? '';
+            }
             $data['advantages']['title'][$lang] = strtr($settings->{'titlee_' . $lang} ?? '', $replace);
             $data['advantages']['subtitle']['ru'] = 'Почему именно мы?';
             $data['advantages']['subtitle']['uz'] = 'Nima uchun biz?';
@@ -110,21 +107,21 @@ class HomeResource extends JsonResource
             $data['cooperation']['subtitle']['ru'] = 'Официальные партнеры';
             $data['cooperation']['subtitle']['uz'] = 'Rasmiy hamkorlar';
             $data['cooperation']['subtitle']['en'] = 'Official partners';
-            $cooperation = [];
-            foreach ($settings->cooperation ?? [] as $i => $item) {
-                $cooperation[$i]['logo'] = !empty($item['logo']) ? asset('storage/' . $item['logo']) : '';
-                $cooperation[$i]['img'] = !empty($item['img_document']) ? asset('storage/' . $item['img_document']) : '';
-                foreach (['ru', 'uz', 'en'] as $lang) {
-                    $cooperation[$i]['subtitle'][$lang] = $item["cooperation_subtitle_$lang"];
-                    $cooperation[$i]['text'][$lang] = $item["cooperation_text_$lang"];
-                }
-            }
-            $data['cooperation']['items'] = $cooperation;
             $data['event']['title'][$lang] = $settings->{'event_title_' . $lang} ?? '';
             $data['event']['subtitle']['ru'] = 'Новости';
             $data['event']['subtitle']['uz'] = 'Yangiliklar';
             $data['event']['subtitle']['en'] = 'News';
         }
+        $cooperation = [];
+        foreach ($settings->cooperation ?? [] as $i => $item) {
+            $cooperation[$i]['logo'] = !empty($item['logo']) ? asset('storage/' . $item['logo']) : '';
+            $cooperation[$i]['img'] = !empty($item['img_document']) ? asset('storage/' . $item['img_document']) : '';
+            foreach (['ru', 'uz', 'en'] as $lang) {
+                $cooperation[$i]['subtitle'][$lang] = $item["cooperation_subtitle_$lang"];
+                $cooperation[$i]['text'][$lang] = $item["cooperation_text_$lang"];
+            }
+        }
+        $data['cooperation']['items'] = $cooperation;
         $data['advantages']['buttons']['left']['link'] = $buttons->info_link_link ?? '';
         $data['advantages']['buttons']['right']['link'] = $buttons->info_contact_link ?? '';
         $data['company']['buttons']['left']['link'] = $buttons->company_link_link ?? '';
