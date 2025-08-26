@@ -51,9 +51,6 @@ class HomeResource extends JsonResource
         $companyImages = is_array($settings->imagess ?? null)
             ? array_map(static fn($img) => asset('storage/' . $img), $settings->imagess)
             : [];
-        $cooperationImages = is_array($settings->images ?? null)
-            ? array_map(static fn($img) => asset('storage/' . $img), $settings->images)
-            : [];
 
         $data = ['banners' => $banners];
 
@@ -64,11 +61,9 @@ class HomeResource extends JsonResource
             $data['info']['subtitle']['en'] = 'AIS TECHNO GROUP';
             $data['info']['text_top'][$lang] = $settings->{'subtitle2_' . $lang} ?? '';
 
-            foreach (range(1, 3) as $i) {
-                $data['info']['info_text'][$i][$lang] = $settings->{'text1_' . $lang} ?? '';
-                $data['info']['info_text'][$i][$lang] = $settings->{'text2_' . $lang} ?? '';
-                $data['info']['info_text'][$i][$lang] = $settings->{'text3_' . $lang} ?? '';
-            }
+            $data['info']['info_text'][1][$lang] = $settings->{'text1_' . $lang} ?? '';
+            $data['info']['info_text'][2][$lang] = $settings->{'text2_' . $lang} ?? '';
+            $data['info']['info_text'][3][$lang] = $settings->{'text3_' . $lang} ?? '';
 
             $data['info']['button']['text'][$lang] = $buttons->{'about_link_text_' . $lang} ?? '';
         }
@@ -102,20 +97,29 @@ class HomeResource extends JsonResource
             $data['company']['subtitle']['ru'] = 'Нам доверяют';
             $data['company']['subtitle']['uz'] = 'Bizga ishonishadi';
             $data['company']['subtitle']['en'] = 'They trust us';
-            $data['company']['company_content'][0]['name'][$lang] = $settings->{'name1'. "_$lang"} ?? '';
-            $data['company']['company_content'][0]['text'][$lang] = $settings->{'text5'. "_$lang"} ?? '';
-            $data['company']['company_content'][1]['name'][$lang] = $settings->{'name2'. "_$lang"} ?? '';
-            $data['company']['company_content'][1]['text'][$lang] = $settings->{'text6'. "_$lang"} ?? '';
+            $data['company']['company_content'][0]['name'][$lang] = $settings->{'name1' . "_$lang"} ?? '';
+            $data['company']['company_content'][0]['text'][$lang] = $settings->{'text5' . "_$lang"} ?? '';
+            $data['company']['company_content'][1]['name'][$lang] = $settings->{'name2' . "_$lang"} ?? '';
+            $data['company']['company_content'][1]['text'][$lang] = $settings->{'text6' . "_$lang"} ?? '';
 
             $data['company']['images'] = $companyImages;
             $data['company']['buttons']['left']['text'][$lang] = $buttons->{'company_link_text_' . $lang} ?? '';
             $data['company']['buttons']['right']['text'][$lang] = $buttons->{'catalog_link_text_' . $lang} ?? '';
 
-            $data['cooperation']['title'][$lang] = strtr($settings->{'titleb_' . $lang} ?? '', $replace);
+            $data['cooperation']['title'][$lang] = strtr($settings->{'cooperation_title_' . $lang} ?? '', $replace);
             $data['cooperation']['subtitle']['ru'] = 'Официальные партнеры';
             $data['cooperation']['subtitle']['uz'] = 'Rasmiy hamkorlar';
             $data['cooperation']['subtitle']['en'] = 'Official partners';
-            $data['cooperation']['images'] = $cooperationImages;
+            $cooperation = [];
+            foreach ($settings->cooperation ?? [] as $i => $item) {
+                $cooperation[$i]['logo'] = !empty($item['logo']) ? asset('storage/' . $item['logo']) : '';
+                $cooperation[$i]['img'] = !empty($item['img_document']) ? asset('storage/' . $item['img_document']) : '';
+                foreach (['ru', 'uz', 'en'] as $lang) {
+                    $cooperation[$i]['subtitle'][$lang] = $item["cooperation_subtitle_$lang"];
+                    $cooperation[$i]['text'][$lang] = $item["cooperation_text_$lang"];
+                }
+            }
+            $data['cooperation']['items'] = $cooperation;
             $data['event']['title'][$lang] = $settings->{'event_title_' . $lang} ?? '';
             $data['event']['subtitle']['ru'] = 'Новости';
             $data['event']['subtitle']['uz'] = 'Yangiliklar';
@@ -132,7 +136,6 @@ class HomeResource extends JsonResource
             ->with(['translations', 'children'])
             ->orderBy('order')
             ->get();
-
         $data['categories']['title'] = [
             'ru' => 'Широкий ассортимент промышленного оборудования',
             'uz' => 'Sanoat uskunalarining keng assortimenti',
