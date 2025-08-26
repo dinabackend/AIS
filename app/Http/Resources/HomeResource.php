@@ -51,9 +51,6 @@ class HomeResource extends JsonResource
         $companyImages = is_array($settings->imagess ?? null)
             ? array_map(static fn($img) => asset('storage/' . $img), $settings->imagess)
             : [];
-        $cooperationImages = is_array($settings->images ?? null)
-            ? array_map(static fn($img) => asset('storage/' . $img), $settings->images)
-            : [];
 
         $data = ['banners' => $banners];
 
@@ -64,11 +61,9 @@ class HomeResource extends JsonResource
             $data['info']['subtitle']['en'] = 'AIS TECHNO GROUP';
             $data['info']['text_top'][$lang] = $settings->{'subtitle2_' . $lang} ?? '';
 
-            foreach (range(1, 3) as $i) {
-                $data['info']['info_text'][$i][$lang] = $settings->{'text1_' . $lang} ?? '';
-                $data['info']['info_text'][$i][$lang] = $settings->{'text2_' . $lang} ?? '';
-                $data['info']['info_text'][$i][$lang] = $settings->{'text3_' . $lang} ?? '';
-            }
+            $data['info']['info_text'][1][$lang] = $settings->{'text1_' . $lang} ?? '';
+            $data['info']['info_text'][2][$lang] = $settings->{'text2_' . $lang} ?? '';
+            $data['info']['info_text'][3][$lang] = $settings->{'text3_' . $lang} ?? '';
 
             $data['info']['button']['text'][$lang] = $buttons->{'about_link_text_' . $lang} ?? '';
         }
