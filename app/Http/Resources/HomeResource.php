@@ -27,6 +27,12 @@ class HomeResource extends JsonResource
         $banners = [];
         foreach ($settings->banner as $banner) {
             $url = Arr::get($banner, 'banner', '');
+            $info = [];
+            foreach (['ru', 'uz', 'en'] as $lang) {
+                foreach (Arr::get($banner, "info_$lang") as $i => $info) {
+                    $info[$i][$lang] = $info;
+                }
+            }
             $banners[] = [
                 'url' => $url !== '' ? asset("storage/$url") : '',
                 'type' => preg_match('/(.jpg|.png|.webp)/', $url) ? 'image' : 'video',
@@ -40,11 +46,7 @@ class HomeResource extends JsonResource
                     'uz' => Arr::get($banner, 'subtitle_uz', ""),
                     'ru' => Arr::get($banner, 'subtitle_ru', ""),
                 ],
-                'info' => [
-                    'en' => Arr::get($banner, 'info_en'),
-                    'uz' => Arr::get($banner, 'info_uz'),
-                    'ru' => Arr::get($banner, 'info_ru'),
-                ],
+                'info' => $info,
             ];
         }
 
