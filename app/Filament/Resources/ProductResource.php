@@ -73,6 +73,10 @@ class ProductResource extends Resource
                                 ->rows(10)
                                 ->required($tab->makeName('description') === 'uz.description')
                                 ->label(__('form.description')),
+                            Textarea::make($tab->makeName('advantages'))
+                                ->rows(10)
+                                ->required($tab->makeName('advantages') === 'uz.advantages')
+                                ->label(__('form.advantages')),
                         ])->columnSpanFull(),
                 ])->collapsed(),
 
@@ -99,20 +103,6 @@ class ProductResource extends Resource
                         ->label(__('form.wrapper')),*/
                 ])->collapsed()->columns(3),
 
-                /*Section::make(__('form.history'))->schema([
-                    TranslatableTabs::make()
-                        ->localeTabSchema(fn(TranslatableTab $tab) => [
-                            RichEditor::make($tab->makeName('history'))
-                                ->label(__('form.history')),
-                        ])->columnSpanFull(),
-                    SpatieMediaLibraryFileUpload::make('history_images')
-                        ->image()
-                        ->imageEditor()
-                        ->multiple()
-                        ->collection('history_images')
-                        ->label(__('form.history_image')),
-                ])->collapsed(),*/
-
                 Section::make('SEO')->schema([
                     TranslatableTabs::make()
                         ->localeTabSchema(fn(TranslatableTab $tab) => [
@@ -123,6 +113,30 @@ class ProductResource extends Resource
                         ])->columnSpanFull(),
                 ])->collapsed(),
 
+                Section::make(__('panel.characteristics'))->schema([
+                    SpatieMediaLibraryFileUpload::make('RU')
+                        ->acceptedFileTypes(['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'xlsx'])
+                        ->collection('product_sheet_ru')
+                        ->visibility('private')
+                        ->downloadable()
+                        ->previewable(false)
+                        ->label('RU Excel File'),
+                    SpatieMediaLibraryFileUpload::make('UZ')
+                        ->acceptedFileTypes(['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'xlsx'])
+                        ->collection('product_sheet_uz')
+                        ->visibility('private')
+                        ->downloadable()
+                        ->previewable(false)
+                        ->label('UZ Excel File'),
+                    SpatieMediaLibraryFileUpload::make('En')
+                        ->acceptedFileTypes(['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'xlsx'])
+                        ->collection('product_sheet_en')
+                        ->visibility('private')
+                        ->downloadable()
+                        ->previewable(false)
+                        ->label('EN Excel File'),
+                ])->columns(3)->collapsed(),
+
                 Select::make('categories')->multiple()->label(__('form.category'))
                     ->relationship('categories', 'name')
                     ->options(fn () => CategoryTranslation::whereLocale(app()->getLocale())->pluck('name', 'category_id')->toArray()),
@@ -130,7 +144,7 @@ class ProductResource extends Resource
                 Select::make('type')->options([
                     'product' => __('form.product'),
                     'spare_part' => __('form.spare_part'),
-                ]),
+                ])->required()->default('product'),
 
                 Toggle::make('home_visibility')->label(__('form.home_visibility')),
             ]);

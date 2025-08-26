@@ -103,20 +103,6 @@ class VariantResource extends Resource
                         ->label(__('form.wrapper')),*/
                 ])->collapsed()->columns(3),
 
-                /*Section::make(__('form.history'))->schema([
-                    TranslatableTabs::make()
-                        ->localeTabSchema(fn(TranslatableTab $tab) => [
-                            RichEditor::make($tab->makeName('history'))
-                                ->label(__('form.history')),
-                        ])->columnSpanFull(),
-                    SpatieMediaLibraryFileUpload::make('history_images')
-                        ->image()
-                        ->imageEditor()
-                        ->multiple()
-                        ->collection('history_images')
-                        ->label(__('form.history_image')),
-                ])->collapsed(),*/
-
                 Section::make('SEO')->schema([
                     TranslatableTabs::make()
                         ->localeTabSchema(fn(TranslatableTab $tab) => [
@@ -124,6 +110,30 @@ class VariantResource extends Resource
                             Textarea::make($tab->makeName('seo_description')),
                         ])->columnSpanFull(),
                 ])->collapsed(),
+
+                Section::make(__('panel.characteristics'))->schema([
+                    SpatieMediaLibraryFileUpload::make('RU')
+                        ->acceptedFileTypes(['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'xlsx'])
+                        ->collection('product_sheet_ru')
+                        ->visibility('private')
+                        ->downloadable()
+                        ->previewable(false)
+                        ->label('RU Excel File'),
+                    SpatieMediaLibraryFileUpload::make('UZ')
+                        ->acceptedFileTypes(['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'xlsx'])
+                        ->collection('product_sheet_uz')
+                        ->visibility('private')
+                        ->downloadable()
+                        ->previewable(false)
+                        ->label('UZ Excel File'),
+                    SpatieMediaLibraryFileUpload::make('En')
+                        ->acceptedFileTypes(['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'xlsx'])
+                        ->collection('product_sheet_en')
+                        ->visibility('private')
+                        ->downloadable()
+                        ->previewable(false)
+                        ->label('EN Excel File'),
+                ])->columns(3)->collapsed(),
 
                 Toggle::make('home_visibility')
                     ->label(__('form.home_visibility')),

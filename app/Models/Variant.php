@@ -43,4 +43,27 @@ class Variant extends TranslatableModel implements HasMedia
     {
         return $this->belongsTo(Product::class, 'product_id');
     }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('product_image')
+            ->acceptsMimeTypes(['image/jpeg', 'image/png', 'image/gif', 'image/webp'])
+            ->singleFile();
+
+        $this->addMediaCollection('product_video')
+            ->acceptsMimeTypes(['video/mp4', 'video/avi', 'video/mov'])
+            ->singleFile();
+
+        $this->addMediaCollection('product_sheet_ru')
+            ->acceptsMimeTypes(['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-excel'])
+            ->singleFile();
+
+        $this->addMediaCollection('product_sheet_uz')
+            ->acceptsMimeTypes(['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-excel'])
+            ->singleFile();
+
+        $this->addMediaCollection('product_sheet_en')
+            ->acceptsMimeTypes(['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-excel'])
+            ->singleFile();
+    }
 }
