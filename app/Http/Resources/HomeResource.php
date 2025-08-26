@@ -112,19 +112,19 @@ class HomeResource extends JsonResource
             $data['company']['buttons']['right']['text'][$lang] = $buttons->{'catalog_link_text_' . $lang} ?? '';
 
             $data['cooperation']['title'][$lang] = strtr($settings->{'cooperation_title_' . $lang} ?? '', $replace);
-            $cooperation = [];
-            foreach ($settings->cooperation ?? [] as $i => $item) {
-                foreach (['ru', 'uz', 'en'] as $lang) {
-                    $cooperation[$i]['cooperation']['subtitle'][$lang] = $item["cooperation_subtitle_$lang"];
-                    $cooperation[$i]['cooperation']['text'][$lang] = $item["cooperation_text_$lang"];
-                }
-                $cooperation[$i]['cooperation']['logo'] = !empty($item['logo']) ? asset('storage/' . $item['logo']) : '';
-                $cooperation[$i]['cooperation']['img'] = !empty($item['img_document']) ? asset('storage/' . $item['img_document']) : '';
-            }
-            $data[] = $cooperation;
             $data['cooperation']['subtitle']['ru'] = 'Официальные партнеры';
             $data['cooperation']['subtitle']['uz'] = 'Rasmiy hamkorlar';
             $data['cooperation']['subtitle']['en'] = 'Official partners';
+            $cooperation = [];
+            foreach ($settings->cooperation ?? [] as $i => $item) {
+                $cooperation[$i]['logo'] = !empty($item['logo']) ? asset('storage/' . $item['logo']) : '';
+                $cooperation[$i]['img'] = !empty($item['img_document']) ? asset('storage/' . $item['img_document']) : '';
+                foreach (['ru', 'uz', 'en'] as $lang) {
+                    $cooperation[$i]['subtitle'][$lang] = $item["cooperation_subtitle_$lang"];
+                    $cooperation[$i]['text'][$lang] = $item["cooperation_text_$lang"];
+                }
+            }
+            $data['cooperation']['items'] = $cooperation;
             $data['event']['title'][$lang] = $settings->{'event_title_' . $lang} ?? '';
             $data['event']['subtitle']['ru'] = 'Новости';
             $data['event']['subtitle']['uz'] = 'Yangiliklar';
