@@ -61,7 +61,7 @@ class FooterResource extends JsonResource
             'img' => $settings->img ? asset('storage/' . $settings->img) : '',
             'navigation' => [
                 [
-                    'url' => '',
+                    'url' => '/',
                     'title' => [
                         'ru' => 'Главная',
                         'uz' => 'Bosh sahifa',
@@ -69,7 +69,7 @@ class FooterResource extends JsonResource
                     ],
                 ],
                 [
-                    'url' => '',
+                    'url' => '/about',
                     'title' => [
                         'ru' => 'Компания',
                         'uz' => 'Kompaniya',
@@ -77,7 +77,7 @@ class FooterResource extends JsonResource
                     ],
                 ],
                 [
-                    'url' => '',
+                    'url' => '/catalog',
                     'title' => [
                         'ru' => 'Каталог',
                         'uz' => 'Katalog',
@@ -85,7 +85,7 @@ class FooterResource extends JsonResource
                     ],
                 ],
                 [
-                    'url' => '',
+                    'url' => '/spares',
                     'title' => [
                         'ru' => 'Запчасти',
                         'uz' => 'Ehtiyot qismlar',
@@ -93,7 +93,7 @@ class FooterResource extends JsonResource
                     ],
                 ],
                 [
-                    'url' => '',
+                    'url' => '/engineers-service',
                     'title' => [
                         'ru' => 'Инженеры и сервис',
                         'uz' => 'Muhandislar va servis',
@@ -101,7 +101,7 @@ class FooterResource extends JsonResource
                     ],
                 ],
                 [
-                    'url' => '',
+                    'url' => '/news',
                     'title' => [
                         'ru' => 'Блог',
                         'uz' => 'Blog',
@@ -109,7 +109,7 @@ class FooterResource extends JsonResource
                     ],
                 ],
                 [
-                    'url' => '',
+                    'url' => '/contacts',
                     'title' => [
                         'ru' => 'Контакты',
                         'uz' => 'Kontaktlar',
