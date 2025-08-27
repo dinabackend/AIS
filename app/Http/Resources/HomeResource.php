@@ -67,7 +67,7 @@ class HomeResource extends JsonResource
 
             $data['info']['button']['text'][$lang] = $buttons->{'about_link_text_' . $lang} ?? '';
             foreach ($settings->{'info2_' . $lang} ?? [] as $i => $item) {
-                $data['info']['info'][$i]['number'][$lang] = $item['number'] ?? '';
+                $data['info']['info'][$i]['number'] = $item['number'] ?? '';
                 $data['info']['info'][$i]['text'][$lang] = $item['text'] ?? '';
             }
         }

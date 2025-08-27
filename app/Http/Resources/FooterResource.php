@@ -56,6 +56,98 @@ class FooterResource extends JsonResource
                 'en' => $settings->text_en,
             ],
             'img' => $settings->img ? asset('storage/' . $settings->img) : '',
+            'navigation' => [
+                [
+                    'url' => '',
+                    'title' => [
+                        'ru' => 'Главная',
+                        'uz' => 'Bosh sahifa',
+                        'en' => 'Home',
+                    ],
+                ],
+                [
+                    'url' => '',
+                    'title' => [
+                        'ru' => 'Компания',
+                        'uz' => 'Kompaniya',
+                        'en' => 'Company',
+                    ],
+                ],
+                [
+                    'url' => '',
+                    'title' => [
+                        'ru' => 'Каталог',
+                        'uz' => 'Katalog',
+                        'en' => 'Catalog',
+                    ],
+                ],
+                [
+                    'url' => '',
+                    'title' => [
+                        'ru' => 'Запчасти',
+                        'uz' => 'Ehtiyot qismlar',
+                        'en' => 'Parts',
+                    ],
+                ],
+                [
+                    'url' => '',
+                    'title' => [
+                        'ru' => 'Инженеры и сервис',
+                        'uz' => 'Muhandislar va servis',
+                        'en' => 'Engineers & Service',
+                    ],
+                ],
+                [
+                    'url' => '',
+                    'title' => [
+                        'ru' => 'Блог',
+                        'uz' => 'Blog',
+                        'en' => 'Blog',
+                    ],
+                ],
+                [
+                    'url' => '',
+                    'title' => [
+                        'ru' => 'Контакты',
+                        'uz' => 'Kontaktlar',
+                        'en' => 'Contacts',
+                    ],
+                ],
+            ],
+            'categories' => [
+                [
+                    'slug' => '',
+                    'title' => [
+                        'ru' => 'Воздушные компрессоры',
+                        'uz' => 'Havo kompressorlar',
+                        'en' => 'Air Compressors',
+                    ],
+                ],
+                [
+                    'slug' => '',
+                    'title' => [
+                        'ru' => 'Обработка воздуха',
+                        'uz' => 'Havoni tozalash',
+                        'en' => 'Air Treatment',
+                    ],
+                ],
+                [
+                    'slug' => '',
+                    'title' => [
+                        'ru' => 'Дизельные компрессоры',
+                        'uz' => 'Dizel kompressorlar',
+                        'en' => 'Diesel Compressors',
+                    ],
+                ],
+                [
+                    'slug' => '',
+                    'title' => [
+                        'ru' => 'Генератор Азота и Кислорода',
+                        'uz' => 'Azot va kislorod generatorlari',
+                        'en' => 'Nitrogen & Oxygen Generators',
+                    ],
+                ],
+            ]
         ];
     }
 
