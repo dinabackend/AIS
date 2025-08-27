@@ -34,8 +34,6 @@ class ManageFooter extends SettingsPage
     {
         return $form
             ->schema([
-                //footer img
-                FileUpload::make('img')->label('Logo'),
                 // Footer
                 Tabs::make()->tabs([
                     Tabs\Tab::make("O'zbekcha")

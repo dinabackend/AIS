@@ -58,7 +58,6 @@ class FooterResource extends JsonResource
                 'ru' => $settings->text_ru,
                 'en' => $settings->text_en,
             ],
-            'img' => $settings->img ? asset('storage/' . $settings->img) : '',
             'navigation' => [
                 [
                     'url' => '/',

@@ -6,7 +6,6 @@ use Spatie\LaravelSettings\Settings;
 
 class FooterSettings extends Settings
 {
-    public string $img;
     public string $left_text_uz;
     public string $left_text_ru;
     public string $left_text_en;
