@@ -30,7 +30,7 @@ class HomeResource extends JsonResource
             $info = [];
             foreach (['ru', 'uz', 'en'] as $lang) {
                 foreach (Arr::get($banner, "info_$lang") as $i => $info) {
-                    $info[$i][$lang] = $info;
+                    $infos[$i][$lang] = $info;
                 }
             }
             $banners[] = [
@@ -46,7 +46,7 @@ class HomeResource extends JsonResource
                     'uz' => Arr::get($banner, 'subtitle_uz', ""),
                     'ru' => Arr::get($banner, 'subtitle_ru', ""),
                 ],
-                'info' => $info,
+                'info' => $infos,
             ];
         }
 
@@ -58,9 +58,7 @@ class HomeResource extends JsonResource
 
         foreach (['ru', 'uz', 'en'] as $lang) {
             $data['info']['title'][$lang] = $settings->{'title2_' . $lang} ?? '';
-            $data['info']['subtitle']['ru'] = 'AIS TECHNO GROUP';
-            $data['info']['subtitle']['uz'] = 'AIS TECHNO GROUP';
-            $data['info']['subtitle']['en'] = 'AIS TECHNO GROUP';
+            $data['info']['subtitle'][$lang] = 'AIS TECHNO GROUP';
             $data['info']['text_top'][$lang] = $settings->{'subtitle2_' . $lang} ?? '';
 
             $data['info']['info_text'][1][$lang] = $settings->{'text1_' . $lang} ?? '';
@@ -68,17 +66,16 @@ class HomeResource extends JsonResource
             $data['info']['info_text'][3][$lang] = $settings->{'text3_' . $lang} ?? '';
 
             $data['info']['button']['text'][$lang] = $buttons->{'about_link_text_' . $lang} ?? '';
-        }
-        $data['info']['button']['link'] = $buttons->about_link_link ?? '';
-
-        $data['info']['left_img'] = $settings->img ? asset('storage/' . $settings->img) : '';
-        $data['info']['right_img'] = $settings->img2 ? asset('storage/' . $settings->img2) : '';
-
-        foreach (['ru', 'uz', 'en'] as $lang) {
-            foreach ($settings->{'info2_' . $lang} as $i => $item) {
+            foreach ($settings->{'info2_' . $lang} ?? [] as $i => $item) {
                 $data['info']['info'][$i]['number'][$lang] = $item['number'] ?? '';
                 $data['info']['info'][$i]['text'][$lang] = $item['text'] ?? '';
             }
+        }
+        $data['info']['left_img'] = $settings->img ? asset('storage/' . $settings->img) : '';
+        $data['info']['button']['link'] = $buttons->about_link_link ?? '';
+        $data['info']['right_img'] = $settings->img2 ? asset('storage/' . $settings->img2) : '';
+
+        foreach (['ru', 'uz', 'en'] as $lang) {
             $data['advantages']['title'][$lang] = strtr($settings->{'titlee_' . $lang} ?? '', $replace);
             $data['advantages']['subtitle']['ru'] = 'Почему именно мы?';
             $data['advantages']['subtitle']['uz'] = 'Nima uchun biz?';
