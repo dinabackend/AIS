@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CategoryResource;
 use App\Http\Resources\FooterResource;
+use App\Models\Category;
 use Illuminate\Http\JsonResponse;
 
 class FooterController extends Controller
@@ -91,9 +93,18 @@ class FooterController extends Controller
             ]
         ];
 
+        $categries = $categories = Category::tree()
+            ->with(['translation', 'children' => function($query) {
+                $query->with(['translation', 'children' => function($subQuery) {
+                    $subQuery->with('translation');
+                }]);
+            }])
+            ->get();
+
         return response()->json([
             'data' => [
                 'company' => $company,
+                'categories' => CategoryResource::collection($categories),
                 'service_spare_parts' => $sevice_spare_parts
             ]
         ]);
