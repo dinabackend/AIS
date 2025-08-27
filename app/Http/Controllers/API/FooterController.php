@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\CategoryResource;
 use App\Http\Resources\FooterResource;
 use App\Models\Category;
+use App\Settings\ButtonsSettings;
+use App\Settings\FooterSettings;
 use Illuminate\Http\JsonResponse;
 
 class FooterController extends Controller
@@ -22,6 +24,9 @@ class FooterController extends Controller
 
     public function header(): JsonResponse
     {
+        $settings = app(FooterSettings::class);
+        $buttons = app(ButtonsSettings::class);
+
         $company = [
             'title' => [
                 'uz' => 'Kompaniya',
@@ -105,7 +110,17 @@ class FooterController extends Controller
             'data' => [
                 'company' => $company,
                 'categories' => CategoryResource::collection($categories),
-                'service_spare_parts' => $sevice_spare_parts
+                'service_spare_parts' => $sevice_spare_parts,
+                'phone' => $settings->phone,
+                'mail' => $settings->mail1,
+                'button' => [
+                    'text' => [
+                        'ru' => $buttons->nav_form_text_ru,
+                        'uz' => $buttons->nav_form_text_uz,
+                        'en' => $buttons->nav_form_text_en,
+                    ],
+                    'link' => $buttons->nav_form_link,
+                ]
             ]
         ]);
     }
