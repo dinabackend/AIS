@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Category;
 use App\Settings\FooterSettings;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -20,6 +21,8 @@ class FooterResource extends JsonResource
         $address = urlencode($settings->address_ru ?: $settings->address_uz);
 
         $yandexUrl = "https://yandex.uz/maps/?text={$address}";
+
+        $categories = Category::take(5)->get();
 
         return [
             'telegram' => $settings->telegram,
@@ -114,40 +117,7 @@ class FooterResource extends JsonResource
                     ],
                 ],
             ],
-            'categories' => [
-                [
-                    'slug' => '',
-                    'title' => [
-                        'ru' => 'Воздушные компрессоры',
-                        'uz' => 'Havo kompressorlar',
-                        'en' => 'Air Compressors',
-                    ],
-                ],
-                [
-                    'slug' => '',
-                    'title' => [
-                        'ru' => 'Обработка воздуха',
-                        'uz' => 'Havoni tozalash',
-                        'en' => 'Air Treatment',
-                    ],
-                ],
-                [
-                    'slug' => '',
-                    'title' => [
-                        'ru' => 'Дизельные компрессоры',
-                        'uz' => 'Dizel kompressorlar',
-                        'en' => 'Diesel Compressors',
-                    ],
-                ],
-                [
-                    'slug' => '',
-                    'title' => [
-                        'ru' => 'Генератор Азота и Кислорода',
-                        'uz' => 'Azot va kislorod generatorlari',
-                        'en' => 'Nitrogen & Oxygen Generators',
-                    ],
-                ],
-            ]
+            'categories' => CategoryResource::collection($categories),
         ];
     }
 
