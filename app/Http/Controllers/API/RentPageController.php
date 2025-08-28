@@ -66,7 +66,7 @@ class RentPageController extends Controller
                         'text' => $review->translations->mapWithKeys(function ($item) {
                             return [$item->locale => $item->text];
                         }),
-                        'date' => $review->date,
+                        'created_at' => $review->date,
                         'rating' => $review->rating,
                         'status' => $review->status,
                     ];
