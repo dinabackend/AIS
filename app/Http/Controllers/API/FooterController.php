@@ -41,7 +41,7 @@ class FooterController extends Controller
                         'uz' => 'Blog',
                         'en' => 'Blog',
                     ],
-                    'url' => '/events',
+                    'url' => '/news',
                 ],
                 // Гарантия
                 [

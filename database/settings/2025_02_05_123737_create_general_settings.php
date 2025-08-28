@@ -13,7 +13,6 @@ return new class extends SettingsMigration {
             'address' => true,
             'title' => true,
             'text' => true,
-            'img' => false,
             'telegram' => false,
             'instagram' => false,
             'linkedin' => false,
