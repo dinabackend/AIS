@@ -74,7 +74,12 @@ class CategoryResource extends Resource
                         ->where('id', '!=', $get('id'))
                         ->with('translations')
                         ->get()
-                        ->pluck('name', 'id')
+                        ->mapWithKeys(function ($category) {
+                            $name = $category->getTranslation(app()->getLocale())->name ??
+                                   $category->getTranslation('uz')->name ??
+                                   'No Name';
+                            return [$category->id => $name];
+                        })
                     )
                     ->preload()
                     ->nullable(),
