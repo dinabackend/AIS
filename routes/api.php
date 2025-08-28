@@ -60,4 +60,4 @@ Route::get('/categories/{id}/children', [CategoryController::class, 'children'])
 Route::get('/categories/{slug}', [CategoryController::class, 'show']);
 Route::get('/catalog/{category}', [CategoryController::class, 'catalog']);
 
-Route::post('/form', [FormController::class, 'index']);
+Route::post('/form', [FormController::class, 'store']);
