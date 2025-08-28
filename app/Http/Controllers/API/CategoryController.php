@@ -7,6 +7,7 @@ use App\Http\Resources\CategoryResource;
 use App\Http\Resources\ProductResource;
 use App\Models\Category;
 use App\Models\Product;
+use App\Settings\SeoPageSettings;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -23,6 +24,7 @@ class CategoryController extends Controller
 
     public function tree()
     {
+        $seo = app(SeoPageSettings::class);
         $categories = Category::tree()
             ->with(['translation', 'children' => function($query) {
                 $query->with(['translation', 'children' => function($subQuery) {
@@ -31,7 +33,14 @@ class CategoryController extends Controller
             }])
             ->get();
 
-        return CategoryResource::collection($categories);
+        return [
+            'categories' => CategoryResource::collection($categories),
+            'main_title' => [
+                'ru' => $seo->catalog_title_ru,
+                'uz' => $seo->catalog_title_uz,
+                'en' => $seo->catalog_title_en,
+            ]
+        ];
     }
 
     /**

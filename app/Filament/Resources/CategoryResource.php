@@ -58,6 +58,7 @@ class CategoryResource extends Resource
                             ->required()
                             ->maxLength(255)
                             ->label(__('form.name')),
+                        Forms\Components\Textarea::make($tab->makeName('description'))
                     ])->columnSpanFull(),
 
                 SpatieMediaLibraryFileUpload::make('category_img')
