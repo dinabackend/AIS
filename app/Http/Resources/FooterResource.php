@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Models\Category;
+use App\Settings\ButtonsSettings;
 use App\Settings\FooterSettings;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -17,6 +18,7 @@ class FooterResource extends JsonResource
     public function toArray(Request $request): array
     {
         $settings = app(FooterSettings::class);
+        $buttons = app(ButtonsSettings::class);
 
         $address = urlencode($settings->address_ru ?: $settings->address_uz);
 
@@ -57,6 +59,22 @@ class FooterResource extends JsonResource
                 'uz' => $settings->text_uz,
                 'ru' => $settings->text_ru,
                 'en' => $settings->text_en,
+            ],
+            'button_form' => [
+                'text' => [
+                    'ru' => $buttons->footer_form_link_text_ru,
+                    'uz' => $buttons->footer_form_link_text_uz,
+                    'en' => $buttons->footer_form_link_text_en,
+                ],
+                'link' => $buttons->footer_form_link_link,
+            ],
+            'button_catalog' => [
+                'text' => [
+                    'ru' => $buttons-> footer_catalog_link_text_ru,
+                    'uz' => $buttons->footer_catalog_link_text_uz,
+                    'en' => $buttons->footer_catalog_link_text_en,
+                ],
+                'link' => $buttons->footer_catalog_link_link,
             ],
             'navigation' => [
                 [

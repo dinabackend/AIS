@@ -77,7 +77,7 @@ class FooterController extends Controller
                         'uz' => 'Ehtiyot qismlar',
                         'en' => 'Spare parts',
                     ],
-                    'url' => '/spare-parts',
+                    'url' => '/spares',
                 ],
                 [
                     'title' => [
@@ -85,7 +85,7 @@ class FooterController extends Controller
                         'uz' => 'Muhandislar va servis',
                         'en' => 'Engineers and service',
                     ],
-                    'url' => '/service',
+                    'url' => '/engineers-service',
                 ],
                 [
                     'title' => [
