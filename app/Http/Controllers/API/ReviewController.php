@@ -33,7 +33,7 @@ class ReviewController extends Controller
         try {
             $review = new Review();
             $review->rating = $validatedData['rating'];
-            $review->date = now()->format('Y-m-d');
+            $review->date = now()->format('Y-m-d H:i:s');
             $review->status = 0;
             $review->save();
             $translations = [];

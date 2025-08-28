@@ -17,7 +17,7 @@ class RentPageController extends Controller
     public function index()
     {
         $settings = app(RentPageSettings::class);
-        $rents = Review::query()->take(20)->get();
+        $rents = Review::query()->where('status', 1)->take(20)->get();
         $recommended_products = Product::query()->take(10)->get();
 
         $rents_data = [];
