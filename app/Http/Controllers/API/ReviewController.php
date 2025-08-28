@@ -14,7 +14,7 @@ class ReviewController extends Controller
         $validator = Validator::make($request->all(), [
             'rating' => 'required',
             'name' => 'required',
-            'text' => 'required',
+            'comment' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -37,7 +37,7 @@ class ReviewController extends Controller
             foreach (['ru', 'uz', 'en'] as $locale) {
                 $translations[$locale] = [
                     'name' => $validatedData['name'],
-                    'text' => $validatedData['text'],
+                    'text' => $validatedData['comment'],
                 ];
             }
             $review->fill($translations);
