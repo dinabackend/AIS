@@ -20,7 +20,7 @@ class FooterResource extends JsonResource
 
         $address = urlencode($settings->address_ru ?: $settings->address_uz);
 
-        $yandexUrl = "https://yandex.uz/maps/?text={$address}";
+        $yandexUrl = "https://yandex.uz/maps/?text=$address";
 
         $categories = Category::take(5)->get();
 
@@ -120,5 +120,4 @@ class FooterResource extends JsonResource
             'categories' => CategoryResource::collection($categories),
         ];
     }
-
 }

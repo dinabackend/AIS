@@ -4,6 +4,7 @@ use App\Http\Controllers\API\AboutController;
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\EventController;
 use App\Http\Controllers\API\FooterController;
+use App\Http\Controllers\API\FormController;
 use App\Http\Controllers\API\GuaranteeController;
 use App\Http\Controllers\API\HomePageController;
 use App\Http\Controllers\API\ProductController;
@@ -58,3 +59,5 @@ Route::get('/categories/tree', [CategoryController::class, 'tree']);
 Route::get('/categories/{id}/children', [CategoryController::class, 'children']);
 Route::get('/categories/{slug}', [CategoryController::class, 'show']);
 Route::get('/catalog/{category}', [CategoryController::class, 'catalog']);
+
+Route::post('/form', [FormController::class, 'index']);
