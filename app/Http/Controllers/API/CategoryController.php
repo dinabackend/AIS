@@ -34,11 +34,13 @@ class CategoryController extends Controller
             ->get();
 
         return [
-            'categories' => CategoryResource::collection($categories),
-            'main_title' => [
-                'ru' => $seo->catalog_title_ru,
-                'uz' => $seo->catalog_title_uz,
-                'en' => $seo->catalog_title_en,
+            'data' => [
+                'categories' => CategoryResource::collection($categories),
+                'main_title' => [
+                    'ru' => $seo->catalog_title_ru,
+                    'uz' => $seo->catalog_title_uz,
+                    'en' => $seo->catalog_title_en,
+                ]
             ]
         ];
     }
