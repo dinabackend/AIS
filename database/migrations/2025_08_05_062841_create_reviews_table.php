@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('rating')->nullable();
             $table->date('date')->nullable();
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
 

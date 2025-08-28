@@ -11,10 +11,12 @@ use CactusGalaxy\FilamentAstrotomic\TranslatableTab;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
 
 class ReviewsResource extends Resource
@@ -63,10 +65,11 @@ class ReviewsResource extends Resource
                     ->required()
                     ->minValue(1)
                     ->maxValue(5),
-                DateTimePicker::make('date') // <-- 'data' o'rniga 'date'
+                DateTimePicker::make('date')
                     ->label(__('form.date'))
                     ->required()
                     ->seconds(false),
+                Toggle::make('status')
             ]);
     }
 
@@ -78,6 +81,7 @@ class ReviewsResource extends Resource
                 TextColumn::make('rating')->sortable(),
                 TextColumn::make('date')->date()->sortable(),
                 TextColumn::make('text')->limit(50)->wrap(),
+                ToggleColumn::make('status')
             ])
             ->filters([
                 //

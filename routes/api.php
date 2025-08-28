@@ -9,6 +9,7 @@ use App\Http\Controllers\API\GuaranteeController;
 use App\Http\Controllers\API\HomePageController;
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\RentPageController;
+use App\Http\Controllers\API\ReviewController;
 use App\Http\Controllers\API\SEOController;
 use App\Http\Controllers\API\ServicePageController;
 use App\Http\Controllers\API\SparePartsPageController;
@@ -61,3 +62,4 @@ Route::get('/categories/{slug}', [CategoryController::class, 'show']);
 Route::get('/catalog/{category}', [CategoryController::class, 'catalog']);
 
 Route::post('/form', [FormController::class, 'store']);
+Route::post('/reviews', [ReviewController::class, 'store']);

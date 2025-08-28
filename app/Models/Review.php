@@ -13,6 +13,7 @@ class Review extends TranslatableModel
         'rating',
         'date',
         'text',
+        'status'
     ];
 
     /** @noinspection PhpUnused */
