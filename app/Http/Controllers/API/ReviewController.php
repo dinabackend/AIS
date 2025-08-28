@@ -12,10 +12,7 @@ class ReviewController extends Controller
     public function store(Request $request) {
         // Validate the review data - support both translation format and simple format
         $validator = Validator::make($request->all(), [
-            'rating' => 'required|integer|min:1|max:5',
-            'date' => 'nullable|date',
-
-            // Support both formats: simple string or translation object
+            'rating' => 'required',
             'name' => 'required',
             'text' => 'required',
         ]);
