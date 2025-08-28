@@ -26,9 +26,10 @@ class Category extends TranslatableModel implements HasMedia, Sortable
         'slug',
         'home_visibility',
         'order',
+        'description',
     ];
 
-    public array $translatedAttributes = ['name'];
+    public array $translatedAttributes = ['name', 'description'];
 
     public function translations(): HasMany
     {

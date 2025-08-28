@@ -11,7 +11,8 @@ class CategoryTranslation extends Model
 
     protected $fillable = [
         'name',
-        'locale'
+        'locale',
+        'description',
     ];
 
     public function category(): BelongsTo
