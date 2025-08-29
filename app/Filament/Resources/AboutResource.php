@@ -31,6 +31,11 @@ class AboutResource extends Resource
         return __('panel.about');
     }
 
+    public static function shouldRegisterNavigation(): bool
+    {
+        return false;
+    }
+
     protected static ?string $model = About::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-information-circle';
