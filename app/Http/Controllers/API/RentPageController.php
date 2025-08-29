@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\ProductCollection;
 use App\Models\Product;
 use App\Models\Review;
+use App\Settings\ButtonsSettings;
 use App\Settings\RentPageSettings;
 use Illuminate\Http\Request;
 
@@ -17,6 +18,7 @@ class RentPageController extends Controller
     public function index()
     {
         $settings = app(RentPageSettings::class);
+        $buttons = app(ButtonsSettings::class);
         $rents = Review::query()->where('status', 1)->take(20)->orderBy('date')->get();
         $recommended_products = Product::query()->take(10)->get();
 
@@ -39,6 +41,18 @@ class RentPageController extends Controller
                     'category_text' => $rent['category_text_en'] ?? '',
                 ],
                 'image' => $rent['img'] ? asset('storage/' . $rent['img']) : '',
+            ];
+            $item['button'] = [
+                'ru' => [
+                    'text' => $buttons->privacy_link_text_ru ?? '',
+                ],
+                'uz' => [
+                    'text' => $buttons->privacy_link_text_uz ?? '',
+                ],
+                'en' => [
+                    'text' => $buttons->privacy_link_text_en ?? '',
+                ],
+                'link' => $buttons->privacy_link_link ?? '',
             ];
             $rents_data[] = $item;
         }
