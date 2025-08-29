@@ -31,6 +31,22 @@ class SeoPageSettings extends Settings
     public string $catalog_title_en;
     public string $catalog_description_en;
 
+    public string $category_title_uz;
+    public string $category_description_uz;
+    public ?string $category_img;
+    public string $category_title_ru;
+    public string $category_description_ru;
+    public string $category_title_en;
+    public string $category_description_en;
+
+    public string $product_title_uz;
+    public string $product_description_uz;
+    public ?string $product_img;
+    public string $product_title_ru;
+    public string $product_description_ru;
+    public string $product_title_en;
+    public string $product_description_en;
+
     public string $collection_title_uz;
     public string $collection_description_uz;
     public ?string $collection_img;

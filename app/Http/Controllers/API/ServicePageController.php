@@ -52,7 +52,7 @@ class ServicePageController extends Controller
                 'banner' => $settings->banner ? asset('storage/' . $settings->banner) : '',
             ],
             'repair' => $repair,
-            'our service' => [
+            'our_service' => [
                 'title' => [
                     'ru' => $settings->service_title_ru ?? '',
                     'uz' => $settings->service_title_uz ?? '',
