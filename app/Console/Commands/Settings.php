@@ -26,7 +26,7 @@ class Settings extends Command
      */
     public function handle()
     {
-        $settings = ['product'];
+        $settings = ['category'];
         foreach ($settings as $setting) {
             foreach (['ru', 'uz', 'en'] as $lang) {
                 $add = new Setting();

@@ -95,6 +95,11 @@ class CategoryController extends Controller
             ->get();
 
         return [
+            'main_title' => [
+                'ru' => 'Страница с товарами',
+                'uz' => 'Mahsulotlar sahifasi',
+                'en' => 'Products page',
+            ],
             'category' => new CategoryResource($categoryModel),
             'products' => ProductResource::collection($products),
             'total_products' => $products->count()
