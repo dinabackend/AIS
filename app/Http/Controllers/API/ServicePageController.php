@@ -30,7 +30,7 @@ class ServicePageController extends Controller
                 $card[$i]['title'][$lang] = $item["card_title_$lang"];
                 $card[$i]['description'][$lang] = $item["card_text_$lang"];
             }
-            $card[$i]['image'] = asset("img/advantages$i.svg");
+            $card[$i]['image'] = asset("img/serivice$i.svg");
         }
 
         $data = [

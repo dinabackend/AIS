@@ -39,24 +39,22 @@ class HomePageController extends Controller
         }
 
         return response()->json(['data' => [
-            'contact_page' => [
-                'main_title' => [
-                    'uz' => $settings->contact_main_title_uz,
-                    'ru' => $settings->contact_main_title_ru,
-                    'en' => $settings->contact_main_title_en,
-                ],
-                'title' => [
-                    'uz' => $settings->contact_title_uz,
-                    'ru' => $settings->contact_title_ru,
-                    'en' => $settings->contact_title_en,
-                ],
-                'subtitle' => [
-                    'uz' => $settings->contact_subtitle_uz,
-                    'ru' => $settings->contact_subtitle_ru,
-                    'en' => $settings->contact_subtitle_en,
-                ],
-                'text' => $text,
+            'main_title' => [
+                'uz' => $settings->contact_main_title_uz,
+                'ru' => $settings->contact_main_title_ru,
+                'en' => $settings->contact_main_title_en,
             ],
+            'title' => [
+                'uz' => $settings->contact_title_uz,
+                'ru' => $settings->contact_title_ru,
+                'en' => $settings->contact_title_en,
+            ],
+            'subtitle' => [
+                'uz' => $settings->contact_subtitle_uz,
+                'ru' => $settings->contact_subtitle_ru,
+                'en' => $settings->contact_subtitle_en,
+            ],
+            'text' => $text,
         ]]);
     }
 }
