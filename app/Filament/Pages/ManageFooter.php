@@ -77,15 +77,6 @@ class ManageFooter extends SettingsPage
 
                 Section::make('Contact Page')->schema([
                     Tabs::make()->tabs([
-                        Tabs\Tab::make("uz")
-                            ->schema([
-                                TextInput::make('contact_main_title_uz')->label('Main title uz')->required(),
-                                TextInput::make('contact_title_uz')->label('Title uz')->required(),
-                                Textarea::make('contact_subtitle_uz')->label('Subtitle uz')->required(),
-                                TextInput::make('contact_text1_uz')->label('Text 1 uz')->required(),
-                                TextInput::make('contact_text2_uz')->label('Text 2 uz')->required(),
-                                TextInput::make('contact_text3_uz')->label('Text 3 uz')->required(),
-                            ]),
                         Tabs\Tab::make("ru")
                             ->schema([
                                 TextInput::make('contact_main_title_ru')->label('Main title ru')->required(),
@@ -94,6 +85,15 @@ class ManageFooter extends SettingsPage
                                 TextInput::make('contact_text1_ru')->label('Text 1 ru')->required(),
                                 TextInput::make('contact_text2_ru')->label('Text 2 ru')->required(),
                                 TextInput::make('contact_text3_ru')->label('Text 3 ru')->required(),
+                            ]),
+                        Tabs\Tab::make("uz")
+                            ->schema([
+                                TextInput::make('contact_main_title_uz')->label('Main title uz')->required(),
+                                TextInput::make('contact_title_uz')->label('Title uz')->required(),
+                                Textarea::make('contact_subtitle_uz')->label('Subtitle uz')->required(),
+                                TextInput::make('contact_text1_uz')->label('Text 1 uz')->required(),
+                                TextInput::make('contact_text2_uz')->label('Text 2 uz')->required(),
+                                TextInput::make('contact_text3_uz')->label('Text 3 uz')->required(),
                             ]),
                         Tabs\Tab::make("en")
                             ->schema([
