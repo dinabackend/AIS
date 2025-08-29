@@ -28,7 +28,7 @@ class VariantResource extends JsonResource
             'img' => $this->getFirstMediaUrl('product_img'),
             'images' => $this->getMedia('product_image')->pluck('original_url'),
             'video' => $this->getFirstMediaUrl('product_video'),
-            'slug' => $this->slug,
+            //'slug' => $this->slug,
             'home_visibility' => $this->home_visibility,
             'characteristics' => CharacteristicResource::collection($this->characteristics),
             'seo_title' => $this->translations->mapWithKeys(function ($item) {

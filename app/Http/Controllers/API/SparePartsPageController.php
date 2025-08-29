@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProductCollection;
+use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use App\Settings\SparePartsPageSettings;
 use Illuminate\Http\Request;
@@ -18,22 +19,6 @@ class SparePartsPageController extends Controller
         $settings = app(SparePartsPageSettings::class);
         $recommended_products = Product::query()->take(10)->get();
         $spare_parts = Product::query()->where('type', 'spare_part')->get();
-
-        $sp = [];
-        foreach ($spare_parts as $part) {
-            $sp[] = [
-                'id' => $part->id,
-                'title' => $part->translations->mapWithKeys(function ($item) {
-                    return [$item->locale => $item->name];
-                }),
-                'description' => $part->translations->mapWithKeys(function ($item) {
-                    return [$item->locale => $item->description];
-                }),
-                'image' => $part->getFirstMediaUrl('product_image'),
-                'price' => $part->price,
-                'slug' => $part->slug,
-            ];
-        }
 
         $pm_series = [];
         foreach (['ru', 'uz', 'en'] as $i => $lang) {
@@ -65,7 +50,7 @@ class SparePartsPageController extends Controller
                     'en' => $settings->text_en ?? '',
                 ],
             ],
-            'spare_parts' => $sp,
+            'spare_parts' => ProductResource::collection($spare_parts),
             'pm_series' => [
                 'title' => [
                     'ru' => $settings->PM_Series_ru ?? '',
