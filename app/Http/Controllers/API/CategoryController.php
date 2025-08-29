@@ -35,12 +35,12 @@ class CategoryController extends Controller
 
         return [
             'data' => [
-                'categories' => CategoryResource::collection($categories),
                 'main_title' => [
                     'ru' => $seo->catalog_title_ru,
                     'uz' => $seo->catalog_title_uz,
                     'en' => $seo->catalog_title_en,
-                ]
+                ],
+                'categories' => CategoryResource::collection($categories),
             ]
         ];
     }
@@ -80,6 +80,7 @@ class CategoryController extends Controller
      */
     public function catalog(string $category)
     {
+        $seo = app(SeoPageSettings::class);
         $categoryModel = Category::with(['translation', 'parent.translation', 'children.translation'])
             ->where('slug', $category)
             ->firstOrFail();
@@ -96,9 +97,9 @@ class CategoryController extends Controller
 
         return [
             'main_title' => [
-                'ru' => 'Страница с товарами',
-                'uz' => 'Mahsulotlar sahifasi',
-                'en' => 'Products page',
+                'ru' => $seo->category_title_ru,
+                'uz' => $seo->category_title_uz,
+                'en' => $seo->category_title_en,
             ],
             'category' => new CategoryResource($categoryModel),
             'products' => ProductResource::collection($products),
