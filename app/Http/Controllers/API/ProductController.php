@@ -90,7 +90,7 @@ class ProductController extends Controller
         return [
             'data' => [
                 'products' => new ProductResource($product),
-                'recommended_products' => new ProductResource($recomended)
+                'recommended_products' => ProductResource::collection($recomended)
             ]
         ];
     }
