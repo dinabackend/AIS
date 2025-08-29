@@ -26,6 +26,7 @@ class HomeResource extends JsonResource
         $replace = ['[' => '<span>', ']' => '</span>'];
         $banners = [];
         foreach ($settings->banner as $banner) {
+            dd($banner);
             $url = Arr::get($banner, 'Banner', '');
             $infos = [];
             foreach (['ru', 'uz', 'en'] as $lang) {
@@ -35,7 +36,7 @@ class HomeResource extends JsonResource
             }
             $banners[] = [
                 'url' => $url !== '' ? asset("storage/$url") : '',
-                'type' => preg_match('/(.jpg|.png|.webp)/', $url) ? 'image' : 'video',
+                'type' => preg_match('/(.jpg|.png|.webp)/', $url) ? 'video' : 'image',
                 'title' => [
                     'en' => strtr(Arr::get($banner, 'title_en', ""), $replace),
                     'uz' => strtr(Arr::get($banner, 'title_uz', ""), $replace),
