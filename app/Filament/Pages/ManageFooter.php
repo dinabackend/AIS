@@ -36,14 +36,6 @@ class ManageFooter extends SettingsPage
             ->schema([
                 // Footer
                 Tabs::make()->tabs([
-                    Tabs\Tab::make("O'zbekcha")
-                        ->schema([
-                            TextInput::make('title_uz')->label('Title uz')->required()->columnSpanFull(),
-                            Textarea::make('text_uz')->label('Text uz')->required()->columnSpanFull(),
-                            TextInput::make('address_uz')->label('Manzil')->required(),
-                            TextInput::make('left_text_uz')->label('Left text uz')->required()->columnSpanFull(),
-                            TextInput::make('right_text_uz')->label('Right text uz')->required()->columnSpanFull(),
-                        ]),
                     Tabs\Tab::make("Русский")
                         ->schema([
                             TextInput::make('title_ru')->label('Title ru')->required()->columnSpanFull(),
@@ -51,6 +43,14 @@ class ManageFooter extends SettingsPage
                             TextInput::make('address_ru')->label('Адрес')->required(),
                             TextInput::make('left_text_ru')->label('Left text ru')->required()->columnSpanFull(),
                             TextInput::make('right_text_ru')->label('Right text ru')->required()->columnSpanFull(),
+                        ]),
+                    Tabs\Tab::make("O'zbekcha")
+                        ->schema([
+                            TextInput::make('title_uz')->label('Title uz')->required()->columnSpanFull(),
+                            Textarea::make('text_uz')->label('Text uz')->required()->columnSpanFull(),
+                            TextInput::make('address_uz')->label('Manzil')->required(),
+                            TextInput::make('left_text_uz')->label('Left text uz')->required()->columnSpanFull(),
+                            TextInput::make('right_text_uz')->label('Right text uz')->required()->columnSpanFull(),
                         ]),
                     Tabs\Tab::make("English")
                         ->schema([
