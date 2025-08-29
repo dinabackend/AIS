@@ -49,7 +49,7 @@ Route::get('/products/{slug}/sheet/{lang}', [ProductController::class, 'sheet'])
 //Route::get('/products/filters', [ProductController::class, 'filter']);
 
 Route::get('/variants', [VariantController::class, 'index']);
-Route::get('/variants/{slug}', [VariantController::class, 'show']);
+Route::get('/variants/{id}', [VariantController::class, 'show']);
 
 Route::get('/events', [EventController::class, 'index']); // ✅
 Route::get('/events/{id}', [EventController::class, 'show']); // ✅
