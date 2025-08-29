@@ -101,6 +101,11 @@ class CategoryController extends Controller
                 'uz' => $seo->category_title_uz,
                 'en' => $seo->category_title_en,
             ],
+            'main_description' => [
+                'ru' => $seo->category_description_ru,
+                'uz' => $seo->category_description_uz,
+                'en' => $seo->category_description_en,
+            ],
             'category' => new CategoryResource($categoryModel),
             'products' => ProductResource::collection($products),
             'total_products' => $products->count()
