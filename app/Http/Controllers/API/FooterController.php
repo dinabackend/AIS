@@ -98,13 +98,7 @@ class FooterController extends Controller
             ]
         ];
 
-        $categories = Category::tree()
-            ->with(['translation', 'children' => function($query) {
-                $query->with(['translation', 'children' => function($subQuery) {
-                    $subQuery->with('translation');
-                }]);
-            }])
-            ->get();
+        $categories = Category::tree()->get();
 
         return response()->json([
             'data' => [
