@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Settings\ButtonsSettings;
 use App\Settings\GuaranteePageSettings;
 use Illuminate\Http\Request;
 
@@ -14,6 +15,10 @@ class GuaranteeController extends Controller
     public function index()
     {
         $guarantees = app(GuaranteePageSettings::class);
+        $buttons = app(ButtonsSettings::class);
+
+
+        $buttons = app(ButtonsSettings::class);
 
         $data = [];
         foreach (['ru', 'uz', 'en'] as $lang) {
@@ -27,21 +32,27 @@ class GuaranteeController extends Controller
                         'text' => $item['text'] ?? '',
                     ];
                 })->toArray();
+
             $data['image'] = $guarantees->banner ? asset('storage/' . $guarantees->banner) : '';
+
             $data['questions']['title'][$lang] = $guarantees->{'question_' . $lang} ?? '';
             $data['questions']['list'][$lang] = collect($guarantees->{'question_list_' . $lang} ?? [])
                 ->map(function ($item) {
                     return $item['answer'] ?? '';
                 })->toArray();
+
             $data['defect']['title'][$lang] = $guarantees->{'defect_title_' . $lang} ?? '';
             $data['defect']['list'][$lang] = collect($guarantees->{'defect_list_' . $lang} ?? [])
                 ->map(function ($item) {
                     return $item['text'] ?? '';
                 })->toArray();
+
             $data['consultation']['title'][$lang] = $guarantees->{'query_' . $lang} ?? '';
             $data['consultation']['subtitle'][$lang] = $guarantees->{'tell_' . $lang} ?? '';
-        }
 
+            $data['consultation']['button']['text'][$lang] = $buttons->{'contacts_link_text_' . $lang} ?? '';
+        }
+        $data['consultation']['button']['link'] = $buttons->contacts_link_link ?? '';
 
         return response()->json([
             'data' => $data
