@@ -4,12 +4,15 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Service;
+use App\Settings\ButtonsSettings;
 use App\Settings\ServiceSettings;
 
 class ServicePageController extends Controller
 {
     public function index()
     {
+        $buttons = app(ButtonsSettings::class);
+
         $settings = app(ServiceSettings::class);
         $services = Service::query()->take(10)->get();
         $repair = [];
@@ -85,6 +88,14 @@ class ServicePageController extends Controller
                     'uz' => $settings->subtitle2_uz ?? '',
                     'en' => $settings->subtitle2_en ?? '',
                 ],
+                'button' => [
+                    'text' => [
+                        'ru' => $buttons->nav_form_text_ru,
+                        'uz' => $buttons->nav_form_text_uz,
+                        'en' => $buttons->nav_form_text_en,
+                    ],
+                    'link' => $buttons->nav_form_link,
+                ]
             ],
             'advantages' => $card
         ];
