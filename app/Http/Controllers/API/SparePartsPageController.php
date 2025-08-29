@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\ProductCollection;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
+use App\Settings\ButtonsSettings;
 use App\Settings\SparePartsPageSettings;
 use Illuminate\Http\Request;
 
@@ -18,6 +19,8 @@ class SparePartsPageController extends Controller
     {
         $settings = app(SparePartsPageSettings::class);
         $recommended_products = Product::query()->take(10)->get();
+        $buttons = app(ButtonsSettings::class);
+
         $spare_parts = Product::query()->where('type', 'spare_part')->get();
 
         $pm_series = [];
@@ -75,6 +78,14 @@ class SparePartsPageController extends Controller
                     'uz' => $settings->answer_uz ?? '',
                     'en' => $settings->answer_en ?? '',
                 ],
+                'button' => [
+                    'text' => [
+                        'ru' => $buttons->news_link_text_ru,
+                        'uz' => $buttons->news_link_text_uz,
+                        'en' => $buttons->news_link_text_en,
+                    ],
+                    'link' => $buttons->news_link_link,
+                ],
             ],
             'recommended_products' => [
                 'title' => [
@@ -95,19 +106,19 @@ class SparePartsPageController extends Controller
                     ],
                 ]),
             ],
-            'product_card' => [
-                'title' => [
-                    'ru' => $settings->card_title_ru ?? '',
-                    'uz' => $settings->card_title_uz ?? '',
-                    'en' => $settings->card_title_en ?? '',
-                ],
-                'text' => [
-                    'ru' => $settings->card_text_ru ?? '',
-                    'uz' => $settings->card_text_uz ?? '',
-                    'en' => $settings->card_text_en ?? '',
-                ],
-
-            ],
+//            'product_card' => [
+//                'title' => [
+//                    'ru' => $settings->card_title_ru ?? '',
+//                    'uz' => $settings->card_title_uz ?? '',
+//                    'en' => $settings->card_title_en ?? '',
+//                ],
+//                'text' => [
+//                    'ru' => $settings->card_text_ru ?? '',
+//                    'uz' => $settings->card_text_uz ?? '',
+//                    'en' => $settings->card_text_en ?? '',
+//                ],
+//
+//            ],
         ];
 
         return response()->json([

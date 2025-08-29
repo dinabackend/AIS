@@ -45,6 +45,7 @@ class AboutPage extends SettingsPage
             $info[] = Tabs\Tab::make($lang)->schema([
                 TextInput::make("about_$lang")->label(__('form.title', locale: $lang))->required()->maxLength(255),
                 Textarea::make("text_$lang")->label(__('form.text', locale: $lang))->required()->maxLength(255),
+                FileUpload::make("banner_$lang")->disk('public')->directory('img')->required()
             ]);
         }
 
@@ -89,7 +90,6 @@ class AboutPage extends SettingsPage
 
             Section::make(__('form.about'))->schema([
                 Tabs::make()->schema($info)->columnSpanFull(),
-                FileUpload::make('banner')->disk('public')->directory('img')->required()
             ])->collapsed(),
 
             Section::make(__('form.question'))->schema([

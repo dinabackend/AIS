@@ -6,12 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\AboutResource;
 use App\Models\About;
 use App\Settings\AboutSettings;
+use App\Settings\ButtonsSettings;
 
 class AboutController extends Controller
 {
     public function index()
     {
         $about = app(AboutSettings::class);
+        $buttons = app(ButtonsSettings::class);
+
         $informations = [];
         foreach ($about->information ?? [] as $information) {
             $item = [
@@ -37,7 +40,9 @@ class AboutController extends Controller
             $data['main_title'][$lang] = $about->{'main_title_' . $lang} ?? '';
             $data['about']['title'][$lang] = $about->{'about_' . $lang} ?? '';
             $data['about']['text'][$lang] = $about->{'text_' . $lang} ?? '';
-            $data['about']['image'][$lang] = $about->banner ? asset('storage/' . $about->banner) : '';
+            $data['about']['image'][$lang] = $about->{'banner_' . $lang} ? asset('storage/' . $about->{"banner_$lang"}) : '';
+            $data['about']['button']['text'][$lang] = $buttons->{'info_link_text_' . $lang} ?? '';
+            $data['about']['button']['link'] = $buttons->{'info_link_link'} ?? '';
             $data['information']['question'][$lang] = $about->{'question_' . $lang} ?? '';
         }
         $data['information']['items'] = $informations;
@@ -47,6 +52,8 @@ class AboutController extends Controller
             $data['certificate']['text1'][$lang] = $about->{'text1_' . $lang} ?? '';
             $data['certificate']['name2'][$lang] = $about->{'We_offer_' . $lang} ?? '';
             $data['certificate']['text2'][$lang] = $about->{'text2_' . $lang} ?? '';
+            $data['certificate']['button']['text'][$lang] = $buttons->{'collection_link_text_' . $lang} ?? '';
+            $data['certificate']['button']['link'] = $buttons->collection_link_link ?? '';
         }
         $data['certificate']['img'] = $about->img ? asset('storage/' . $about->img) : '';
         foreach (['ru', 'uz', 'en'] as $lang) {
