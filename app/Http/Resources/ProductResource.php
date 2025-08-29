@@ -31,7 +31,7 @@ class ProductResource extends JsonResource
                     })
                 ];
             }),
-            'img' => $this->getFirstMediaUrl('product_img'),
+            'img' => $this->getFirstMediaUrl('product_image'),
             'images' => $this->getMedia('product_image')->pluck('original_url'),
             'amount' => $this->amount,
             'slug' => $this->slug,
