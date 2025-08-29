@@ -14,6 +14,7 @@ return [
     'SparePartsPage' => 'Страница запчастей',
     'seo_settings' => 'Настройки SEO',
     'footer_settings' => 'Настройки Footer',
+    'contacts' => 'Контакты',
     'types' => 'Типы',
     'boxes' => 'Коробки',
     'policy' => 'Политика конфиденциальности',

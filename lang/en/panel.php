@@ -14,6 +14,7 @@ return [
     'SparePartsPage' => 'Spare Parts Page',
     'seo_settings' => 'SEO Settings',
     'footer_settings' => 'Footer Settings',
+    'contacts' => 'Contacts',
     'types' => 'Types',
     'boxes' => 'Boxes',
     'policy' => 'Privacy policy',

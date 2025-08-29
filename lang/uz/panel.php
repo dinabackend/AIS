@@ -13,6 +13,7 @@ return [
     'SparePartsPage' => 'Ehtiyot qismlar sahifasi',
     'seo_settings' => 'SEOni sozlash',
     'footer_settings' => 'Footerni sozlash',
+    'contacts' => 'Aloqalar',
     'types' => 'Turlar',
     'policy' => 'Maxfiylik siyosati',
     'Pages' => 'Sahifalar',
