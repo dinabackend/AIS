@@ -124,19 +124,12 @@ class ProductController extends Controller
     {
         $product = Product::query()->with('categories')->where('slug', $slug)->firstOrFail();
 
+        $recomended = Product::query()->with('categories')->where('slug','!=', $slug)->inRandomOrder()->limit(6)->get();
+
         return [
             'data' => [
                 'products' => new ProductResource($product),
-                'recommended_products' => new ProductResource(
-                    Product::query()
-                        ->whereHas('categories', function ($query) use ($product) {
-                            $query->whereIn('categories.id', $product->categories->pluck('id'));
-                        })
-                        ->where('id', '!=', $product->id)
-                        ->inRandomOrder()
-                        ->limit(10)
-                        ->get()
-                )
+                'recommended_products' => $recomended
             ]
         ];
     }
