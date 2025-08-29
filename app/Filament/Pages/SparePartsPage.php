@@ -105,9 +105,9 @@ class SparePartsPage extends SettingsPage
                 Tabs::make()->schema($recommended_products)->columnSpanFull(),
             ])->collapsed(),
 
-            Section::make(__('form.product_card'))->schema([
+            /*Section::make(__('form.product_card'))->schema([
                 Tabs::make()->schema($product_card)->columnSpanFull(),
-            ])->collapsed(),
+            ])->collapsed(),*/
         ]);
     }
 }

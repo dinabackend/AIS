@@ -31,7 +31,7 @@ class SEO extends SettingsPage
 
     public function form(Form $form): Form
     {
-        $pages = ['home', 'about', 'catalog', 'collections', 'events', 'contacts', 'privacy'];
+        $pages = ['home', 'about', 'catalog', 'product', 'events', 'contacts', 'privacy'];
         $schema = [];
         foreach ($pages as $page) {
             $schema[] = Tabs\Tab::make(__("form.$page"))->schema([
