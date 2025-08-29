@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\HomeResource;
+use App\Settings\ButtonsSettings;
 use App\Settings\FooterSettings;
 use App\Settings\PolicySettings;
 use Illuminate\Http\JsonResponse;
@@ -37,6 +38,8 @@ class HomePageController extends Controller
             }
             $text[$i - 1]['icon'] = asset("img/contact$i.svg");
         }
+        $buttons = app(ButtonsSettings::class);
+
 
         return response()->json(['data' => [
             'main_title' => [
@@ -55,6 +58,14 @@ class HomePageController extends Controller
                 'en' => $settings->contact_subtitle_en,
             ],
             'text' => $text,
+            'button' => [
+                'text' => [
+                    'ru' => $buttons->info_contact_text_ru,
+                    'uz' => $buttons->info_contact_text_uz,
+                    'en' => $buttons->info_contact_text_en,
+                ],
+                'link' => $buttons->info_contact_link,
+            ],
         ]]);
     }
 }
