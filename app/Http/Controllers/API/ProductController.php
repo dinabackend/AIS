@@ -127,7 +127,7 @@ class ProductController extends Controller
         return [
             'data' => [
                 'products' => new ProductResource($product),
-                'recommended_products' => ProductResource::make(
+                'recommended_products' => new ProductResource(
                     Product::query()
                         ->whereHas('categories', function ($query) use ($product) {
                             $query->whereIn('categories.id', $product->categories->pluck('id'));
