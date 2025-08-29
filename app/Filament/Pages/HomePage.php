@@ -92,9 +92,9 @@ class HomePage extends SettingsPage
 
 
         return $form->schema([
-            Section::make(__('form.banner'))->schema([
+            Section::make('banner')->schema([
                 Repeater::make('banner')->schema([
-                    FileUpload::make(__('form.banner'))->disk('public')->directory('banner')->required(),
+                    FileUpload::make('banner')->disk('public')->directory('banner')->required(),
                     Tabs::make()->schema($settings_array)->columnSpanFull(),
                 ])->label(__('form.banner'))->columns(),
             ])->collapsed(),

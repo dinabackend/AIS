@@ -26,8 +26,7 @@ class HomeResource extends JsonResource
         $replace = ['[' => '<span>', ']' => '</span>'];
         $banners = [];
         foreach ($settings->banner as $banner) {
-            dd($banner);
-            $url = Arr::get($banner, 'Banner', '');
+            $url = Arr::get($banner, 'banner', '');
             $infos = [];
             foreach (['ru', 'uz', 'en'] as $lang) {
                 foreach (Arr::get($banner, "info_$lang") as $i => $info) {
