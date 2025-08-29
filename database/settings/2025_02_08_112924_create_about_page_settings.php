@@ -18,7 +18,9 @@ return new class extends SettingsMigration
         $this->migrator->add('about.text_ru', "test");
         $this->migrator->add('about.text_uz', "test");
         $this->migrator->add('about.text_en', "test");
-        $this->migrator->add('about.banner', "");
+        $this->migrator->add('about.banner_ru', "");
+        $this->migrator->add('about.banner_uz', "");
+        $this->migrator->add('about.banner_en', "");
 
         // Question
         $this->migrator->add('about.question_ru', "test");

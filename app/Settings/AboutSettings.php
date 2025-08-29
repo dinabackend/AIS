@@ -15,7 +15,9 @@ class AboutSettings extends Settings
     public string $text_ru;
     public string $text_uz;
     public string $text_en;
-    public string $banner;
+    public string $banner_ru;
+    public string $banner_uz;
+    public string $banner_en;
     public string $question_ru;
     public string $question_uz;
     public string $question_en;
