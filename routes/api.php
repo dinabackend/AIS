@@ -30,7 +30,8 @@ Route::get('/test', static function () {
 
     return response()->json(['message' => 'API is working']);
 });
-
+Route::post('/form', [FormController::class, 'store']);
+Route::post('/reviews', [ReviewController::class, 'store']);
 // AIS API
 Route::get('/seo', [SEOController::class, 'index']);
 Route::get('/policy', [HomePageController::class, 'policy']);
@@ -61,6 +62,3 @@ Route::get('/categories/tree', [CategoryController::class, 'tree']);
 Route::get('/categories/{id}/children', [CategoryController::class, 'children']);
 Route::get('/categories/{slug}', [CategoryController::class, 'show']);
 Route::get('/catalog/{category}', [CategoryController::class, 'catalog']);
-
-Route::post('/form', [FormController::class, 'store']);
-Route::post('/reviews', [ReviewController::class, 'store']);
