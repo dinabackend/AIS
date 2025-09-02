@@ -21,7 +21,7 @@ class EventController extends Controller
             ->withQueryString();
 
         $response = [];
-        foreach ($events->where('top' , true) as $event) {
+        foreach ($events->where('top' , false) as $event) {
             $response[] = [
                 'id' => $event->id,
                 'title' => $event->translations->mapWithKeys(function ($item) {
@@ -37,7 +37,7 @@ class EventController extends Controller
         }
 
         $top = [];
-        foreach ($events->where('top' , false) as $event) {
+        foreach ($events->where('top' , true) as $event) {
             $top[] = [
                 'id' => $event->id,
                 'title' => $event->translations->mapWithKeys(function ($item) {
