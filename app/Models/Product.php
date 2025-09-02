@@ -89,8 +89,7 @@ class Product extends TranslatableModel implements HasMedia, Sortable
     protected static function boot(): void
     {
         parent::boot();
-        static::creating(function ($product) {
-            $product->sku = 'PRD-' . strtoupper(substr($product->name, 0, 3) . '-' . random_int(1000, 9999));
+        static::creating(static function ($product) {
             $product->slug = Str::slug($product->translate('uz')->name . '-' . Str::random(5));
         });
     }

@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
 
             $table->string('slug')->nullable();
-            $table->string('sku')->unique()->nullable();
             $table->string('type')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->tinyInteger('home_visibility')->default(0)->nullable();
