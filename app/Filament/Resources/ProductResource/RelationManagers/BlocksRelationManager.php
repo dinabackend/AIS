@@ -33,7 +33,7 @@ class BlocksRelationManager extends RelationManager
                     ->localeTabSchema(fn(TranslatableTab $tab) => [
                         TextInput::make($tab->makeName('name'))
                             ->required($tab->makeName('name') === 'uz.name')
-                            ->label(__('form.name')),
+                            ->label(__('form.name'))->required(),
                         Repeater::make($tab->makeName('options'))->schema([
                             TextInput::make('text')
                                 ->label(__('form.item'))
