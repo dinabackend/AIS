@@ -26,25 +26,25 @@ class Settings extends Command
      */
     public function handle()
     {
-        $settings = ['category'];
+        $settings = ['telegram'];
         foreach ($settings as $setting) {
             foreach (['ru', 'uz', 'en'] as $lang) {
                 $add = new Setting();
-                $add->group = 'seo';
-                $add->name = "{$setting}_title_$lang";
+                $add->group = 'button';
+                $add->name = "{$setting}_text_$lang";
                 $add->locked = false;
                 $add->payload = json_encode("");
                 $add->save();
-                $add = new Setting();
+                /*$add = new Setting();
                 $add->group = 'seo';
                 $add->name = "{$setting}_description_$lang";
                 $add->locked = false;
                 $add->payload = json_encode("");
-                $add->save();
+                $add->save();*/
             }
             $add = new Setting();
-            $add->group = 'seo';
-            $add->name = "{$setting}_img";
+            $add->group = 'button';
+            $add->name = "{$setting}_link";
             $add->locked = false;
             $add->payload = json_encode("");
             $add->save();

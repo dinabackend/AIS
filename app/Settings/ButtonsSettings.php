@@ -38,6 +38,11 @@ class ButtonsSettings extends Settings
     public string $news_link_text_uz;
     public string $news_link_text_en;
     public string $news_link_link;
+
+    public string $telegram_text_ru;
+    public string $telegram_text_uz;
+    public string $telegram_text_en;
+    public string $telegram_link;
     public string $contacts_link_text_ru;
     public string $contacts_link_text_uz;
     public string $contacts_link_text_en;
