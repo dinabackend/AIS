@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\EventCollection;
 use App\Http\Resources\EventResource;
 use App\Models\Event;
+use App\Settings\HomePageSettings;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -66,6 +67,7 @@ class EventController extends Controller
     }
 
     public function show($id) {
+        $settings = app(HomePageSettings::class);
 
         $event = Event::query()->findOrFail($id);
         $read_also = Event::query()->where('id', '!=', $id)->where('status', true)
@@ -73,7 +75,19 @@ class EventController extends Controller
 
         return [
             'data' => new EventResource($event),
-            'read_also' => new EventCollection($read_also)
+            'event' => [
+                'title' => [
+                    'ru' => $settings->{'event_title_ru'} ?? '',
+                    'uz' => $settings->{'event_title_uz'} ?? '',
+                    'en' => $settings->{'event_title_en'} ?? '',
+                ],
+                'subtitle' => [
+                    'ru' => 'Новости',
+                    'uz' => 'Yangiliklar',
+                    'en' => 'News',
+                ],
+            ],
+            'read_also' => new EventCollection($read_also),
         ];
     }
 }
