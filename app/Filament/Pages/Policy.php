@@ -28,7 +28,10 @@ class Policy extends SettingsPage
         return __('panel.policy');
     }
 
-    protected static ?string $navigationGroup = 'Settings';
+    public static function getNavigationGroup(): ?string
+    {
+        return __('panel.settings');
+    }
     protected static ?string $navigationIcon = 'heroicon-o-shield-exclamation';
 
     protected static string $settings = PolicySettings::class;

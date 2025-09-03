@@ -28,8 +28,10 @@ class ContactsPage extends SettingsPage
 
     protected static string $settings = FooterSettings::class;
 
-    protected static ?string $navigationGroup = 'Settings';
-
+    public static function getNavigationGroup(): ?string
+    {
+        return __('panel.settings');
+    }
     public function form(Form $form): Form
     {
         return $form

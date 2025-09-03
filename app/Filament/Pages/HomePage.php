@@ -26,7 +26,10 @@ class HomePage extends SettingsPage
         return __('panel.home_page_settings');
     }
 
-    protected static ?string $navigationGroup = 'Settings';
+    public static function getNavigationGroup(): ?string
+    {
+        return __('panel.settings');
+    }
     protected static ?string $navigationIcon = 'heroicon-o-home-modern';
 
     protected static string $settings = HomePageSettings::class;

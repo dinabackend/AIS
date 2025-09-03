@@ -26,8 +26,11 @@ class AboutPage extends SettingsPage
         return __('panel.about_page_settings');
     }
 
-    protected static ?string $navigationGroup = 'Settings';
     protected static ?string $navigationIcon = 'heroicon-o-information-circle';
+    public static function getNavigationGroup(): ?string
+    {
+        return __('panel.settings');
+    }
 
     protected static string $settings = AboutSettings::class;
 

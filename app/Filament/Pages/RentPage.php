@@ -26,7 +26,10 @@ class RentPage extends SettingsPage
         return __('panel.rent_page_settings');
     }
 
-    protected static ?string $navigationGroup = 'Settings';
+    public static function getNavigationGroup(): ?string
+    {
+        return __('panel.settings');
+    }
     protected static ?string $navigationIcon = 'heroicon-o-building-office-2';
 
     protected static string $settings = RentPageSettings::class;

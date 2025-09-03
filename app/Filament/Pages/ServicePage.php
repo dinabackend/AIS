@@ -27,7 +27,10 @@ class ServicePage extends SettingsPage
         return __('panel.service_page_settings');
     }
 
-    protected static ?string $navigationGroup = 'Settings';
+    public static function getNavigationGroup(): ?string
+    {
+        return __('panel.settings');
+    }
     protected static ?string $navigationIcon = 'heroicon-o-wrench';
 
     protected static string $settings = ServiceSettings::class;

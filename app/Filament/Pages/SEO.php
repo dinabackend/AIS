@@ -24,7 +24,10 @@ class SEO extends SettingsPage
         return __('panel.seo_settings');
     }
 
-    protected static ?string $navigationGroup = 'Settings';
+    public static function getNavigationGroup(): ?string
+    {
+        return __('panel.settings');
+    }
     protected static ?string $navigationIcon = 'heroicon-o-presentation-chart-bar';
 
     protected static string $settings = SeoPageSettings::class;

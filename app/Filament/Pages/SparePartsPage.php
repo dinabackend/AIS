@@ -26,7 +26,10 @@ class SparePartsPage extends SettingsPage
         return __('panel.SparePartsPage');
     }
 
-    protected static ?string $navigationGroup = 'Settings';
+    public static function getNavigationGroup(): ?string
+    {
+        return __('panel.settings');
+    }
     protected static ?string $navigationIcon = 'heroicon-o-cog';
 
     protected static string $settings = SparePartsPageSettings::class;

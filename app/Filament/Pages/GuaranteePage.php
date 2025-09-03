@@ -25,7 +25,10 @@ class GuaranteePage extends SettingsPage
         return __('panel.guarantee_page_settings');
     }
 
-    protected static ?string $navigationGroup = 'Settings';
+    public static function getNavigationGroup(): ?string
+    {
+        return __('panel.settings');
+    }
     protected static ?string $navigationIcon = 'heroicon-o-shield-check';
 
     protected static string $settings = GuaranteePageSettings::class;

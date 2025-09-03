@@ -24,7 +24,10 @@ class ButtonsSettings extends SettingsPage
         return __('panel.buttons');
     }
 
-    protected static ?string $navigationGroup = 'Settings';
+    public static function getNavigationGroup(): ?string
+    {
+        return __('panel.settings');
+    }
     protected static ?string $navigationIcon = 'heroicon-o-cursor-arrow-rays';
 
     protected static string $settings = \App\Settings\ButtonsSettings::class;
