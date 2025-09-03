@@ -23,6 +23,8 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Enums\FiltersLayout;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Guava\FilamentModalRelationManagers\Actions\Table\RelationManagerAction;
 
@@ -69,6 +71,10 @@ class ProductResource extends Resource
                             TextInput::make($tab->makeName('name'))
                                 ->required($tab->makeName('name') === 'uz.name')
                                 ->label(__('form.name')),
+                            Textarea::make($tab->makeName('subtitle'))
+                                ->rows(3)
+                                ->required($tab->makeName('subtitle') === 'uz.subtitle')
+                                ->label(__('form.subtitle')),
                             Textarea::make($tab->makeName('description'))
                                 ->rows(10)
                                 ->required($tab->makeName('description') === 'uz.description')
@@ -193,7 +199,7 @@ class ProductResource extends Resource
                     ->label(__('form.img'))
                     ->toggleable(isToggledHiddenByDefault: true),
 
-                TextColumn::make('name')->sortable()->searchable(query: function ($query, $search) {
+                TextColumn::make('name')->searchable(query: function ($query, $search) {
                     return $query->with('translations')->whereHas('translations', function ($q) use ($search) {
                         return $q->where('name', 'ILIKE', "$search%");
                     });
@@ -209,8 +215,15 @@ class ProductResource extends Resource
             ->reorderable('order')
             ->defaultSort('order')
             ->filters([
-                //
-            ])
+                SelectFilter::make('type')
+                    ->label(__('form.type'))
+                    ->options([
+                        'product' => __('form.product'),
+                        'spare_part' => __('form.spare_part'),
+                    ])
+                    ->placeholder(__('form.all_types'))
+                    ->preload(),
+            ], layout: FiltersLayout::AboveContent)
             ->actions([
                 RelationManagerAction::make('variants-relation-manager')->label('')->icon('heroicon-s-squares-2x2')->relationManager(VariantsRelationManager::make()),
                 RelationManagerAction::make('category-relation-manager')->label('')->icon('heroicon-s-rectangle-stack')->relationManager(CategoriesRelationManager::make()),

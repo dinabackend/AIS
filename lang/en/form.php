@@ -48,6 +48,7 @@ return [
     'info title' => 'Info Title',
     'info list' => 'Info List',
     'type' => 'Type',
+    'all_types' => 'All Types',
     'creation' => 'Creation',
     'privacy' => 'Privacy',
 

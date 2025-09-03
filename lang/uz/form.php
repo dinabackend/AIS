@@ -47,6 +47,7 @@ return [
     'info title' => 'Ma\'lumot Sarlavhasi',
     'info list' => 'Ma\'lumotlar ro\'yxati',
     'type' => 'Turi',
+    'all_types' => 'Barcha turlar',
     'creation' => 'Yaratilgan',
     'category' => 'Kategoriya',
     'privacy' => 'Maxfiylik',

@@ -21,7 +21,7 @@ class SparePartsPageController extends Controller
         $recommended_products = Product::query()->take(10)->get();
         $buttons = app(ButtonsSettings::class);
 
-        $spare_parts = Product::query()->where('type', 'spare_part')->get();
+        $spare_parts = Product::query()->where('type', 'spare_part')->orderBy('order')->get();
 
         $pm_series = [];
         foreach (['ru', 'uz', 'en'] as $i => $lang) {
