@@ -80,11 +80,11 @@ class SparePartsPageController extends Controller
                 ],
                 'button' => [
                     'text' => [
-                        'ru' => $buttons->news_link_text_ru,
-                        'uz' => $buttons->news_link_text_uz,
-                        'en' => $buttons->news_link_text_en,
+                        'ru' => $buttons->telegram_text_ru,
+                        'uz' => $buttons->telegram_text_uz,
+                        'en' => $buttons->telegram_text_en,
                     ],
-                    'link' => $buttons->news_link_link,
+                    'link' => $buttons->telegram_link,
                 ],
             ],
             'recommended_products' => [
