@@ -15,8 +15,6 @@ class GuaranteeController extends Controller
     public function index()
     {
         $guarantees = app(GuaranteePageSettings::class);
-        $buttons = app(ButtonsSettings::class);
-
 
         $buttons = app(ButtonsSettings::class);
 
@@ -25,13 +23,14 @@ class GuaranteeController extends Controller
             $data['main_title'][$lang] = $guarantees->{'main_title_' . $lang} ?? '';
             $data['title'][$lang] = $guarantees->{'title_' . $lang} ?? '';
             $data['year_title'][$lang] = $guarantees->{'subtitle_' . $lang} ?? '';
-            $data['repeater'][$lang] = collect($guarantees->{'repeater_' . $lang} ?? [])
-                ->map(function ($item) {
-                    return [
-                        'name' => $item['name'] ?? '',
-                        'text' => $item['text'] ?? '',
-                    ];
-                })->toArray();
+
+            foreach ($guarantees->{"repeater_$lang"} as $i => $repeater) {
+                $data['repeaters'][$i][$lang] = [
+                    'name' => $repeater['name'],
+                    'text' => $repeater['text'],
+                    'icon' => asset("img/guarantee$i.png")
+                ];
+            }
 
             $data['image'] = $guarantees->banner ? asset('storage/' . $guarantees->banner) : '';
 
