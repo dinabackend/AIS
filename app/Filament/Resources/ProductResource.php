@@ -199,7 +199,7 @@ class ProductResource extends Resource
                     ->label(__('form.img'))
                     ->toggleable(isToggledHiddenByDefault: true),
 
-                TextColumn::make('name')->sortable()->searchable(query: function ($query, $search) {
+                TextColumn::make('name')->searchable(query: function ($query, $search) {
                     return $query->with('translations')->whereHas('translations', function ($q) use ($search) {
                         return $q->where('name', 'ILIKE', "$search%");
                     });
