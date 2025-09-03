@@ -24,7 +24,7 @@ class FooterResource extends JsonResource
 
         $yandexUrl = "https://yandex.uz/maps/?text=$address";
 
-        $categories = Category::take(5)->where('parent_id', '<', 1)->get();
+        $categories = Category::take(5)->whereNull('parent_id')->get();
 
         return [
             'telegram' => $settings->telegram,
