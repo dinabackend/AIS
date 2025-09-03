@@ -187,7 +187,7 @@ class ProductResource extends Resource
 
                 SpatieMediaLibraryImageColumn::make('image')
                     ->collection('product_image')->stacked()->label(__('form.image'))
-                    ->toggleable(isToggledHiddenByDefaroductult: true),
+                    ->toggleable(isToggledHiddenByDefault: true),
 
                 SpatieMediaLibraryImageColumn::make('img')->collection('product_img')
                     ->label(__('form.img'))
