@@ -92,8 +92,7 @@ class CategoryController extends Controller
         $products = Product::with(['translations', 'categories.translation'])
             ->whereHas('categories', function($query) use ($allCategoryIds) {
                 $query->whereIn('categories.id', $allCategoryIds);
-            })
-            ->get();
+            })->orderBy('order')->get();
 
         return [
             'main_title' => [
