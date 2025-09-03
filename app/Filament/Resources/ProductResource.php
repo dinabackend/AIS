@@ -23,6 +23,8 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Enums\FiltersLayout;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Guava\FilamentModalRelationManagers\Actions\Table\RelationManagerAction;
 
@@ -213,8 +215,15 @@ class ProductResource extends Resource
             ->reorderable('order')
             ->defaultSort('order')
             ->filters([
-                //
-            ])
+                SelectFilter::make('type')
+                    ->label(__('form.type'))
+                    ->options([
+                        'product' => __('form.product'),
+                        'spare_part' => __('form.spare_part'),
+                    ])
+                    ->placeholder(__('form.all_types'))
+                    ->preload(),
+            ], layout: FiltersLayout::AboveContent)
             ->actions([
                 RelationManagerAction::make('variants-relation-manager')->label('')->icon('heroicon-s-squares-2x2')->relationManager(VariantsRelationManager::make()),
                 RelationManagerAction::make('category-relation-manager')->label('')->icon('heroicon-s-rectangle-stack')->relationManager(CategoriesRelationManager::make()),
