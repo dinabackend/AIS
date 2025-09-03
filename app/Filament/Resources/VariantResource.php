@@ -4,7 +4,9 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductResource\RelationManagers\CharacteristicsRelationManager;
 use App\Filament\Resources\VariantResource\Pages;
+use App\Filament\Resources\VariantResource\RelationManagers\BlocksRelationManager;
 use App\Filament\Resources\VariantResource\RelationManagers\SectionsRelationManager;
+use App\Models\Product;
 use App\Models\ProductTranslation;
 use App\Models\Variant;
 use CactusGalaxy\FilamentAstrotomic\Forms\Components\TranslatableTabs;
@@ -18,6 +20,7 @@ use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\SelectColumn;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
@@ -61,6 +64,10 @@ class VariantResource extends Resource
                             TextInput::make($tab->makeName('name'))
                                 ->required($tab->makeName('name') === 'uz.name')
                                 ->label(__('form.name')),
+                            Textarea::make($tab->makeName('subtitle'))
+                                ->rows(3)
+                                ->required($tab->makeName('subtitle') === 'uz.subtitle')
+                                ->label(__('form.subtitle')),
                             Textarea::make($tab->makeName('description'))
                                 ->rows(10)
                                 ->required($tab->makeName('description') === 'uz.description')
@@ -166,6 +173,11 @@ class VariantResource extends Resource
                         return $q->where('name', 'ILIKE', "$search%");
                     });
                 })->label(__('form.name')),
+
+                SelectColumn::make('product_id')->options(function () {
+                    return ProductTranslation::where('locale', app()->getLocale())->pluck('name', 'product_id')->toArray();
+                })->label(__('form.product'))->width(400)->selectablePlaceholder(false),
+
             ])
             ->filters([
                 //
@@ -177,10 +189,10 @@ class VariantResource extends Resource
                     ->tooltip('characteristics')
                     ->relationManager(CharacteristicsRelationManager::make()),
 
-                RelationManagerAction::make('sections-relation-manager')
+                /*RelationManagerAction::make('sections-relation-manager')
                     ->label('')->icon('heroicon-s-rectangle-group')
                     ->tooltip('sections')
-                    ->relationManager(SectionsRelationManager::make()),
+                    ->relationManager(SectionsRelationManager::make()),*/
 
                 Tables\Actions\EditAction::make()->label('')->tooltip('edit'),
             ])
@@ -195,7 +207,8 @@ class VariantResource extends Resource
     {
         return [
             CharacteristicsRelationManager::class,
-            SectionsRelationManager::class,
+            //SectionsRelationManager::class,
+            BlocksRelationManager::class
         ];
     }
 

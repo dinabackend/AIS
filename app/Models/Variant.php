@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Astrotomic\Translatable\Translatable;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -18,12 +19,14 @@ class Variant extends TranslatableModel implements HasMedia
         'seo_description',
         'product_id',
         'status',
-        'img'
+        'img',
+        'subtitle'
     ];
 
     /** @noinspection PhpUnused */
     public array $translatedAttributes = [
         'name',
+        'subtitle',
         'description',
         'advantages',
         'seo_title',
@@ -33,6 +36,11 @@ class Variant extends TranslatableModel implements HasMedia
     public function characteristics()
     {
         return $this->morphMany(Characteristic::class, 'characteristicable');
+    }
+
+    public function blocks(): MorphMany
+    {
+        return $this->morphMany(Block::class, 'blockable');
     }
     public function sections()
     {

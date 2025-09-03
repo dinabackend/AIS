@@ -5,6 +5,7 @@ namespace App\Models;
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Str;
 use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
@@ -50,6 +51,11 @@ class Product extends TranslatableModel implements HasMedia, Sortable
         return $this->morphMany(Characteristic::class, 'characteristicable');
     }
 
+    public function blocks(): MorphMany
+    {
+        return $this->morphMany(Block::class, 'blockable');
+    }
+
     public function types(): BelongsToMany
     {
         return $this->belongsToMany(Type::class, 'types_products');
@@ -87,14 +93,6 @@ class Product extends TranslatableModel implements HasMedia, Sortable
             );
     }
 
-    protected static function boot(): void
-    {
-        parent::boot();
-        static::creating(static function ($product) {
-            $product->slug = Str::slug($product->translate('uz')->name . '-' . Str::random(5));
-        });
-    }
-
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('product_image')
@@ -118,8 +116,11 @@ class Product extends TranslatableModel implements HasMedia, Sortable
             ->singleFile();
     }
 
-    public function blocks(): HasMany
+    protected static function boot(): void
     {
-        return $this->hasMany(Block::class);
+        parent::boot();
+        static::creating(static function ($product) {
+            $product->slug = Str::slug($product->translate('uz')->name . '-' . Str::random(5));
+        });
     }
 }

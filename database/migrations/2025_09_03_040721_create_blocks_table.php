@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('blocks', static function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->constrained()->cascadeOnDelete();
+            $table->unsignedBigInteger('blockable_id');
+            $table->string('blockable_type');
             $table->timestamps();
         });
 

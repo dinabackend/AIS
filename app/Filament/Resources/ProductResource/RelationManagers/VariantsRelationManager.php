@@ -32,6 +32,10 @@ class VariantsRelationManager extends RelationManager
                             TextInput::make($tab->makeName('name'))
                                 ->required($tab->makeName('name') === 'uz.name')
                                 ->label(__('form.name')),
+                            Textarea::make($tab->makeName('subtitle'))
+                                ->rows(3)
+                                ->required($tab->makeName('subtitle') === 'uz.subtitle')
+                                ->label(__('form.subtitle')),
                             Textarea::make($tab->makeName('description'))
                                 ->rows(10)
                                 ->required($tab->makeName('description') === 'uz.description')
@@ -95,6 +99,58 @@ class VariantsRelationManager extends RelationManager
                             Textarea::make($tab->makeName('seo_description')),
                         ])->columnSpanFull(),
                 ])->collapsed(),
+
+                Section::make(__('panel.characteristics'))->schema([
+                    SpatieMediaLibraryFileUpload::make('RU')
+                        ->acceptedFileTypes(['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'xlsx'])
+                        ->collection('product_sheet_ru')
+                        ->visibility('private')
+                        ->downloadable()
+                        ->previewable(false)
+                        ->customProperties(fn ($get) => [
+                            'language' => 'ru',
+                            'header_rows' => $get('ru_header_rows') ?? 1,
+                            'file_type' => 'characteristics'
+                        ])
+                        ->label('RU Excel File'),
+
+                    TextInput::make('ru_header_rows')
+                        ->numeric()
+                        ->minValue(1)
+                        ->label('RU Header Rows Count'),
+
+                    SpatieMediaLibraryFileUpload::make('UZ')
+                        ->acceptedFileTypes(['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'xlsx'])
+                        ->collection('product_sheet_uz')
+                        ->visibility('private')
+                        ->downloadable()
+                        ->previewable(false)
+                        ->customProperties(fn ($get) => [
+                            'language' => 'uz',
+                            'header_rows' => $get('uz_header_rows') ?? 1,
+                            'file_type' => 'characteristics'
+                        ])
+                        ->label('UZ Excel File'),
+
+                    TextInput::make('uz_header_rows')
+                        ->numeric()
+                        ->minValue(1)
+                        ->label('UZ Header Rows Count'),
+
+                    SpatieMediaLibraryFileUpload::make('En')
+                        ->acceptedFileTypes(['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'xlsx'])
+                        ->collection('product_sheet_en')
+                        ->visibility('private')
+                        ->downloadable()
+                        ->previewable(false)
+                        ->customProperties(fn ($get) => ['header_rows' => $get('en_header_rows') ?? 1])
+                        ->label('EN Excel File'),
+
+                    TextInput::make('en_header_rows')
+                        ->numeric()
+                        ->minValue(1)
+                        ->label('EN Header Rows Count'),
+                ])->columns(2)->collapsed(),
 
                 Toggle::make('home_visibility')
                     ->label(__('form.home_visibility')),
