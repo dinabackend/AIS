@@ -33,6 +33,7 @@ class ProductResource extends JsonResource
             }),
             'img' => $this->getFirstMediaUrl('product_image'),
             'images' => $this->getMedia('product_image')->pluck('original_url'),
+            'video' => $this->getFirstMediaUrl('product_video'),
             'amount' => $this->amount,
             'slug' => $this->slug,
             'characteristics' => CharacteristicResource::collection($this->characteristics),

@@ -15,7 +15,6 @@ use App\Http\Controllers\API\ServicePageController;
 use App\Http\Controllers\API\SparePartsPageController;
 use App\Http\Controllers\API\VariantController;
 use Illuminate\Support\Facades\Route;
-use PhpOffice\PhpSpreadsheet\IOFactory;
 
 /*Route::get('/{locale}/products/filter', [ProductController::class, 'filter']);
 Route::get('/{locale}/products/{id}', [ProductController::class, 'show']);
@@ -25,12 +24,8 @@ Route::get('/{locale}/about', [AboutController::class, 'index']);
 Route::get('/{locale}/teams', [UserController::class, 'index']);
 Route::get('/{locale}/teams/{id}', [UserController::class, 'show']);*/
 
-Route::get('/test', static function () {
-    $spreadsheet = IOFactory::load('');
-
-    return response()->json(['message' => 'API is working']);
-});
-
+Route::post('/form', [FormController::class, 'store']);
+Route::post('/reviews', [ReviewController::class, 'store']);
 // AIS API
 Route::get('/seo', [SEOController::class, 'index']);
 Route::get('/policy', [HomePageController::class, 'policy']);
@@ -44,6 +39,7 @@ Route::get('/spare-parts', [SparePartsPageController::class, 'index']);
 Route::get('/service', [ServicePageController::class, 'index']);
 
 Route::get('/products', [ProductController::class, 'index']);
+Route::get('/spare-parts/{slug}', [ProductController::class, 'index']);
 Route::get('/products/{slug}', [ProductController::class, 'show']);
 Route::get('/products/{slug}/sheet/{lang}', [ProductController::class, 'sheet']);
 //Route::get('/products/filters', [ProductController::class, 'filter']);
@@ -60,6 +56,3 @@ Route::get('/categories/tree', [CategoryController::class, 'tree']);
 Route::get('/categories/{id}/children', [CategoryController::class, 'children']);
 Route::get('/categories/{slug}', [CategoryController::class, 'show']);
 Route::get('/catalog/{category}', [CategoryController::class, 'catalog']);
-
-Route::post('/form', [FormController::class, 'store']);
-Route::post('/reviews', [ReviewController::class, 'store']);

@@ -56,45 +56,6 @@ class ProductController extends Controller
         ];
     }
 
-    /**
-     * Display a listing of the resource.
-     */
-    public function collection(Request $request)
-    {
-        $search = $request->get('search', false);
-        $per_page = $request->get('per_page', 5000);
-
-        $categories = [];
-        if ($request->has('categories') && (Str::length($request->get('categories')) > 0)) {
-            $categories = CategoryTranslation::query()->whereIn('name',
-                Str::of($request->get('categories'))->explode(',')
-            )->pluck('category_id');
-        }
-
-        $filters = [];
-        if ($request->has('filters') && (Str::length($request->get('filters')) > 0)) {
-            $filters = TypeTranslation::query()->whereIn('name',
-                Str::of($request->get('filters'))->explode(',')
-            )->pluck('type_id');
-        }
-
-        $products = Product::WithFilters($categories, $filters, $search)
-            ->where('collection_visibility', 1)
-            ->orderBy('order')
-            ->paginate($per_page)->withQueryString();
-
-        return [
-            'pages_count' => ceil($products->total() / $products->perPage()),
-            'count' => $products->total(),
-            'next' => $products->nextPageUrl(),
-            'prev' => $products->previousPageUrl(),
-            'from' => $products->firstItem(),
-            'to' => $products->lastItem(),
-            'page' => $request->has('page') ? $request->get('page') : 1,
-            'data' => new ProductCollection($products),
-        ];
-    }
-
     public function filter()
     {
 
@@ -124,7 +85,14 @@ class ProductController extends Controller
     {
         $product = Product::query()->with('categories')->where('slug', $slug)->firstOrFail();
 
-        return new ProductResource($product);
+        $recomended = Product::query()->with('categories')->where('slug','!=', $slug)->inRandomOrder()->limit(6)->get();
+
+        return [
+            'data' => [
+                'products' => new ProductResource($product),
+                'recommended_products' => ProductResource::collection($recomended)
+            ]
+        ];
     }
 
     /**
