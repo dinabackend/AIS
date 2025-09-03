@@ -20,6 +20,9 @@ class ProductResource extends JsonResource
             'title' => $this->translations->mapWithKeys(function ($item) {
                 return [$item->locale => $item->name];
             }),
+            'subtitle' => $this->translations->mapWithKeys(function ($item) {
+                return [$item->locale => $item->subtitle];
+            }),
             'description' => $this->translations->mapWithKeys(function ($item) {
                 return [$item->locale => $item->description];
             }),
