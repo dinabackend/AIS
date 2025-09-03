@@ -23,17 +23,17 @@ class BlocksRelationManager extends RelationManager
     {
         return $form
             ->schema([
+                SpatieMediaLibraryFileUpload::make('img')
+                    ->visibility(true)
+                    ->image()
+                    ->imageEditor()
+                    ->collection('block_img')
+                    ->label(__('form.img')),
                 TranslatableTabs::make()
                     ->localeTabSchema(fn(TranslatableTab $tab) => [
                         TextInput::make($tab->makeName('name'))
                             ->required($tab->makeName('name') === 'uz.name')
                             ->label(__('form.name')),
-                        SpatieMediaLibraryFileUpload::make('img')
-                            ->visibility(true)
-                            ->image()
-                            ->imageEditor()
-                            ->collection('block_img')
-                            ->label(__('form.img')),
                         Repeater::make($tab->makeName('options'))->schema([
                             TextInput::make('text')
                                 ->label(__('form.item'))
