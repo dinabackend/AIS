@@ -24,7 +24,7 @@ class FooterResource extends JsonResource
 
         $yandexUrl = "https://yandex.uz/maps/?text=$address";
 
-        $categories = Category::take(5)->get();
+        $categories = Category::take(5)->where('parent_id', '<', 1)->get();
 
         return [
             'telegram' => $settings->telegram,
@@ -134,7 +134,11 @@ class FooterResource extends JsonResource
                     ],
                 ],
             ],
-            'categories' => CategoryResource::collection($categories),
+            'categories' => $categories->map(fn ($category) => [
+                'id' => $category->id,
+                'title' => $category->translations->mapWithKeys(fn ($t) => [$t->locale => $t->name]),
+                'slug' => $category->slug,
+            ]),
         ];
     }
 }
