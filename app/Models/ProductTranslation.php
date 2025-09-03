@@ -15,7 +15,8 @@ class ProductTranslation extends Model
         'description',
         'advantages',
         'seo_title',
-        'seo_description'
+        'seo_description',
+        'subtitle'
     ];
 
 }

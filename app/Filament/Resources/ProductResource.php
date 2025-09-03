@@ -69,6 +69,10 @@ class ProductResource extends Resource
                             TextInput::make($tab->makeName('name'))
                                 ->required($tab->makeName('name') === 'uz.name')
                                 ->label(__('form.name')),
+                            Textarea::make($tab->makeName('subtitle'))
+                                ->rows(3)
+                                ->required($tab->makeName('subtitle') === 'uz.subtitle')
+                                ->label(__('form.subtitle')),
                             Textarea::make($tab->makeName('description'))
                                 ->rows(10)
                                 ->required($tab->makeName('description') === 'uz.description')

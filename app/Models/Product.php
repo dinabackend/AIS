@@ -23,6 +23,7 @@ class Product extends TranslatableModel implements HasMedia, Sortable
 
     protected $fillable = [
         'name',
+        'subtitle',
         'description',
         'category_id',
         'image',
@@ -37,7 +38,7 @@ class Product extends TranslatableModel implements HasMedia, Sortable
     ];
 
     /** @noinspection PhpUnused */
-    public array $translatedAttributes = ['name', 'ingredients', 'description', 'advantages', 'seo_title', 'seo_description'];
+    public array $translatedAttributes = ['name', 'subtitle', 'ingredients', 'description', 'advantages', 'seo_title', 'seo_description'];
 
     public function categories(): BelongsToMany
     {
