@@ -69,6 +69,12 @@ class EventController extends Controller
     public function show($id) {
         $settings = app(HomePageSettings::class);
 
+        if (!is_numeric($id)) {
+            return response()->json([
+                'error' => 'ID must be a number.'
+            ], 422);
+        }
+
         $event = Event::query()->findOrFail($id);
         $read_also = Event::query()->where('id', '!=', $id)->where('status', true)
             ->take(3)->get();

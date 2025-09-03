@@ -24,9 +24,10 @@ Route::get('/{locale}/about', [AboutController::class, 'index']);
 Route::get('/{locale}/teams', [UserController::class, 'index']);
 Route::get('/{locale}/teams/{id}', [UserController::class, 'show']);*/
 
+// AIS API
 Route::post('/form', [FormController::class, 'store']);
 Route::post('/reviews', [ReviewController::class, 'store']);
-// AIS API
+
 Route::get('/seo', [SEOController::class, 'index']);
 Route::get('/policy', [HomePageController::class, 'policy']);
 Route::get('/home', [HomePageController::class, 'index']);
@@ -35,11 +36,10 @@ Route::get('/header', [FooterController::class, 'header']);
 Route::get('/footer', [FooterController::class, 'index']);
 Route::get('/guarantee', [GuaranteeController::class, 'index']);
 Route::get('/rent', [RentPageController::class, 'index']);
-Route::get('/spare-parts', [SparePartsPageController::class, 'index']);
 Route::get('/service', [ServicePageController::class, 'index']);
-
-Route::get('/products', [ProductController::class, 'index']);
+Route::get('/spare-parts', [SparePartsPageController::class, 'index']);
 Route::get('/spare-parts/{slug}', [ProductController::class, 'index']);
+Route::get('/products', [ProductController::class, 'index']);
 Route::get('/products/{slug}', [ProductController::class, 'show']);
 Route::get('/products/{slug}/sheet/{lang}', [ProductController::class, 'sheet']);
 //Route::get('/products/filters', [ProductController::class, 'filter']);

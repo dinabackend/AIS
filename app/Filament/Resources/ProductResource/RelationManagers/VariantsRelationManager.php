@@ -2,12 +2,10 @@
 
 namespace App\Filament\Resources\ProductResource\RelationManagers;
 
-use App\Models\ProductTranslation;
 use CactusGalaxy\FilamentAstrotomic\Forms\Components\TranslatableTabs;
+use CactusGalaxy\FilamentAstrotomic\Resources\Concerns\ResourceTranslatable;
 use CactusGalaxy\FilamentAstrotomic\TranslatableTab;
-use Filament\Forms;
 use Filament\Forms\Components\Section;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -16,11 +14,12 @@ use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class VariantsRelationManager extends RelationManager
 {
+
+    use ResourceTranslatable;
+
     protected static string $relationship = 'variants';
 
     public function form(Form $form): Form

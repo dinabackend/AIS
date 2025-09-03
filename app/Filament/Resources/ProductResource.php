@@ -3,9 +3,9 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductResource\Pages;
+use App\Filament\Resources\ProductResource\RelationManagers\BlocksRelationManager;
 use App\Filament\Resources\ProductResource\RelationManagers\CategoriesRelationManager;
 use App\Filament\Resources\ProductResource\RelationManagers\CharacteristicsRelationManager;
-use App\Filament\Resources\ProductResource\RelationManagers\TypesRelationManager;
 use App\Filament\Resources\ProductResource\RelationManagers\VariantsRelationManager;
 use App\Models\CategoryTranslation;
 use App\Models\Product;
@@ -187,7 +187,7 @@ class ProductResource extends Resource
 
                 SpatieMediaLibraryImageColumn::make('image')
                     ->collection('product_image')->stacked()->label(__('form.image'))
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->toggleable(isToggledHiddenByDefaroductult: true),
 
                 SpatieMediaLibraryImageColumn::make('img')->collection('product_img')
                     ->label(__('form.img'))
@@ -231,6 +231,7 @@ class ProductResource extends Resource
         return [
             CharacteristicsRelationManager::class,
             VariantsRelationManager::class,
+            BlocksRelationManager::class
         ];
     }
 

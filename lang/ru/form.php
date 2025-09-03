@@ -95,6 +95,7 @@ return [
     'consultation' => 'Консультация',
     'recommended_products' => 'Рекомендуемые продукты',
     'items' => 'Элементы',
+    'item' => 'Элемент',
     'certificate' => 'Сертификат',
     'engineers' => 'Инженеры',
     'services' => 'сервис',

@@ -94,6 +94,7 @@ return [
     'consultation' => 'Consultation',
     'recommended_products' => 'Recommended Products',
     'items' => 'Items',
+    'item' => 'Item',
     'certificate' => 'Certificate',
     'engineers' => 'Engineers',
     'services' => 'Services',

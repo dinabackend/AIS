@@ -116,4 +116,9 @@ class Product extends TranslatableModel implements HasMedia, Sortable
             ->acceptsMimeTypes(['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-excel'])
             ->singleFile();
     }
+
+    public function blocks(): HasMany
+    {
+        return $this->hasMany(Block::class);
+    }
 }
