@@ -13,6 +13,7 @@ use App\Models\Product;
 use App\Models\Type;
 use App\Models\TypeTranslation;
 
+use App\Settings\ButtonsSettings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -83,6 +84,7 @@ class ProductController extends Controller
      */
     public function show(string $slug)
     {
+        $buttons = app(ButtonsSettings::class);
         $product = Product::query()->with('categories')->where('slug', $slug)->firstOrFail();
 
         $recomended = Product::query()->with('categories')->where('slug','!=', $slug)->inRandomOrder()->limit(6)->get();
@@ -90,8 +92,26 @@ class ProductController extends Controller
         return [
             'data' => [
                 'products' => new ProductResource($product),
-                'recommended_products' => ProductResource::collection($recomended)
-            ]
+                'recommended_products' => ProductResource::collection($recomended),
+                'aside' => [
+                    'title' => [
+                        'ru' => 'Получите решение за 30 минут',
+                        'uz' => 'Yechimni 30 daqiqada oling',
+                        'en' => 'Get a solution in 30 minutes',
+                    ],
+                    'text' => [
+                        'ru' => 'Инженеры AIS бесплатно подберут компрессор DALGAKIRAN под вашу нагрузку, рассчитают экономию энергии и вышлют КП',
+                        'uz' => 'AIS muhandislari sizning yukingiz uchun DALGAKIRAN kompressorini bepul tanlaydilar, energiya tejashni hisoblab chiqadilar va sizga taklifnoma yuboradilar.',
+                        'en' => 'AIS engineers will select the DALGAKIRAN compressor for your load for free, calculate energy savings, and send you a quotation',
+                    ],
+                    'button' => [
+                        'ru' => $buttons->contacts_link_text_ru ?? '',
+                        'uz' => $buttons->contacts_link_text_uz ?? '',
+                        'en' => $buttons->contacts_link_text_en ?? '',
+                        'link' => $buttons->contacts_link_link ?? '',
+                    ],
+                ],
+            ],
         ];
     }
 
