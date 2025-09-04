@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Filament\Resources\ProductResource;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\VariantResource;
 use App\Models\Variant;
@@ -24,6 +25,11 @@ class VariantController extends Controller
      */
     public function show(string $slug, string $id)
     {
+        if ($id === '0') {
+            $product = Product::where('slug', $slug)->firstOrFail();
+
+            return new ProductResource($product);
+        }
         $variant = Variant::with(['translations', 'product.translations', 'characteristics'])->findOrFail($id);
 
         return new VariantResource($variant);

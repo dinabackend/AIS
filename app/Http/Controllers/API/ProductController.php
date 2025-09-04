@@ -91,7 +91,7 @@ class ProductController extends Controller
         $product = Product::query()->with('categories')->where('slug', $slug)->firstOrFail();
         $settings = app(SparePartsPageSettings::class);
 
-        $recomended = Product::query()->with('categories')->where('slug','!=', $slug)->inRandomOrder()->limit(6)->get();
+        $recommended = Product::query()->with('categories')->where('slug','!=', $slug)->inRandomOrder()->limit(6)->get();
 
         $data['our_partners']['title'] = [
             'ru' => 'Нам доверяют клиенты по всей стране',
@@ -133,7 +133,7 @@ class ProductController extends Controller
                         'uz' => $settings->text4_uz ?? '',
                         'en' => $settings->text4_en ?? '',
                     ],
-                    'items' => ProductResource::collection($recomended)
+                    'items' => ProductResource::collection($recommended)
                 ],
                 'aside' => [
                     'title' => [

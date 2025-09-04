@@ -48,8 +48,8 @@ Route::get('/products/{slug}/sheet/{lang}', [ProductController::class, 'sheet'])
 Route::get('/variants', [VariantController::class, 'index']);
 Route::get('/variants/{id}', [VariantController::class, 'show']);
 
-Route::get('/events', [EventController::class, 'index']); // ✅
-Route::get('/events/{id}', [EventController::class, 'show']); // ✅
+Route::get('/events', [EventController::class, 'index']);
+Route::get('/events/{id}', [EventController::class, 'show']);
 Route::get('/about', [AboutController::class, 'index']);
 
 Route::get('/categories', [CategoryController::class, 'index']);
