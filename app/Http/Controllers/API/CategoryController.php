@@ -97,6 +97,8 @@ class CategoryController extends Controller
                 $query->whereIn('categories.id', $allCategoryIds);
             })->orderBy('order')->get();
 
+        $products_count = $products->count();
+        $products_collection = ProductResource::collection($products);
         $recomended = Product::query()->with('categories')
             ->whereNotIn('slug','!=', $products->pluck('slug'))
             ->inRandomOrder()->limit(6)->get();
@@ -112,8 +114,8 @@ class CategoryController extends Controller
                 'en' => $seo->category_description_en,
             ],
             'category' => new CategoryResource($categoryModel),
-            'products' => ProductResource::collection($products),
-            'total_products' => $products->count(),
+            'products' => $products_collection,
+            'total_products' => $products_count,
             'recommended_products' => [
                 'title' => [
                     'ru' => $settings->title_ru ?? '',
