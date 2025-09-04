@@ -9,14 +9,14 @@ use App\Models\Product;
 use App\Models\Variant;
 use App\Settings\AboutSettings;
 use App\Settings\ButtonsSettings;
-use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class VariantController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): AnonymousResourceCollection
     {
         $variants = Variant::with(['translations', 'product.translations'])->get();
 
@@ -26,7 +26,7 @@ class VariantController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $slug, string $id)
+    public function show(string $slug, string $id): array
     {
         $about = app(AboutSettings::class);
         $buttons = app(ButtonsSettings::class);
@@ -44,10 +44,8 @@ class VariantController extends Controller
             'en' => 'More than 500 companies and private clients have chosen AIS Techno Group as a reliable partner in the field of compressor equipment and service',
         ];
         $data['our_partners']['images'] = [];
-        if (is_array($about->images)) {
-            foreach ($about->images as $img) {
-                $data['our_partners']['images'][] = asset('storage/' . $img);
-            }
+        foreach ($about->images as $img) {
+            $data['our_partners']['images'][] = asset('storage/' . $img);
         }
 
         if ($id === '0') {
