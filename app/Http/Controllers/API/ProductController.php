@@ -15,6 +15,7 @@ use App\Models\TypeTranslation;
 
 use App\Settings\AboutSettings;
 use App\Settings\ButtonsSettings;
+use App\Settings\SparePartsPageSettings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -88,6 +89,7 @@ class ProductController extends Controller
         $about = app(AboutSettings::class);
         $buttons = app(ButtonsSettings::class);
         $product = Product::query()->with('categories')->where('slug', $slug)->firstOrFail();
+        $settings = app(SparePartsPageSettings::class);
 
         $recomended = Product::query()->with('categories')->where('slug','!=', $slug)->inRandomOrder()->limit(6)->get();
 
@@ -110,7 +112,19 @@ class ProductController extends Controller
         return [
             'data' => [
                 'products' => new ProductResource($product),
-                'recommended_products' => ProductResource::collection($recomended),
+                'recommended_products' => [
+                    'title' => [
+                        'ru' => $settings->title_ru ?? '',
+                        'uz' => $settings->title_uz ?? '',
+                        'en' => $settings->title_en ?? '',
+                    ],
+                    'text' => [
+                        'ru' => $settings->text4_ru ?? '',
+                        'uz' => $settings->text4_uz ?? '',
+                        'en' => $settings->text4_en ?? '',
+                    ],
+                    'items' => ProductResource::collection($recomended)
+                ],
                 'aside' => [
                     'title' => [
                         'ru' => 'Получите решение за 30 минут',
@@ -132,22 +146,6 @@ class ProductController extends Controller
                 'our_partners' => $data['our_partners']
             ],
         ];
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 
     public function category()
