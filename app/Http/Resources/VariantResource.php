@@ -40,6 +40,7 @@ class VariantResource extends JsonResource
             'seo_description' => $this->translations->mapWithKeys(function ($item) {
                 return [$item->locale => $item->seo_description];
             }),
+            'blocks' => BlockResource::collection($this->blocks),
         ];
     }
 }
