@@ -38,7 +38,7 @@ Route::get('/guarantee', [GuaranteeController::class, 'index']);
 Route::get('/rent', [RentPageController::class, 'index']);
 Route::get('/service', [ServicePageController::class, 'index']);
 Route::get('/spare-parts', [SparePartsPageController::class, 'index']);
-Route::get('/spare-parts/{slug}', [ProductController::class, 'index']);
+//Route::get('/spare-parts/{slug}', [ProductController::class, 'index']);
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/products/{slug}', [ProductController::class, 'show']);
 Route::get('/products/{slug}/{id}', [VariantController::class, 'show']);
