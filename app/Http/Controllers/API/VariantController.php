@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Filament\Resources\ProductResource;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ProductResource;
 use App\Http\Resources\VariantResource;
 use App\Models\Product;
 use App\Models\Variant;
