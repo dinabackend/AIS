@@ -44,7 +44,6 @@ class ButtonsSettings extends SettingsPage
             'company_link',
             'catalog_link',
             'collection_link',
-            'news_link',
             'telegram',
             'contacts_link',
             'privacy_link',
