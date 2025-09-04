@@ -8,6 +8,7 @@ use App\Http\Resources\VariantResource;
 use App\Models\Product;
 use App\Models\Variant;
 use App\Settings\AboutSettings;
+use App\Settings\ButtonsSettings;
 use Illuminate\Http\Request;
 
 class VariantController extends Controller
@@ -28,6 +29,7 @@ class VariantController extends Controller
     public function show(string $slug, string $id)
     {
         $about = app(AboutSettings::class);
+        $buttons = app(ButtonsSettings::class);
         $recommended = Product::query()->with('categories')
             ->where('slug','!=', $slug)->inRandomOrder()->limit(6)->get();
 
