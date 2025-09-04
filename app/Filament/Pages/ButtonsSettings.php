@@ -43,10 +43,8 @@ class ButtonsSettings extends SettingsPage
             'info_contact',
             'company_link',
             'catalog_link',
-            'collection_link',
             'telegram',
             'contacts_link',
-            'privacy_link',
             'footer_form_link',
             'footer_catalog_link',
         ];
