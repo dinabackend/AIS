@@ -22,7 +22,7 @@ class VariantController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $slug, string $id)
     {
         $variant = Variant::with(['translations', 'product.translations', 'characteristics'])->findOrFail($id);
 

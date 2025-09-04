@@ -13,6 +13,7 @@ use App\Models\Product;
 use App\Models\Type;
 use App\Models\TypeTranslation;
 
+use App\Settings\AboutSettings;
 use App\Settings\ButtonsSettings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -84,11 +85,28 @@ class ProductController extends Controller
      */
     public function show(string $slug)
     {
+        $about = app(AboutSettings::class);
         $buttons = app(ButtonsSettings::class);
         $product = Product::query()->with('categories')->where('slug', $slug)->firstOrFail();
 
         $recomended = Product::query()->with('categories')->where('slug','!=', $slug)->inRandomOrder()->limit(6)->get();
 
+        $data['our_partners']['title'] = [
+            'ru' => 'Нам доверяют клиенты по всей стране',
+            'uz' => 'Butun mamlakat bo\'ylab mijozlar bizga ishonishadi',
+            'en' => 'Customers across the country trust us',
+        ];
+        $data['our_partners']['text'] = [
+            'ru' => 'Более 500 компаний и частных клиентов выбрали AIS Techno Group как надёжного партнёра в сфере компрессорного оборудования и сервиса',
+            'uz' => '500 dan ortiq kompaniyalar va xususiy mijozlar AIS Techno Group ni ishonchli hamkor sifatida tanladilar',
+            'en' => 'More than 500 companies and private clients have chosen AIS Techno Group as a reliable partner in the field of compressor equipment and service',
+        ];
+        $data['our_partners']['images'] = [];
+        if (is_array($about->images)) {
+            foreach ($about->images as $img) {
+                $data['our_partners']['images'][] = asset('storage/' . $img);
+            }
+        }
         return [
             'data' => [
                 'products' => new ProductResource($product),
@@ -111,6 +129,7 @@ class ProductController extends Controller
                         'link' => $buttons->contacts_link_link ?? '',
                     ],
                 ],
+                'our_partners' => $data['our_partners']
             ],
         ];
     }
