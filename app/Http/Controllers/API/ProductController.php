@@ -111,6 +111,16 @@ class ProductController extends Controller
         }
         return [
             'data' => [
+                'product_title' => [
+                    'ru' => 'Карточка товара',
+                    'uz' => 'Mahsulot kartasi',
+                    'en' => 'Product card',
+                ],
+                'model_title' => [
+                    'ru' => 'Модели товара',
+                    'uz' => 'Mahsulot modellari',
+                    'en' => 'Product models',
+                ],
                 'products' => new ProductResource($product),
                 'recommended_products' => [
                     'title' => [
