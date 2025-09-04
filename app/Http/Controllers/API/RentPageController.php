@@ -20,7 +20,7 @@ class RentPageController extends Controller
         $settings = app(RentPageSettings::class);
         $buttons = app(ButtonsSettings::class);
         $rents = Review::query()->where('status', 1)->take(20)->orderBy('date')->get();
-        $recommended_products = Product::query()->take(10)->get();
+        $recommended_products = Product::query()->take(10)->where('type', 'product')->get();
 
         $rents_data = [];
         foreach ($settings->rents ?? [] as $rent) {

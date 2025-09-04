@@ -45,6 +45,7 @@ class ProductController extends Controller
 
         $products = Product::WithFilters($categories, $filters, $search)
             ->orderBy('order')
+            ->where('type', 'product')
             ->paginate($per_page)->withQueryString();
 
         return [

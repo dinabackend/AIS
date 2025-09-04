@@ -93,11 +93,13 @@ class CategoryController extends Controller
         $allCategoryIds = $allCategoryIds->merge($categoryModel->getAllChildren()->pluck('id'));
 
         $products = Product::with(['translations', 'categories.translation'])
+            ->where('type', 'product')
             ->whereHas('categories', function($query) use ($allCategoryIds) {
                 $query->whereIn('categories.id', $allCategoryIds);
             })->orderBy('order')->get();
 
         $recommended = Product::query()->with('categories')
+            ->where('type', 'product')
             ->whereNotIn('slug', $products->pluck('slug'))
             ->inRandomOrder()->limit(6)->get();
         return [

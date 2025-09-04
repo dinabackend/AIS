@@ -31,6 +31,7 @@ class VariantController extends Controller
         $about = app(AboutSettings::class);
         $buttons = app(ButtonsSettings::class);
         $recommended = Product::query()->with('categories')
+            ->where('type', 'product')
             ->where('slug','!=', $slug)->inRandomOrder()->limit(6)->get();
 
         $data['our_partners']['title'] = [
