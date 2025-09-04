@@ -8,6 +8,7 @@ use App\Http\Resources\ProductResource;
 use App\Models\Category;
 use App\Models\Product;
 use App\Settings\SeoPageSettings;
+use App\Settings\SparePartsPageSettings;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -81,6 +82,8 @@ class CategoryController extends Controller
     public function catalog(string $category)
     {
         $seo = app(SeoPageSettings::class);
+        $settings = app(SparePartsPageSettings::class);
+
         $categoryModel = Category::with(['translation', 'parent.translation', 'children.translation'])
             ->where('slug', $category)
             ->firstOrFail();
@@ -94,6 +97,9 @@ class CategoryController extends Controller
                 $query->whereIn('categories.id', $allCategoryIds);
             })->orderBy('order')->get();
 
+        $recomended = Product::query()->with('categories')
+            ->whereNotIn('slug','!=', $products->pluck('slug'))
+            ->inRandomOrder()->limit(6)->get();
         return [
             'main_title' => [
                 'ru' => $seo->category_title_ru,
@@ -107,7 +113,20 @@ class CategoryController extends Controller
             ],
             'category' => new CategoryResource($categoryModel),
             'products' => ProductResource::collection($products),
-            'total_products' => $products->count()
+            'total_products' => $products->count(),
+            'recommended_products' => [
+                'title' => [
+                    'ru' => $settings->title_ru ?? '',
+                    'uz' => $settings->title_uz ?? '',
+                    'en' => $settings->title_en ?? '',
+                ],
+                'text' => [
+                    'ru' => $settings->text4_ru ?? '',
+                    'uz' => $settings->text4_uz ?? '',
+                    'en' => $settings->text4_en ?? '',
+                ],
+                'items' => ProductResource::collection($recomended)
+            ]
         ];
     }
 
