@@ -24,7 +24,7 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index(Request $request): array
     {
         $search = $request->get('search', false);
         $per_page = $request->get('per_page', 5000);
@@ -60,7 +60,7 @@ class ProductController extends Controller
         ];
     }
 
-    public function filter()
+    public function filter(): array
     {
 
         return [
@@ -77,7 +77,7 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): void
     {
         //
     }
@@ -85,14 +85,12 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $slug)
+    public function show(string $slug): array
     {
         $about = app(AboutSettings::class);
         $buttons = app(ButtonsSettings::class);
         $product = Product::query()->with('categories')->where('slug', $slug)->firstOrFail();
         $settings = app(SparePartsPageSettings::class);
-
-        $recommended = Product::query()->with('categories')->where('slug','!=', $slug)->inRandomOrder()->limit(6)->get();
 
         $data['our_partners']['title'] = [
             'ru' => 'Нам доверяют клиенты по всей стране',
@@ -105,10 +103,8 @@ class ProductController extends Controller
             'en' => 'More than 500 companies and private clients have chosen AIS Techno Group as a reliable partner in the field of compressor equipment and service',
         ];
         $data['our_partners']['images'] = [];
-        if (is_array($about->images)) {
-            foreach ($about->images as $img) {
-                $data['our_partners']['images'][] = asset('storage/' . $img);
-            }
+        foreach ($about->images as $img) {
+            $data['our_partners']['images'][] = asset('storage/' . $img);
         }
         return [
             'data' => [
@@ -134,7 +130,9 @@ class ProductController extends Controller
                         'uz' => $settings->text4_uz ?? '',
                         'en' => $settings->text4_en ?? '',
                     ],
-                    'items' => ProductResource::collection($recommended)
+                    'items' => ProductResource::collection(Product::query()->with('categories')->where('slug','!=', $slug)
+                        ->where('type', 'product')
+                        ->inRandomOrder()->limit(6)->get())
                 ],
                 'aside' => [
                     'title' => [
@@ -159,7 +157,7 @@ class ProductController extends Controller
         ];
     }
 
-    public function category()
+    public function category(): array
     {
         $categories = Category::query()->with('children')->get();
 
