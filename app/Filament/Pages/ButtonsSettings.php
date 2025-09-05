@@ -48,6 +48,7 @@ class ButtonsSettings extends SettingsPage
             'contacts_link',
             'footer_form_link',
             'footer_catalog_link',
+            'privacy_link',
         ];
 
         $settings = [];
