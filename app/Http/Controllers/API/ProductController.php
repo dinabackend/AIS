@@ -13,7 +13,9 @@ use App\Models\Product;
 use App\Models\Type;
 use App\Models\TypeTranslation;
 
+use App\Settings\AboutSettings;
 use App\Settings\ButtonsSettings;
+use App\Settings\SparePartsPageSettings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -22,7 +24,7 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index(Request $request): array
     {
         $search = $request->get('search', false);
         $per_page = $request->get('per_page', 5000);
@@ -43,6 +45,7 @@ class ProductController extends Controller
 
         $products = Product::WithFilters($categories, $filters, $search)
             ->orderBy('order')
+            ->where('type', 'product')
             ->paginate($per_page)->withQueryString();
 
         return [
@@ -57,7 +60,7 @@ class ProductController extends Controller
         ];
     }
 
-    public function filter()
+    public function filter(): array
     {
 
         return [
@@ -74,7 +77,7 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): void
     {
         //
     }
@@ -82,17 +85,55 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $slug)
+    public function show(string $slug): array
     {
+        $about = app(AboutSettings::class);
         $buttons = app(ButtonsSettings::class);
         $product = Product::query()->with('categories')->where('slug', $slug)->firstOrFail();
+        $settings = app(SparePartsPageSettings::class);
 
-        $recomended = Product::query()->with('categories')->where('slug','!=', $slug)->inRandomOrder()->limit(6)->get();
-
+        $data['our_partners']['title'] = [
+            'ru' => 'Нам доверяют клиенты по всей стране',
+            'uz' => 'Butun mamlakat bo\'ylab mijozlar bizga ishonishadi',
+            'en' => 'Customers across the country trust us',
+        ];
+        $data['our_partners']['text'] = [
+            'ru' => 'Более 500 компаний и частных клиентов выбрали AIS Techno Group как надёжного партнёра в сфере компрессорного оборудования и сервиса',
+            'uz' => '500 dan ortiq kompaniyalar va xususiy mijozlar AIS Techno Group ni ishonchli hamkor sifatida tanladilar',
+            'en' => 'More than 500 companies and private clients have chosen AIS Techno Group as a reliable partner in the field of compressor equipment and service',
+        ];
+        $data['our_partners']['images'] = [];
+        foreach ($about->images as $img) {
+            $data['our_partners']['images'][] = asset('storage/' . $img);
+        }
         return [
             'data' => [
+                'product_title' => [
+                    'ru' => 'Карточка товара',
+                    'uz' => 'Mahsulot kartasi',
+                    'en' => 'Product card',
+                ],
+                'model_title' => [
+                    'ru' => 'Модели товара',
+                    'uz' => 'Mahsulot modellari',
+                    'en' => 'Product models',
+                ],
                 'products' => new ProductResource($product),
-                'recommended_products' => ProductResource::collection($recomended),
+                'recommended_products' => [
+                    'title' => [
+                        'ru' => $settings->title_ru ?? '',
+                        'uz' => $settings->title_uz ?? '',
+                        'en' => $settings->title_en ?? '',
+                    ],
+                    'text' => [
+                        'ru' => $settings->text4_ru ?? '',
+                        'uz' => $settings->text4_uz ?? '',
+                        'en' => $settings->text4_en ?? '',
+                    ],
+                    'items' => ProductResource::collection(Product::query()->with('categories')->where('slug','!=', $slug)
+                        ->where('type', 'product')
+                        ->inRandomOrder()->limit(6)->get())
+                ],
                 'aside' => [
                     'title' => [
                         'ru' => 'Получите решение за 30 минут',
@@ -111,27 +152,12 @@ class ProductController extends Controller
                         'link' => $buttons->contacts_link_link ?? '',
                     ],
                 ],
+                'our_partners' => $data['our_partners']
             ],
         ];
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
-
-    public function category()
+    public function category(): array
     {
         $categories = Category::query()->with('children')->get();
 

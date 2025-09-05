@@ -18,7 +18,7 @@ class SparePartsPageController extends Controller
     public function index()
     {
         $settings = app(SparePartsPageSettings::class);
-        $recommended_products = Product::query()->take(10)->get();
+        $recommended_products = Product::query()->where('type', 'spare_part')->take(10)->get();
         $buttons = app(ButtonsSettings::class);
 
         $spare_parts = Product::query()->where('type', 'spare_part')->orderBy('order')->get();

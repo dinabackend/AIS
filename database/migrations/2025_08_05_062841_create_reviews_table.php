@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reviews', function (Blueprint $table) {
+        Schema::create('reviews', static function (Blueprint $table) {
             $table->id();
-            $table->integer('rating')->nullable();
+            $table->decimal('rating')->nullable();
             $table->dateTime('date')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
 
-        Schema::create('review_translations', function (Blueprint $table) {
+        Schema::create('review_translations', static function (Blueprint $table) {
             $table->id();
             $table->foreignId('review_id')->constrained('reviews')->cascadeOnDelete();
             $table->string('locale')->index();
@@ -33,7 +33,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('review_translations', function (Blueprint $table) {
+        Schema::table('review_translations', static function (Blueprint $table) {
             $table->dropForeign(['review_id']);
         });
         Schema::dropIfExists('review_translations');

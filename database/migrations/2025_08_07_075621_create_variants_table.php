@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('locale')->index();
 
             $table->string('name')->nullable();
+            $table->text('subtitle')->nullable();
             $table->text('description')->nullable();
             $table->text('advantages')->nullable();
             $table->text('seo_title')->nullable();

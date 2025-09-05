@@ -38,17 +38,18 @@ Route::get('/guarantee', [GuaranteeController::class, 'index']);
 Route::get('/rent', [RentPageController::class, 'index']);
 Route::get('/service', [ServicePageController::class, 'index']);
 Route::get('/spare-parts', [SparePartsPageController::class, 'index']);
-Route::get('/spare-parts/{slug}', [ProductController::class, 'index']);
+//Route::get('/spare-parts/{slug}', [ProductController::class, 'index']);
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/products/{slug}', [ProductController::class, 'show']);
+Route::get('/products/{slug}/{id}', [VariantController::class, 'show']);
 Route::get('/products/{slug}/sheet/{lang}', [ProductController::class, 'sheet']);
 //Route::get('/products/filters', [ProductController::class, 'filter']);
 
 Route::get('/variants', [VariantController::class, 'index']);
 Route::get('/variants/{id}', [VariantController::class, 'show']);
 
-Route::get('/events', [EventController::class, 'index']); // ✅
-Route::get('/events/{id}', [EventController::class, 'show']); // ✅
+Route::get('/events', [EventController::class, 'index']);
+Route::get('/events/{id}', [EventController::class, 'show']);
 Route::get('/about', [AboutController::class, 'index']);
 
 Route::get('/categories', [CategoryController::class, 'index']);

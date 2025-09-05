@@ -54,24 +54,3 @@ class Shipping extends Model
     }
 }
 
-class TrackingEvent extends Model
-{
-    use HasFactory;
-
-    protected $fillable = [
-        'shipping_id',
-        'status',
-        'location',
-        'description',
-        'timestamp'
-    ];
-
-    protected $casts = [
-        'timestamp' => 'datetime',
-    ];
-
-    public function shipping(): BelongsTo
-    {
-        return $this->belongsTo(Shipping::class);
-    }
-}

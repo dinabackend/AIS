@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ReviewsResource\Pages;
-use App\Filament\Resources\ReviewsResource\RelationManagers;
 use App\Models\Review;
 use CactusGalaxy\FilamentAstrotomic\Forms\Components\TranslatableTabs;
 use CactusGalaxy\FilamentAstrotomic\Resources\Concerns\ResourceTranslatable;
@@ -30,6 +29,11 @@ class ReviewsResource extends Resource
     public static function getPluralLabel(): ?string
     {
         return __('panel.Reviews');
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return Review::count();
     }
 
     protected static ?string $model = Review::class;
@@ -94,13 +98,6 @@ class ReviewsResource extends Resource
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
     }
 
     public static function getPages(): array
