@@ -26,11 +26,11 @@ class SparePartsPageController extends Controller
         $pm_series = [];
         foreach (['ru', 'uz', 'en'] as $i => $lang) {
             $pm_series[$lang] = collect($settings->{'DALGAKIRAN_' . $lang} ?? [])
-                ->map(function ($item) use ($i) {
+                ->map(function ($item, $index) use ($i) {
                     return [
                         'title' => $item['title'] ?? '',
-                        'text' => $item['text'] ?? '',
-                        'image' => asset("img/pm_series$i.svg"),
+                        'text'  => $item['text'] ?? '',
+                        'image' => asset("img/pm_series{$i}_{$index}.svg"),
                     ];
                 })->toArray();
         }
