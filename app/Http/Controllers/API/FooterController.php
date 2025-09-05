@@ -48,7 +48,7 @@ class FooterController extends Controller
                     'title' => [
                         'ru' => 'Гарантия',
                         'uz' => 'Kafolat',
-                        'en' => 'Warranty',
+                        'en' => 'Guarantee',
                     ],
                     'url' => '/guarantee',
                 ],
