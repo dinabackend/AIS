@@ -28,7 +28,7 @@ class SparePartsPageController extends Controller
             foreach ($settings->{'DALGAKIRAN_' . $lang} as $key => $item) {
                 $pm_series[$key]['title'][$lang] = $item['title'];
                 $pm_series[$key]['text'][$lang] = $item['text'];
-                $pm_series[$key]['image'] = asset("img/pm_series$i.svg");
+                $pm_series[$key]['image'] = asset("img/pm_series$key.svg");
             }
         }
 
