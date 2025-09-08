@@ -174,10 +174,7 @@ class ProductController extends Controller
         }
         $media = $product->getFirstMedia('product_sheet_' . $lang);
 
-
-        if (!$media) {
-            return response()->json(['message' => 'File not found'], 404);
-        }
+        if (!$media) {return response()->json(['message' => 'File not found'], 404);}
 
         $headerRows = $media->getCustomProperty('header_rows', 1);
 

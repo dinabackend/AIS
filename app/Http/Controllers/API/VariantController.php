@@ -105,4 +105,24 @@ class VariantController extends Controller
             ],
         ];
     }
+
+    public function sheet(string $slug, string $id, string $lang)
+    {
+        if (!in_array($lang, ['ru', 'uz', 'en'])) {
+            return response()->json(['message' => 'Invalid language'], 400);
+        }
+
+        if ($id === '0') {
+            $product = Product::query()->where('slug', $slug)->firstOrFail();
+        } else {
+            $product = Variant::with('product')->findOrFail($id);
+        }
+        $media = $product->getFirstMedia('product_sheet_' . $lang);
+
+        if (!$media) {return response()->json(['message' => 'File not found'], 404);}
+
+        $headerRows = $media->getCustomProperty('header_rows', 1);
+
+        return view('table', ['file' => $media->getPath(), 'headerRows' => $headerRows]);
+    }
 }
