@@ -92,21 +92,21 @@
                         $cell = $worksheet->getCell($cellCoordinate);
                         $value = $cell->getValue();
 
-                        // Handle formulas and calculate values
-                        if ($value !== null && str_starts_with($value, '=')) {
-                            try {
-                                $calculatedValue = $cell->getCalculatedValue();
-                                if (is_numeric($calculatedValue)) {
-                                    $value = number_format($calculatedValue, 2, '.', '');
-                                } else {
-                                    $value = $calculatedValue;
+                            // Handle formulas and calculate values
+                            if ($value !== null && substr($value, 0, 1) === '=') {
+                                try {
+                                    $calculatedValue = $cell->getCalculatedValue();
+                                    if (is_numeric($calculatedValue)) {
+                                        $value = number_format($calculatedValue, 2, '.', '');
+                                    } else {
+                                        $value = $calculatedValue;
+                                    }
+                                } catch (Exception $e) {
+                                    $value = $cell->getFormattedValue();
                                 }
-                            } catch (Exception $e) {
+                            } else {
                                 $value = $cell->getFormattedValue();
                             }
-                        } else {
-                            $value = $cell->getFormattedValue();
-                        }
 
                         // Check if this cell is part of a merged range
                         $colspan = 1;
