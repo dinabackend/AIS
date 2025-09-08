@@ -1,4 +1,8 @@
 @php
+    // Extract filename from file path
+    $filename = basename($file);
+    $filenameWithoutExtension = pathinfo($filename, PATHINFO_FILENAME);
+
     $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
     $reader->setReadEmptyCells(false);
 
@@ -53,17 +57,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>{{ $filenameWithoutExtension }} - Excel Table</title>
     <meta charset="UTF-8">
-    <title>Impetus 90-315 VSD</title>
     <style>
         table {
             border-collapse: collapse;
             width: 100%;
-            margin: 20px 0;
+            margin: 0;
+            font-family: "Inter", sans-serif;
         }
 
-        th, td {
-            border: 1px solid #ddd;
+        th,
+        td {
+            border: 1px solid #dbdbdb;
             padding: 8px;
             text-align: left;
             vertical-align: top;
@@ -78,24 +84,42 @@
         .header-row {
             background-color: #263c66 !important; /* Indigo background */
             color: white !important; /* White text */
-            font-weight: bold;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 100%;
+            text-align: center;
+            vertical-align: middle;
         }
 
         .merged-cell {
-            background-color: #f9f9f9;
+            background-color: #fff;
+            text-align: center;
+            vertical-align: middle;
         }
 
         .merged-cell.header-row {
             background-color: #263c66 !important; /* Indigo for merged header cells */
             color: white !important;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 100%;
+            text-align: center;
+            vertical-align: middle;
         }
 
         .numeric {
-            text-align: right;
+            background-color: #fff;
+            text-align: center;
+            padding: 20px;
         }
 
         .center {
             text-align: center;
+        }
+        .cell-bg {
+            padding: 5px 12px;
+            border-radius: 5px;
+            background: #d1d1d1;
         }
     </style>
 </head>
