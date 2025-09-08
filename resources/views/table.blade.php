@@ -79,6 +79,47 @@
             color: white; /* White text */
             font-weight: bold;
         }
+
+        .header-row {
+            background-color: #263c66 !important; /* Indigo background */
+            color: white !important; /* White text */
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 100%;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .merged-cell {
+            background-color: #fff;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .merged-cell.header-row {
+            background-color: #263c66 !important; /* Indigo for merged header cells */
+            color: white !important;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 100%;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .numeric {
+            background-color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .center {
+            text-align: center;
+        }
+        .cell-bg {
+            padding: 5px 12px;
+            border-radius: 5px;
+            background: #d1d1d1;
+        }
     </style>
 </head>
 <body>
@@ -92,21 +133,21 @@
                         $cell = $worksheet->getCell($cellCoordinate);
                         $value = $cell->getValue();
 
-                            // Handle formulas and calculate values
-                            if ($value !== null && substr($value, 0, 1) === '=') {
-                                try {
-                                    $calculatedValue = $cell->getCalculatedValue();
-                                    if (is_numeric($calculatedValue)) {
-                                        $value = number_format($calculatedValue, 2, '.', '');
-                                    } else {
-                                        $value = $calculatedValue;
-                                    }
-                                } catch (Exception $e) {
-                                    $value = $cell->getFormattedValue();
+                        // Handle formulas and calculate values
+                        if ($value !== null && str_starts_with($value, '=')) {
+                            try {
+                                $calculatedValue = $cell->getCalculatedValue();
+                                if (is_numeric($calculatedValue)) {
+                                    $value = number_format($calculatedValue, 2, '.', '');
+                                } else {
+                                    $value = $calculatedValue;
                                 }
-                            } else {
+                            } catch (Exception $e) {
                                 $value = $cell->getFormattedValue();
                             }
+                        } else {
+                            $value = $cell->getFormattedValue();
+                        }
 
                         // Check if this cell is part of a merged range
                         $colspan = 1;
