@@ -173,11 +173,13 @@ class ProductController extends Controller
             return response()->json(['message' => 'Invalid language'], 400);
         }
         $media = $product->getFirstMedia('product_sheet_' . $lang);
-        $headerRows = $media->getCustomProperty('header_rows', 1);
+
 
         if (!$media) {
             return response()->json(['message' => 'File not found'], 404);
         }
+
+        $headerRows = $media->getCustomProperty('header_rows', 1);
 
         return view('table', ['file' => $media->getPath(), 'headerRows' => $headerRows]);
     }
