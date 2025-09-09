@@ -209,7 +209,7 @@ class ProductController extends Controller
             'from' => $products->firstItem(),
             'to' => $products->lastItem(),
             'page' => $request->has('page') ? $request->get('page') : 1,
-            'data' => new ProductCollection($products),
+            'data' => ProductResource::collection($products),
         ];
     }
 }
