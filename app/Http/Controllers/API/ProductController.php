@@ -182,7 +182,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Search products by query (using translations).
+     * Search products by query (using translations, case-insensitive).
      */
     public function search(Request $request): array
     {
@@ -193,8 +193,8 @@ class ProductController extends Controller
             ->where('type', 'product')
             ->when($search, function ($query, $search) {
                 $query->whereHas('translations', function ($q) use ($search) {
-                    $q->where('name', 'like', "%{$search}%")
-                      ->orWhere('description', 'like', "%{$search}%");
+                    $q->where('name', 'ILIKE', "%{$search}%")
+                      ->orWhere('description', 'ILIKE', "%{$search}%");
                 });
             })
             ->orderBy('order')
