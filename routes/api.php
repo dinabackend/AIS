@@ -16,14 +16,6 @@ use App\Http\Controllers\API\SparePartsPageController;
 use App\Http\Controllers\API\VariantController;
 use Illuminate\Support\Facades\Route;
 
-/*Route::get('/{locale}/products/filter', [ProductController::class, 'filter']);
-Route::get('/{locale}/products/{id}', [ProductController::class, 'show']);
-Route::get('/{locale}/home', [HomePageController::class, 'index']);
-Route::get('/{locale}/footer', [FooterController::class, 'index']);
-Route::get('/{locale}/about', [AboutController::class, 'index']);
-Route::get('/{locale}/teams', [UserController::class, 'index']);
-Route::get('/{locale}/teams/{id}', [UserController::class, 'show']);*/
-
 // AIS API
 Route::post('/form', [FormController::class, 'store']);
 Route::post('/reviews', [ReviewController::class, 'store']);
@@ -38,13 +30,11 @@ Route::get('/guarantee', [GuaranteeController::class, 'index']);
 Route::get('/rent', [RentPageController::class, 'index']);
 Route::get('/service', [ServicePageController::class, 'index']);
 Route::get('/spare-parts', [SparePartsPageController::class, 'index']);
-//Route::get('/spare-parts/{slug}', [ProductController::class, 'index']);
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/products/{slug}', [ProductController::class, 'show']);
 Route::get('/products/{slug}/{id}', [VariantController::class, 'show']);
 Route::get('/products/{slug}/sheet/{lang}', [ProductController::class, 'sheet']);
 Route::get('/products/{slug}/{id}/sheet/{lang}', [VariantController::class, 'sheet']);
-//Route::get('/products/filters', [ProductController::class, 'filter']);
 
 Route::get('/variants', [VariantController::class, 'index']);
 Route::get('/variants/{id}', [VariantController::class, 'show']);
@@ -58,3 +48,4 @@ Route::get('/categories/tree', [CategoryController::class, 'tree']);
 Route::get('/categories/{id}/children', [CategoryController::class, 'children']);
 Route::get('/categories/{slug}', [CategoryController::class, 'show']);
 Route::get('/catalog/{category}', [CategoryController::class, 'catalog']);
+Route::get('/search', [ProductController::class, 'search']);

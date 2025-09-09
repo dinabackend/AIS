@@ -180,4 +180,36 @@ class ProductController extends Controller
 
         return view('table', ['file' => $media->getPath(), 'headerRows' => $headerRows]);
     }
+
+    /**
+     * Search products by query (using translations).
+     */
+    public function search(Request $request): array
+    {
+        $search = $request->get('search', false);
+        $per_page = $request->get('per_page', 20); // Default smaller page size for search
+
+        $products = Product::query()
+            ->where('type', 'product')
+            ->when($search, function ($query, $search) {
+                $query->whereHas('translations', function ($q) use ($search) {
+                    $q->where('name', 'like', "%{$search}%")
+                      ->orWhere('description', 'like', "%{$search}%");
+                });
+            })
+            ->orderBy('order')
+            ->paginate($per_page)
+            ->withQueryString();
+
+        return [
+            'pages_count' => ceil($products->total() / $products->perPage()),
+            'count' => $products->total(),
+            'next' => $products->nextPageUrl(),
+            'prev' => $products->previousPageUrl(),
+            'from' => $products->firstItem(),
+            'to' => $products->lastItem(),
+            'page' => $request->has('page') ? $request->get('page') : 1,
+            'data' => new ProductCollection($products),
+        ];
+    }
 }
