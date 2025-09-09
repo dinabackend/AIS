@@ -190,7 +190,6 @@ class ProductController extends Controller
         $per_page = $request->get('per_page', 20); // Default smaller page size for search
 
         $products = Product::query()
-            ->where('type', 'product')
             ->when($search, function ($query, $search) {
                 $query->whereHas('translations', function ($q) use ($search) {
                     $q->where('name', 'ILIKE', "%{$search}%")
