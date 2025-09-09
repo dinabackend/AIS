@@ -70,7 +70,7 @@
         th,
         td {
             border: 1px solid #dbdbdb;
-            padding: 8px;
+            padding: 20px;
             text-align: left;
             vertical-align: top;
         }
@@ -117,9 +117,11 @@
             text-align: center;
         }
         .cell-bg {
-            padding: 5px 12px;
+            padding: 5px 0px;
+            width: 102px;
             border-radius: 5px;
             background: #d1d1d1;
+            display: block;
         }
     </style>
 </head>
@@ -195,7 +197,7 @@
         @endfor
     </table>
 
-    {{--<script>
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
 
             const mergedCells = document.querySelectorAll('.merged-cell:not(.header-row)');
@@ -208,6 +210,6 @@
                 });
             });
         });
-    </script>--}}
+    </script>
 </body>
 </html>
