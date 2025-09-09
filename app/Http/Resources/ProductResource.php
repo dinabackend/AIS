@@ -52,6 +52,7 @@ class ProductResource extends JsonResource
                 return [$item->locale => $item->seo_description];
             }),
             'blocks' => BlockResource::collection($this->blocks),
+            'type' => $this->type,
         ];
     }
 
