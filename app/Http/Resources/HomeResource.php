@@ -21,7 +21,7 @@ class HomeResource extends JsonResource
     {
         $settings = app(HomePageSettings::class);
         $buttons = app(ButtonsSettings::class);
-        $events = Event::query()->take(3)->where('status', 1)->get();
+        $events = Event::query()->take(3)->where('status', 1)->orderBy('created_at', 'desc')->get();
 
         $replace = ['[' => '<span>', ']' => '</span>'];
         $banners = [];
