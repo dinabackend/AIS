@@ -179,6 +179,7 @@
                             }
                             if (is_numeric($value) && !$isHeader) {
                                 $cellClass .= 'numeric ';
+                                $value = number_format($value, 2, '.', '');
                             }
                         @endphp
 
