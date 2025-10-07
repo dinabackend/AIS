@@ -31,6 +31,10 @@ return [
     'events' => 'Yangiliklar',
     'contacts' => "Aloqa ma'lumotlari",
     'content' => 'Content',
+    'guaranty' => 'Kafolat',
+    'parts' => 'Ehtiyot qismlar',
+    'rent' => 'Ijaralar',
+    'engineering' => 'Muhandislar va xizmat',
 
     'left' => 'Chap',
     'right' => 'O\'ng',

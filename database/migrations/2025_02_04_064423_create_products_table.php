@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('products', static function (Blueprint $table) {
             $table->id();
 
             $table->string('slug')->nullable();
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('product_translations', function (Blueprint $table) {
+        Schema::create('product_translations', static function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')->constrained('products')->cascadeOnDelete();
 
@@ -45,7 +45,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('product_translations', function (Blueprint $table) {
+        Schema::table('product_translations', static function (Blueprint $table) {
             $table->dropForeign(['product_id']);
         });
 

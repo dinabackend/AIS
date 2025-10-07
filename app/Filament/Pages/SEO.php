@@ -34,16 +34,17 @@ class SEO extends SettingsPage
 
     public function form(Form $form): Form
     {
-        $pages = ['home', 'about', 'catalog', 'category', 'events', 'contacts', 'privacy'];
+        $pages = ['home', 'about', 'catalog', 'category', 'events', 'contacts', 'privacy', 'guaranty', 'parts', 'rent', 'engineering'];
         $schema = [];
         foreach ($pages as $page) {
+            $u_page = ucfirst($page);
             $schema[] = Tabs\Tab::make(__("form.$page"))->schema([
-                TextInput::make("{$page}_title_uz")->label("{$page} Title uz"),
-                Textarea::make("{$page}_description_uz")->label("{$page} Description uz"),
-                TextInput::make("{$page}_title_ru")->label("{$page} Title ru"),
-                Textarea::make("{$page}_description_ru")->label("{$page} Description ru"),
-                TextInput::make("{$page}_title_en")->label("{$page} Title en"),
-                Textarea::make("{$page}_description_en")->label("{$page} Description en"),
+                TextInput::make("{$page}_title_uz")->label("$u_page Title uz"),
+                Textarea::make("{$page}_description_uz")->label("$u_page Description uz"),
+                TextInput::make("{$page}_title_ru")->label("$u_page Title ru"),
+                Textarea::make("{$page}_description_ru")->label("$u_page Description ru"),
+                TextInput::make("{$page}_title_en")->label("$u_page Title en"),
+                Textarea::make("{$page}_description_en")->label("$u_page Description en"),
                 FileUpload::make("{$page}_img")->label(__('form.image'))->default("/img/default.img")
             ]);
         }

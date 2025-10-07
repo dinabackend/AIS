@@ -29,9 +29,14 @@ return [
     'subtitle' => 'Подзаголовок',
     'collections' => 'Коллекции',
     'creations' => 'Творения',
-    'events' => 'События',
+    'events' => 'Новости',
     'contacts' => 'Контакты',
     'content' => 'Содержание',
+    'guaranty' => 'Гарантия',
+    'parts' => 'Запчасти',
+    'rent' => 'Аренда',
+    'engineering' => 'Инженеры и сервис',
+
 
     'left' => 'Слева',
     'right' => 'Справа',

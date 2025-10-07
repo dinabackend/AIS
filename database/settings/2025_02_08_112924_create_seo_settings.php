@@ -6,7 +6,7 @@ return new class extends SettingsMigration
 {
     public function up(): void
     {
-        $settings = ['home', 'about', 'catalog', 'collection', 'b2b', 'creations', 'news', 'contacts', 'privacy'];
+        $settings = ['home', 'about', 'catalog', 'category', 'product', 'events', 'contacts', 'privacy', 'guaranty', 'parts', 'rent', 'engineering'];
         foreach ($settings as $setting) {
             foreach (['uz', 'ru', 'en'] as $lang) {
                 $this->migrator->add("seo.{$setting}_title_$lang", "null");

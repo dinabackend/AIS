@@ -27,10 +27,15 @@ return [
     'catalog' => 'Catalog',
     'collections' => 'Collections',
     'creations' => 'creations',
-    'events' => 'Events',
+    'events' => 'News',
     'contacts' => 'Contacts',
     'category' => 'Category',
     'content' => 'Content',
+    'guaranty' => 'Guaranty',
+    'parts' => 'Parts',
+    'rent' => 'Rent',
+    'engineering' => 'Engineering',
+
 
     'left' => 'Left',
     'right' => 'Right',
@@ -54,7 +59,7 @@ return [
 
     'image1' => 'Image 1',
     'image2' => 'Image 2',
-    'title2' => 'Title 2',
+    'title2' => 'Title новости2',
     'text1' => 'Text 1',
     'text2' => 'Text 2',
     'text3' => 'Text 3',
