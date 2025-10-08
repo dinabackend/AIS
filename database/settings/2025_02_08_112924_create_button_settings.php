@@ -19,6 +19,7 @@ return new class extends SettingsMigration
             'privacy_link',
             'footer_form_link',
             'footer_catalog_link',
+            'telegram'
         ];
         foreach ($buttons as $button) {
             $this->migrator->add("button.{$button}_text_ru", "null");
