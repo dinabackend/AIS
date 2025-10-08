@@ -73,6 +73,7 @@
             padding: 20px;
             text-align: left;
             vertical-align: top;
+            background: #fff;
         }
 
         th {
