@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use App\Models\Category;
 use App\Models\Event;
-use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Spatie\Sitemap\SitemapIndex;
@@ -29,7 +28,7 @@ class Sitemap extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): void
     {
 
         $pages = \Spatie\Sitemap\Sitemap::create();
