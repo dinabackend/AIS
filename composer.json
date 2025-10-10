@@ -27,7 +27,8 @@
         "mll-lab/laravel-graphiql": "^3.2",
         "mokhosh/filament-rating": "^1.4",
         "phpoffice/phpspreadsheet": "^5.0",
-        "spatie/eloquent-sortable": "^4.4"
+        "spatie/eloquent-sortable": "^4.4",
+        "spatie/laravel-sitemap": "^7.3"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
